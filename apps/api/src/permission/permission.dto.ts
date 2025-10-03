@@ -1,6 +1,11 @@
 import { IsString, IsNotEmpty, IsOptional, IsBoolean } from 'class-validator';
+import {
+  ICreatePermissionDto,
+  IUpdatePermissionDto,
+  IPermissionResponseDto,
+} from '@repo/shared/dtos';
 
-export class CreatePermissionDto {
+export class CreatePermissionDto implements ICreatePermissionDto {
   @IsString()
   @IsNotEmpty()
   name!: string;
@@ -18,7 +23,7 @@ export class CreatePermissionDto {
   action?: string;
 }
 
-export class UpdatePermissionDto {
+export class UpdatePermissionDto implements IUpdatePermissionDto {
   @IsString()
   @IsOptional()
   name?: string;
@@ -40,7 +45,7 @@ export class UpdatePermissionDto {
   isActive?: boolean;
 }
 
-export class PermissionResponseDto {
+export class PermissionResponseDto implements IPermissionResponseDto {
   id!: string;
   name!: string;
   description!: string;

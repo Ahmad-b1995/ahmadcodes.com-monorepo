@@ -1,6 +1,14 @@
 import { IsEmail, IsNotEmpty, IsString, MinLength } from 'class-validator';
+import {
+  IRegisterDto,
+  ILoginDto,
+  IRefreshTokenDto,
+  IForgotPasswordDto,
+  IResetPasswordDto,
+  IChangePasswordDto,
+} from '@repo/shared/dtos';
 
-export class RegisterDto {
+export class RegisterDto implements IRegisterDto {
   @IsEmail()
   @IsNotEmpty()
   email!: string;
@@ -19,7 +27,7 @@ export class RegisterDto {
   password!: string;
 }
 
-export class LoginDto {
+export class LoginDto implements ILoginDto {
   @IsEmail()
   @IsNotEmpty()
   email!: string;
@@ -29,19 +37,19 @@ export class LoginDto {
   password!: string;
 }
 
-export class RefreshTokenDto {
+export class RefreshTokenDto implements IRefreshTokenDto {
   @IsString()
   @IsNotEmpty()
   refreshToken!: string;
 }
 
-export class ForgotPasswordDto {
+export class ForgotPasswordDto implements IForgotPasswordDto {
   @IsEmail()
   @IsNotEmpty()
   email!: string;
 }
 
-export class ResetPasswordDto {
+export class ResetPasswordDto implements IResetPasswordDto {
   @IsString()
   @IsNotEmpty()
   token!: string;
@@ -52,7 +60,7 @@ export class ResetPasswordDto {
   password!: string;
 }
 
-export class ChangePasswordDto {
+export class ChangePasswordDto implements IChangePasswordDto {
   @IsString()
   @IsNotEmpty()
   currentPassword!: string;

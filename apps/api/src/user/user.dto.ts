@@ -7,8 +7,13 @@ import {
   IsArray,
   IsUUID,
 } from 'class-validator';
+import {
+  ICreateUserDto,
+  IUpdateUserDto,
+  IUserResponseDto,
+} from '@repo/shared/dtos';
 
-export class CreateUserDto {
+export class CreateUserDto implements ICreateUserDto {
   @IsEmail()
   @IsNotEmpty()
   email!: string;
@@ -31,7 +36,7 @@ export class CreateUserDto {
   roleIds?: string[];
 }
 
-export class UpdateUserDto {
+export class UpdateUserDto implements IUpdateUserDto {
   @IsEmail()
   @IsOptional()
   email?: string;
@@ -54,7 +59,7 @@ export class UpdateUserDto {
   roleIds?: string[];
 }
 
-export class UserResponseDto {
+export class UserResponseDto implements IUserResponseDto {
   id!: string;
   email!: string;
   firstName!: string;
