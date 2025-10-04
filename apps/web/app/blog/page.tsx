@@ -3,6 +3,8 @@ import { getAllArticles } from '@/http/article.http';
 import Link from 'next/link';
 import Image from 'next/image';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Blog | Ahmad\'s Tech Insights',
   description: 'Explore technical articles, tutorials, and insights on web development, software engineering, and technology trends.',
