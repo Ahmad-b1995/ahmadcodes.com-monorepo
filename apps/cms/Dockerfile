@@ -19,14 +19,16 @@ RUN npm install -g pnpm
 
 WORKDIR /app
 
-COPY --from=builder /app/apps/cms/dist ./dist
-COPY --from=builder /app/apps/cms/package.json ./package.json
+COPY --from=builder /app/package.json /app/pnpm-lock.yaml /app/pnpm-workspace.yaml ./
+COPY --from=builder /app/packages ./packages
+COPY --from=builder /app/apps/cms ./apps/cms
 
-RUN pnpm add -g vite
+RUN pnpm install --prod --frozen-lockfile
+
+WORKDIR /app/apps/cms
 
 ENV NODE_ENV=production
 
 EXPOSE 7000
 
-CMD ["vite", "preview", "--port", "7000", "--host", "0.0.0.0"]
-
+CMD ["pnpm", "start"]
