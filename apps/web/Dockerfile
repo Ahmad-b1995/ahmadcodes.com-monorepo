@@ -7,16 +7,20 @@ WORKDIR /app
 # Install pnpm globally
 RUN npm install -g pnpm
 
-# Copy pnpm lockfile and package.json for dependency installation
-COPY pnpm-lock.yaml package.json ./
+# Copy root package files and workspace configuration
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install dependencies using pnpm
-RUN pnpm install --frozen-lockfile --verbose
+# Copy shared packages
+COPY packages ./packages
 
-# Copy all files into the working directory
-COPY . .
+# Copy web app
+COPY apps/web ./apps/web
 
-# Build the Next.js app
+# Install dependencies
+RUN pnpm install --frozen-lockfile
+
+# Build the web app
+WORKDIR /app/apps/web
 RUN pnpm build
 
 # Use a minimal Node.js runtime for the production image
@@ -28,11 +32,20 @@ RUN npm install -g pnpm
 # Set working directory
 WORKDIR /app
 
-# Copy built files and necessary dependencies from the builder stage
-COPY --from=builder /app/.next ./.next
-COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
-COPY --from=builder /app/node_modules ./node_modules
-COPY --from=builder /app/public ./public
+# Copy root package files
+COPY --from=builder /app/package.json /app/pnpm-lock.yaml /app/pnpm-workspace.yaml ./
+
+# Copy shared packages
+COPY --from=builder /app/packages ./packages
+
+# Copy web app
+COPY --from=builder /app/apps/web ./apps/web
+
+# Install production dependencies only
+RUN pnpm install --prod --frozen-lockfile
+
+# Set working directory to web app
+WORKDIR /app/apps/web
 
 # Set the environment variable to production
 ENV NODE_ENV=production
