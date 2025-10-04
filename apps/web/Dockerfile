@@ -32,12 +32,13 @@ WORKDIR /app
 COPY --from=builder /app/.next ./.next
 COPY --from=builder /app/package.json /app/pnpm-lock.yaml ./
 COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/public ./public
 
 # Set the environment variable to production
 ENV NODE_ENV=production
 
 # Expose the port the app runs on
-EXPOSE 3000
+EXPOSE 6500
 
 # Start the Next.js application
 CMD ["pnpm", "start"]
