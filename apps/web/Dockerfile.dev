@@ -1,0 +1,23 @@
+# Use Node.js as the base image for development
+FROM node:20-alpine AS dev
+
+# Set working directory
+WORKDIR /app
+
+# Install pnpm globally
+RUN npm install -g pnpm
+
+# Copy only package.json and pnpm-lock.yaml first for better caching
+COPY package.json pnpm-lock.yaml ./
+
+# Install dependencies (including dev dependencies)
+RUN pnpm install
+
+# Copy all the project files to the working directory
+COPY . .
+
+# Expose the port the app runs on
+EXPOSE 3000
+
+# Start the development server
+CMD ["pnpm", "dev"]
