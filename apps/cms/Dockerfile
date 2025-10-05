@@ -23,7 +23,7 @@ COPY --from=builder /app/package.json /app/pnpm-lock.yaml /app/pnpm-workspace.ya
 COPY --from=builder /app/packages ./packages
 COPY --from=builder /app/apps/cms ./apps/cms
 
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 WORKDIR /app/apps/cms
 
