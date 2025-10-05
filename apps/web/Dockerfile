@@ -41,8 +41,7 @@ COPY --from=builder /app/packages ./packages
 # Copy web app
 COPY --from=builder /app/apps/web ./apps/web
 
-# Install production dependencies only
-RUN pnpm install --prod --frozen-lockfile
+RUN pnpm install --frozen-lockfile
 
 # Set working directory to web app
 WORKDIR /app/apps/web
