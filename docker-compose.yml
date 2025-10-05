@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   api:
@@ -20,9 +20,10 @@ services:
       - JWT_EXPIRES_IN=${JWT_EXPIRES_IN:-3600}
       - JWT_REFRESH_EXPIRES_IN=${JWT_REFRESH_EXPIRES_IN:-604800}
       - FRONTEND_URL=${FRONTEND_URL}
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
     restart: unless-stopped
+    networks:
+      - default
+      - coolify
 
   web:
     build:
@@ -36,6 +37,8 @@ services:
     depends_on:
       - api
     restart: unless-stopped
+    networks:
+      - default
 
   cms:
     build:
@@ -50,3 +53,10 @@ services:
     depends_on:
       - api
     restart: unless-stopped
+    networks:
+      - default
+
+networks:
+  coolify:
+    external: true
+    name: coolify
