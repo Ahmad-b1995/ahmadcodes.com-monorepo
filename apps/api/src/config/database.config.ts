@@ -2,6 +2,15 @@ import { registerAs } from '@nestjs/config';
 import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 
 export default registerAs('database', (): TypeOrmModuleOptions => {
+  // Check if SSL should be enabled via environment variable
+  const databaseSsl = process.env.DATABASE_SSL;
+
+  let sslConfig: boolean | { rejectUnauthorized: boolean } = false;
+
+  if (databaseSsl === 'true' || databaseSsl === 'require') {
+    sslConfig = { rejectUnauthorized: false };
+  }
+
   const config = {
     type: 'postgres' as const,
     host: process.env.DATABASE_HOST || 'localhost',
@@ -12,10 +21,7 @@ export default registerAs('database', (): TypeOrmModuleOptions => {
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
     synchronize: process.env.NODE_ENV === 'development',
     logging: process.env.NODE_ENV === 'development',
-    ssl:
-      process.env.NODE_ENV === 'production'
-        ? { rejectUnauthorized: false }
-        : false,
+    ssl: sslConfig,
   };
 
   // Log connection details (without password)
@@ -26,6 +32,7 @@ export default registerAs('database', (): TypeOrmModuleOptions => {
     database: config.database,
     ssl: config.ssl,
     NODE_ENV: process.env.NODE_ENV,
+    DATABASE_SSL: process.env.DATABASE_SSL,
   });
 
   return config;
