@@ -7,7 +7,6 @@ import {
   HelpCircle,
   Lock,
   Bell,
-  Package,
   Palette,
   ServerOff,
   Settings,
@@ -15,7 +14,6 @@ import {
   UserCog,
   UserX,
   Users,
-  MessagesSquare,
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
@@ -26,13 +24,13 @@ import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
   user: {
-    name: 'satnaing',
+    name: 'satnffffaing',
     email: 'satnaingdev@gmail.com',
     avatar: '/avatars/shadcn.jpg',
   },
   teams: [
     {
-      name: 'Shadcn Admin',
+      name: 'Ahmadcodes CMS',
       logo: Command,
       plan: 'Vite + ShadcnUI',
     },
@@ -55,17 +53,6 @@ export const sidebarData: SidebarData = {
           title: 'Dashboard',
           url: '/',
           icon: LayoutDashboard,
-        },
-        {
-          title: 'Apps',
-          url: '/apps',
-          icon: Package,
-        },
-        {
-          title: 'Chats',
-          url: '/chats',
-          badge: '3',
-          icon: MessagesSquare,
         },
         {
           title: 'Users',
