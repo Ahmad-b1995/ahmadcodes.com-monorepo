@@ -28,20 +28,17 @@ async function bootstrap() {
   const document = SwaggerModule.createDocument(app, swaggerConfig);
   SwaggerModule.setup('api', app, document);
 
+  // Parse CORS origins from environment variable
+  const corsOrigins = process.env.CORS_ORIGINS
+    ? process.env.CORS_ORIGINS.split(',').map((origin) => origin.trim())
+    : [
+        'http://localhost:5173', // CMS dev
+        'http://localhost:3000', // Web dev
+        'http://localhost:4500', // API dev
+      ];
+
   app.enableCors({
-    origin:
-      process.env.NODE_ENV === 'production'
-        ? process.env.FRONTEND_URL
-        : [
-            'http://localhost:3000',
-            'http://localhost:4200',
-            'http://localhost:7000',
-            'http://138.197.137.245:7000',
-            'http://138.197.137.245:6500',
-            'http://138.197.137.245:4500',
-            'http://ahmadcodes.com',
-            'http://www.ahmadcodes.com',
-          ],
+    origin: corsOrigins,
     credentials: true,
   });
 
