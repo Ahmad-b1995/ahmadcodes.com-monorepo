@@ -17,16 +17,11 @@ import { Route as errors500RouteImport } from './routes/(errors)/500'
 import { Route as errors404RouteImport } from './routes/(errors)/404'
 import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
-import { Route as authSignUpRouteImport } from './routes/(auth)/sign-up'
-import { Route as authSignIn2RouteImport } from './routes/(auth)/sign-in-2'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
-import { Route as authOtpRouteImport } from './routes/(auth)/otp'
-import { Route as authForgotPasswordRouteImport } from './routes/(auth)/forgot-password'
 import { Route as ClerkAuthenticatedRouteRouteImport } from './routes/clerk/_authenticated/route'
 import { Route as ClerkauthRouteRouteImport } from './routes/clerk/(auth)/route'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedUsersIndexRouteImport } from './routes/_authenticated/users/index'
-import { Route as AuthenticatedTasksIndexRouteImport } from './routes/_authenticated/tasks/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedHelpCenterIndexRouteImport } from './routes/_authenticated/help-center/index'
 import { Route as AuthenticatedChatsIndexRouteImport } from './routes/_authenticated/chats/index'
@@ -80,29 +75,9 @@ const errors401Route = errors401RouteImport.update({
   path: '/401',
   getParentRoute: () => rootRouteImport,
 } as any)
-const authSignUpRoute = authSignUpRouteImport.update({
-  id: '/(auth)/sign-up',
-  path: '/sign-up',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authSignIn2Route = authSignIn2RouteImport.update({
-  id: '/(auth)/sign-in-2',
-  path: '/sign-in-2',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const authSignInRoute = authSignInRouteImport.update({
   id: '/(auth)/sign-in',
   path: '/sign-in',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authOtpRoute = authOtpRouteImport.update({
-  id: '/(auth)/otp',
-  path: '/otp',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const authForgotPasswordRoute = authForgotPasswordRouteImport.update({
-  id: '/(auth)/forgot-password',
-  path: '/forgot-password',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ClerkAuthenticatedRouteRoute = ClerkAuthenticatedRouteRouteImport.update({
@@ -122,11 +97,6 @@ const AuthenticatedSettingsRouteRoute =
 const AuthenticatedUsersIndexRoute = AuthenticatedUsersIndexRouteImport.update({
   id: '/users/',
   path: '/users/',
-  getParentRoute: () => AuthenticatedRouteRoute,
-} as any)
-const AuthenticatedTasksIndexRoute = AuthenticatedTasksIndexRouteImport.update({
-  id: '/tasks/',
-  path: '/tasks/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedSettingsIndexRoute =
@@ -208,11 +178,7 @@ export interface FileRoutesByFullPath {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
   '/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/clerk/': typeof ClerkauthRouteRouteWithChildren
-  '/forgot-password': typeof authForgotPasswordRoute
-  '/otp': typeof authOtpRoute
   '/sign-in': typeof authSignInRoute
-  '/sign-in-2': typeof authSignIn2Route
-  '/sign-up': typeof authSignUpRoute
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
@@ -232,16 +198,11 @@ export interface FileRoutesByFullPath {
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesByTo {
   '/clerk': typeof ClerkAuthenticatedRouteRouteWithChildren
-  '/forgot-password': typeof authForgotPasswordRoute
-  '/otp': typeof authOtpRoute
   '/sign-in': typeof authSignInRoute
-  '/sign-in-2': typeof authSignIn2Route
-  '/sign-up': typeof authSignUpRoute
   '/401': typeof errors401Route
   '/403': typeof errors403Route
   '/404': typeof errors404Route
@@ -261,7 +222,6 @@ export interface FileRoutesByTo {
   '/chats': typeof AuthenticatedChatsIndexRoute
   '/help-center': typeof AuthenticatedHelpCenterIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
-  '/tasks': typeof AuthenticatedTasksIndexRoute
   '/users': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRoutesById {
@@ -271,11 +231,7 @@ export interface FileRoutesById {
   '/_authenticated/settings': typeof AuthenticatedSettingsRouteRouteWithChildren
   '/clerk/(auth)': typeof ClerkauthRouteRouteWithChildren
   '/clerk/_authenticated': typeof ClerkAuthenticatedRouteRouteWithChildren
-  '/(auth)/forgot-password': typeof authForgotPasswordRoute
-  '/(auth)/otp': typeof authOtpRoute
   '/(auth)/sign-in': typeof authSignInRoute
-  '/(auth)/sign-in-2': typeof authSignIn2Route
-  '/(auth)/sign-up': typeof authSignUpRoute
   '/(errors)/401': typeof errors401Route
   '/(errors)/403': typeof errors403Route
   '/(errors)/404': typeof errors404Route
@@ -295,7 +251,6 @@ export interface FileRoutesById {
   '/_authenticated/chats/': typeof AuthenticatedChatsIndexRoute
   '/_authenticated/help-center/': typeof AuthenticatedHelpCenterIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
-  '/_authenticated/tasks/': typeof AuthenticatedTasksIndexRoute
   '/_authenticated/users/': typeof AuthenticatedUsersIndexRoute
 }
 export interface FileRouteTypes {
@@ -304,11 +259,7 @@ export interface FileRouteTypes {
     | '/clerk'
     | '/settings'
     | '/clerk/'
-    | '/forgot-password'
-    | '/otp'
     | '/sign-in'
-    | '/sign-in-2'
-    | '/sign-up'
     | '/401'
     | '/403'
     | '/404'
@@ -328,16 +279,11 @@ export interface FileRouteTypes {
     | '/chats'
     | '/help-center'
     | '/settings/'
-    | '/tasks'
     | '/users'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/clerk'
-    | '/forgot-password'
-    | '/otp'
     | '/sign-in'
-    | '/sign-in-2'
-    | '/sign-up'
     | '/401'
     | '/403'
     | '/404'
@@ -357,7 +303,6 @@ export interface FileRouteTypes {
     | '/chats'
     | '/help-center'
     | '/settings'
-    | '/tasks'
     | '/users'
   id:
     | '__root__'
@@ -366,11 +311,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings'
     | '/clerk/(auth)'
     | '/clerk/_authenticated'
-    | '/(auth)/forgot-password'
-    | '/(auth)/otp'
     | '/(auth)/sign-in'
-    | '/(auth)/sign-in-2'
-    | '/(auth)/sign-up'
     | '/(errors)/401'
     | '/(errors)/403'
     | '/(errors)/404'
@@ -390,18 +331,13 @@ export interface FileRouteTypes {
     | '/_authenticated/chats/'
     | '/_authenticated/help-center/'
     | '/_authenticated/settings/'
-    | '/_authenticated/tasks/'
     | '/_authenticated/users/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   ClerkRouteRoute: typeof ClerkRouteRouteWithChildren
-  authForgotPasswordRoute: typeof authForgotPasswordRoute
-  authOtpRoute: typeof authOtpRoute
   authSignInRoute: typeof authSignInRoute
-  authSignIn2Route: typeof authSignIn2Route
-  authSignUpRoute: typeof authSignUpRoute
   errors401Route: typeof errors401Route
   errors403Route: typeof errors403Route
   errors404Route: typeof errors404Route
@@ -467,39 +403,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof errors401RouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/(auth)/sign-up': {
-      id: '/(auth)/sign-up'
-      path: '/sign-up'
-      fullPath: '/sign-up'
-      preLoaderRoute: typeof authSignUpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(auth)/sign-in-2': {
-      id: '/(auth)/sign-in-2'
-      path: '/sign-in-2'
-      fullPath: '/sign-in-2'
-      preLoaderRoute: typeof authSignIn2RouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/(auth)/sign-in': {
       id: '/(auth)/sign-in'
       path: '/sign-in'
       fullPath: '/sign-in'
       preLoaderRoute: typeof authSignInRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(auth)/otp': {
-      id: '/(auth)/otp'
-      path: '/otp'
-      fullPath: '/otp'
-      preLoaderRoute: typeof authOtpRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/(auth)/forgot-password': {
-      id: '/(auth)/forgot-password'
-      path: '/forgot-password'
-      fullPath: '/forgot-password'
-      preLoaderRoute: typeof authForgotPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/clerk/_authenticated': {
@@ -528,13 +436,6 @@ declare module '@tanstack/react-router' {
       path: '/users'
       fullPath: '/users'
       preLoaderRoute: typeof AuthenticatedUsersIndexRouteImport
-      parentRoute: typeof AuthenticatedRouteRoute
-    }
-    '/_authenticated/tasks/': {
-      id: '/_authenticated/tasks/'
-      path: '/tasks'
-      fullPath: '/tasks'
-      preLoaderRoute: typeof AuthenticatedTasksIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings/': {
@@ -662,7 +563,6 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedArticlesIndexRoute: typeof AuthenticatedArticlesIndexRoute
   AuthenticatedChatsIndexRoute: typeof AuthenticatedChatsIndexRoute
   AuthenticatedHelpCenterIndexRoute: typeof AuthenticatedHelpCenterIndexRoute
-  AuthenticatedTasksIndexRoute: typeof AuthenticatedTasksIndexRoute
   AuthenticatedUsersIndexRoute: typeof AuthenticatedUsersIndexRoute
 }
 
@@ -674,7 +574,6 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedArticlesIndexRoute: AuthenticatedArticlesIndexRoute,
   AuthenticatedChatsIndexRoute: AuthenticatedChatsIndexRoute,
   AuthenticatedHelpCenterIndexRoute: AuthenticatedHelpCenterIndexRoute,
-  AuthenticatedTasksIndexRoute: AuthenticatedTasksIndexRoute,
   AuthenticatedUsersIndexRoute: AuthenticatedUsersIndexRoute,
 }
 
@@ -727,11 +626,7 @@ const ClerkRouteRouteWithChildren = ClerkRouteRoute._addFileChildren(
 const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   ClerkRouteRoute: ClerkRouteRouteWithChildren,
-  authForgotPasswordRoute: authForgotPasswordRoute,
-  authOtpRoute: authOtpRoute,
   authSignInRoute: authSignInRoute,
-  authSignIn2Route: authSignIn2Route,
-  authSignUpRoute: authSignUpRoute,
   errors401Route: errors401Route,
   errors403Route: errors403Route,
   errors404Route: errors404Route,

@@ -3,7 +3,6 @@ import {
   LayoutDashboard,
   Monitor,
   Bug,
-  ListTodo,
   FileX,
   HelpCircle,
   Lock,
@@ -17,7 +16,6 @@ import {
   UserX,
   Users,
   MessagesSquare,
-  ShieldCheck,
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
@@ -57,11 +55,6 @@ export const sidebarData: SidebarData = {
           title: 'Dashboard',
           url: '/',
           icon: LayoutDashboard,
-        },
-        {
-          title: 'Tasks',
-          url: '/tasks',
-          icon: ListTodo,
         },
         {
           title: 'Apps',
@@ -107,32 +100,6 @@ export const sidebarData: SidebarData = {
     {
       title: 'Pages',
       items: [
-        {
-          title: 'Auth',
-          icon: ShieldCheck,
-          items: [
-            {
-              title: 'Sign In',
-              url: '/sign-in',
-            },
-            {
-              title: 'Sign In (2 Col)',
-              url: '/sign-in-2',
-            },
-            {
-              title: 'Sign Up',
-              url: '/sign-up',
-            },
-            {
-              title: 'Forgot Password',
-              url: '/forgot-password',
-            },
-            {
-              title: 'OTP',
-              url: '/otp',
-            },
-          ],
-        },
         {
           title: 'Errors',
           icon: Bug,
