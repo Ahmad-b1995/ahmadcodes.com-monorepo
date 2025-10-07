@@ -13,13 +13,11 @@ import {
   Wrench,
   UserCog,
   UserX,
-  Users,
   AudioWaveform,
   Command,
   GalleryVerticalEnd,
   FileText,
 } from 'lucide-react'
-import { ClerkLogo } from '@/assets/clerk-logo'
 import { type SidebarData } from '../types'
 
 export const sidebarData: SidebarData = {
@@ -55,32 +53,9 @@ export const sidebarData: SidebarData = {
           icon: LayoutDashboard,
         },
         {
-          title: 'Users',
-          url: '/users',
-          icon: Users,
-        },
-        {
           title: 'Articles',
           url: '/articles',
           icon: FileText,
-        },
-        {
-          title: 'Secured by Clerk',
-          icon: ClerkLogo,
-          items: [
-            {
-              title: 'Sign In',
-              url: '/clerk/sign-in',
-            },
-            {
-              title: 'Sign Up',
-              url: '/clerk/sign-up',
-            },
-            {
-              title: 'User Management',
-              url: '/clerk/user-management',
-            },
-          ],
         },
       ],
     },
