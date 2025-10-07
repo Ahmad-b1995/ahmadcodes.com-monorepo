@@ -4,17 +4,6 @@ import { AppModule } from './app.module';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
-  // Log environment variables
-  Logger.log('=== Environment Configuration ===');
-  Logger.log(`NODE_ENV: ${process.env.NODE_ENV}`);
-  Logger.log(`APP_PORT: ${process.env.APP_PORT || 4500}`);
-  Logger.log(`DATABASE_HOST: ${process.env.DATABASE_HOST || 'localhost'}`);
-  Logger.log(`DATABASE_PORT: ${process.env.DATABASE_PORT || '5432'}`);
-  Logger.log(`DATABASE_NAME: ${process.env.DATABASE_NAME || 'flowhq_db'}`);
-  Logger.log(`DATABASE_USERNAME: ${process.env.DATABASE_USERNAME || 'postgres'}`);
-  Logger.log(`FRONTEND_URL: ${process.env.FRONTEND_URL}`);
-  Logger.log('=================================');
-
   const app = await NestFactory.create(AppModule);
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);
@@ -47,6 +36,11 @@ async function bootstrap() {
             'http://localhost:3000',
             'http://localhost:4200',
             'http://localhost:7000',
+            'http://138.197.137.245:7000',
+            'http://138.197.137.245:6500',
+            'http://138.197.137.245:4500',
+            'http://ahmadcodes.com',
+            'http://www.ahmadcodes.com',
           ],
     credentials: true,
   });
