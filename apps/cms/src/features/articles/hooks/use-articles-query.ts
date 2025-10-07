@@ -29,6 +29,13 @@ export function useCreateArticleMutation() {
       queryClient.invalidateQueries({ queryKey: [TAGS_QUERY_KEY] })
       toast.success('Article created successfully')
     },
+    onError: (error: any) => {
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        'Failed to create article'
+      toast.error(errorMessage)
+    },
   })
 }
 
@@ -43,6 +50,13 @@ export function useUpdateArticleMutation() {
       queryClient.invalidateQueries({ queryKey: [TAGS_QUERY_KEY] })
       toast.success('Article updated successfully')
     },
+    onError: (error: any) => {
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        'Failed to update article'
+      toast.error(errorMessage)
+    },
   })
 }
 
@@ -55,6 +69,13 @@ export function useDeleteArticleMutation() {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY] })
       queryClient.invalidateQueries({ queryKey: [TAGS_QUERY_KEY] })
       toast.success('Article deleted successfully')
+    },
+    onError: (error: any) => {
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        'Failed to delete article'
+      toast.error(errorMessage)
     },
   })
 }

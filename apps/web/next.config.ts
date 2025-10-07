@@ -5,6 +5,10 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
+        hostname: 'woody.tor1.digitaloceanspaces.com',
+      },
+      {
+        protocol: 'https',
         hostname: 'woody.tor1.cdn.digitaloceanspaces.com',
       },
       {
