@@ -13,7 +13,7 @@ export interface IUpdateRoleDto {
   permissionIds?: string[];
 }
 
-export interface IRoleResponseDto {
+export interface IRole {
   id: string;
   name: string;
   description: string;

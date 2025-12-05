@@ -10,7 +10,7 @@ import {
 import {
   ICreateUserDto,
   IUpdateUserDto,
-  IUserResponseDto,
+  IUser,
 } from '@repo/shared/dtos';
 
 export class CreateUserDto implements ICreateUserDto {
@@ -59,7 +59,7 @@ export class UpdateUserDto implements IUpdateUserDto {
   roleIds?: string[];
 }
 
-export class UserResponseDto implements IUserResponseDto {
+export class UserResponseDto implements IUser {
   id!: string;
   email!: string;
   firstName!: string;
