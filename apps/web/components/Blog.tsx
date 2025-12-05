@@ -13,8 +13,7 @@ const articleService = new ArticleService(httpClient);
 
 const Blog = async () => {
   await connection()
-  const response = await articleService.getArticles({ published: true });
-  const articles = response.data;
+  const articles = await articleService.getArticles({ published: true });
 
   return (
     <NavigationWrapper elementName="blog">

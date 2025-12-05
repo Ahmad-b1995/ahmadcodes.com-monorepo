@@ -32,10 +32,8 @@ export default async function BlogPage() {
   let articles: IArticle[] = [];
   
   try {
-    const response = await articleService.getArticles({ published: true });
-    articles = response.data;
+    articles = await articleService.getArticles({ published: true });
   } catch (error) {
-    // During build time, API might not be available
     console.warn('Failed to fetch articles:', error);
   }
 
