@@ -26,6 +26,7 @@ import {
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
+import { ImageUpload } from '@/components/ui/image-upload'
 import { type Article, articleFormSchema, type ArticleFormData } from '../data/schema'
 
 type ArticleActionDialogProps = {
@@ -215,41 +216,63 @@ export function ArticlesActionDialog({
                   </FormItem>
                 )}
               />
-              <div className='grid grid-cols-2 gap-4'>
-                <FormField
-                  control={form.control}
-                  name='imageAlt'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Image Alt Text</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder='Image description'
-                          autoComplete='off'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
+              <div className='space-y-4'>
+                <ImageUpload
+                  value={
+                    form.watch('imageSrc') && form.watch('imageAlt')
+                      ? {
+                          src: form.watch('imageSrc'),
+                          alt: form.watch('imageAlt'),
+                        }
+                      : undefined
+                  }
+                  onChange={(image) => {
+                    form.setValue('imageSrc', image.src)
+                    form.setValue('imageAlt', image.alt)
+                  }}
+                  onRemove={() => {
+                    form.setValue('imageSrc', '')
+                    form.setValue('imageAlt', '')
+                  }}
+                  label='Article Cover Image'
                 />
-                <FormField
-                  control={form.control}
-                  name='imageSrc'
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Image URL</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder='https://example.com/image.jpg'
-                          autoComplete='off'
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+                <div className='grid grid-cols-2 gap-4'>
+                  <FormField
+                    control={form.control}
+                    name='imageAlt'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image Alt Text</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder='Image description'
+                            autoComplete='off'
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name='imageSrc'
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Image URL</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder='Auto-filled after upload'
+                            autoComplete='off'
+                            {...field}
+                            disabled
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
               </div>
               <FormField
                 control={form.control}

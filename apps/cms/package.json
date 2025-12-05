@@ -1,11 +1,12 @@
 {
-  "name": "shadcn-admin",
+  "name": "cms",
   "private": false,
   "version": "2.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
+    "start": "vite preview --port 7000 --host",
     "lint": "eslint .",
     "preview": "vite preview",
     "format:check": "prettier --check .",

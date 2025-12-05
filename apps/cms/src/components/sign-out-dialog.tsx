@@ -10,20 +10,20 @@ interface SignOutDialogProps {
 export function SignOutDialog({ open, onOpenChange }: SignOutDialogProps) {
   const navigate = useNavigate()
   const location = useLocation()
-  const { auth } = useAuthStore()
+  const { refreshToken, reset } = useAuthStore()
 
   const handleSignOut = async () => {
     try {
       // Call logout API if we have a refresh token
-      if (auth.refreshToken) {
+      if (refreshToken) {
         const { logout } = await import('@/http/auth.http')
-        await logout(auth.refreshToken)
+        await logout(refreshToken)
       }
     } catch (error) {
       console.error('Logout error:', error)
     } finally {
       // Always reset auth state
-      auth.reset()
+      reset()
       // Preserve current location for redirect after sign-in
       const currentPath = location.href
       navigate({
