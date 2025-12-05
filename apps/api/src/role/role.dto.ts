@@ -9,7 +9,7 @@ import {
 import {
   ICreateRoleDto,
   IUpdateRoleDto,
-  IRoleResponseDto,
+  IRole,
 } from '@repo/shared/dtos';
 
 export class CreateRoleDto implements ICreateRoleDto {
@@ -46,7 +46,7 @@ export class UpdateRoleDto implements IUpdateRoleDto {
   permissionIds?: string[];
 }
 
-export class RoleResponseDto implements IRoleResponseDto {
+export class RoleResponseDto implements IRole {
   id!: string;
   name!: string;
   description!: string;

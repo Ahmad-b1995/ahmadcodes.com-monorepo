@@ -1,13 +1,20 @@
 import React from "react";
 import NavigationWrapper from "./NavigationWrapper";
 import Image from "next/image";
-import { getAllArticles } from "@/http/article.http";
+import { ArticleService, HttpClient } from "@repo/shared/http";
 import { connection } from "next/server";
 import Link from "next/link";
 
+const httpClient = new HttpClient({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4500/api',
+  withCredentials: true,
+});
+const articleService = new ArticleService(httpClient);
+
 const Blog = async () => {
   await connection()
-  const articles = await getAllArticles().then(data => data);
+  const response = await articleService.getArticles({ published: true });
+  const articles = response.data;
 
   return (
     <NavigationWrapper elementName="blog">

@@ -2,8 +2,14 @@ import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Link from 'next/link';
-import { getArticleBySlug } from '@/http/article.http';
-import type { IArticleResponseDto } from '@repo/shared/dtos';
+import { ArticleService, HttpClient } from '@repo/shared/http';
+import type { IArticle } from '@repo/shared/dtos';
+
+const httpClient = new HttpClient({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4500/api',
+  withCredentials: true,
+});
+const articleService = new ArticleService(httpClient);
 
 export const revalidate = 3600;
 
@@ -14,7 +20,7 @@ interface Props {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   try {
     const { slug } = await params;
-    const article = await getArticleBySlug(slug);
+    const article = await articleService.getArticleBySlug(slug);
     
     return {
       title: `${article.title} | Ahmad's Blog`,
@@ -48,11 +54,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ArticlePage({ params }: Props) {
-  let article: IArticleResponseDto;
+  let article: IArticle;
   
   try {
     const { slug } = await params;
-    article = await getArticleBySlug(slug);
+    article = await articleService.getArticleBySlug(slug);
   } catch {
     notFound();
   }

@@ -1,8 +1,8 @@
 import { Metadata } from 'next';
-import { getAllArticles } from '@/http/article.http';
+import { ArticleService, HttpClient } from '@repo/shared/http';
 import Link from 'next/link';
 import Image from 'next/image';
-import type { IArticleResponseDto } from '@repo/shared/dtos';
+import type { IArticle } from '@repo/shared/dtos';
 
 export const revalidate = 3600;
 
@@ -22,11 +22,18 @@ export const metadata: Metadata = {
   },
 };
 
+const httpClient = new HttpClient({
+  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4500/api',
+  withCredentials: true,
+});
+const articleService = new ArticleService(httpClient);
+
 export default async function BlogPage() {
-  let articles: IArticleResponseDto[] = [];
+  let articles: IArticle[] = [];
   
   try {
-    articles = await getAllArticles();
+    const response = await articleService.getArticles({ published: true });
+    articles = response.data;
   } catch (error) {
     // During build time, API might not be available
     console.warn('Failed to fetch articles:', error);

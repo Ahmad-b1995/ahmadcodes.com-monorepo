@@ -1,4 +1,4 @@
-export interface UploadResponseDto {
+export interface IUploadResponse {
   success: boolean;
   data: {
     alt: string;

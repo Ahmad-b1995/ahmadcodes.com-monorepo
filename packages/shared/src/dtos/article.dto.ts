@@ -25,7 +25,7 @@ export interface IUpdateArticleDto {
   published?: boolean;
 }
 
-export interface IArticleResponseDto {
+export interface IArticle {
   id: number;
   title: string;
   slug: string;

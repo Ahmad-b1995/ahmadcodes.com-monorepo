@@ -1,12 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { toast } from 'sonner'
-import {
-  createArticle,
-  deleteArticle,
-  getAllArticles,
-  getAllTags,
-  updateArticle,
-} from '@/http/article.http'
+import { articleService, httpClient } from '@/lib/api-client'
 import type { ICreateArticleDto, IUpdateArticleDto } from '@repo/shared/dtos'
 
 const QUERY_KEY = 'articles'
@@ -15,7 +9,10 @@ const TAGS_QUERY_KEY = 'article-tags'
 export function useArticlesQuery(published?: boolean) {
   return useQuery({
     queryKey: [QUERY_KEY, published],
-    queryFn: () => getAllArticles(published),
+    queryFn: async () => {
+      const response = await articleService.getArticles({ published });
+      return response.data;
+    },
   })
 }
 
@@ -23,7 +20,7 @@ export function useCreateArticleMutation() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (data: ICreateArticleDto) => createArticle(data),
+    mutationFn: (data: ICreateArticleDto) => articleService.createArticle(data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY] })
       queryClient.invalidateQueries({ queryKey: [TAGS_QUERY_KEY] })
@@ -44,7 +41,7 @@ export function useUpdateArticleMutation() {
 
   return useMutation({
     mutationFn: ({ id, data }: { id: number; data: IUpdateArticleDto }) =>
-      updateArticle(id, data),
+      articleService.updateArticle(id.toString(), data),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY] })
       queryClient.invalidateQueries({ queryKey: [TAGS_QUERY_KEY] })
@@ -64,7 +61,7 @@ export function useDeleteArticleMutation() {
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationFn: (id: number) => deleteArticle(id),
+    mutationFn: (id: number) => articleService.deleteArticle(id.toString()),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [QUERY_KEY] })
       queryClient.invalidateQueries({ queryKey: [TAGS_QUERY_KEY] })
@@ -83,8 +80,8 @@ export function useDeleteArticleMutation() {
 export function useArticleTagsQuery() {
   return useQuery({
     queryKey: [TAGS_QUERY_KEY],
-    queryFn: getAllTags,
-    staleTime: 5 * 60 * 1000, // 5 minutes - tags don't change often
+    queryFn: () => httpClient.get<string[]>('/articles/tags'),
+    staleTime: 5 * 60 * 1000,
   })
 }
 
