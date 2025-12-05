@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { paginate, Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
 import { Article } from './article.entity';
 import { CreateArticleDto, UpdateArticleDto } from './article.dto';
 
@@ -56,14 +57,16 @@ export class ArticleService {
     }
   }
 
-  async findAll(published?: boolean): Promise<Article[]> {
-    const query = this.articleRepository.createQueryBuilder('article');
+  async findAll(options: IPaginationOptions, published?: boolean): Promise<Pagination<Article>> {
+    const queryBuilder = this.articleRepository.createQueryBuilder('article');
 
     if (published !== undefined) {
-      query.where('article.published = :published', { published });
+      queryBuilder.where('article.published = :published', { published });
     }
 
-    return query.orderBy('article.createdAt', 'DESC').getMany();
+    queryBuilder.orderBy('article.createdAt', 'DESC');
+
+    return paginate<Article>(queryBuilder, options);
   }
 
   async findOne(id: number): Promise<Article> {

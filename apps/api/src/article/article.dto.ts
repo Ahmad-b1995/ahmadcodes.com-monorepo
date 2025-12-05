@@ -106,7 +106,7 @@ export class ArticleResponseDto implements IArticle {
   image!: ArticleImage;
   published!: boolean;
   createdAt!: string;
-  publishedAt!: string;
+  publishedAt!: string | null;
   metaDescription!: string;
   tags!: string[];
 }

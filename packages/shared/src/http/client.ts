@@ -11,11 +11,20 @@ export interface HttpClientConfig {
 }
 
 export interface PaginatedResponse<T> {
-  data: T[];
-  total: number;
-  page: number;
-  limit: number;
-  totalPages: number;
+  items: T[];
+  meta: {
+    itemCount: number;
+    totalItems: number;
+    itemsPerPage: number;
+    totalPages: number;
+    currentPage: number;
+  };
+  links?: {
+    first?: string;
+    previous?: string;
+    next?: string;
+    last?: string;
+  };
 }
 
 export class HttpClient {

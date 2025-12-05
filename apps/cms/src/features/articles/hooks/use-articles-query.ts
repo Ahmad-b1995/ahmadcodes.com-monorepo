@@ -6,10 +6,10 @@ import type { ICreateArticleDto, IUpdateArticleDto } from '@repo/shared/dtos'
 const QUERY_KEY = 'articles'
 const TAGS_QUERY_KEY = 'article-tags'
 
-export function useArticlesQuery(published?: boolean) {
+export function useArticlesQuery(published?: boolean, page: number = 1, limit: number = 100) {
   return useQuery({
-    queryKey: [QUERY_KEY, published],
-    queryFn: () => articleService.getArticles({ published }),
+    queryKey: [QUERY_KEY, published, page, limit],
+    queryFn: () => articleService.getArticles({ published, page, limit }),
   })
 }
 

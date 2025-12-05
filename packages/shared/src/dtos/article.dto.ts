@@ -34,7 +34,7 @@ export interface IArticle {
   image: IArticleImage;
   published: boolean;
   createdAt: string;
-  publishedAt: string;
+  publishedAt: string | null;
   metaDescription: string;
   tags: string[];
 }

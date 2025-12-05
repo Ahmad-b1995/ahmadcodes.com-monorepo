@@ -1,4 +1,4 @@
-import { HttpClient } from './client';
+import { HttpClient, PaginatedResponse } from './client';
 import type { IArticle, ICreateArticleDto, IUpdateArticleDto } from '../dtos/article.dto';
 
 export interface ArticleFilters {
@@ -12,8 +12,8 @@ export interface ArticleFilters {
 export class ArticleService {
   constructor(private client: HttpClient) {}
 
-  async getArticles(filters?: ArticleFilters): Promise<IArticle[]> {
-    return this.client.get<IArticle[]>('/articles', {
+  async getArticles(filters?: ArticleFilters): Promise<PaginatedResponse<IArticle>> {
+    return this.client.get<PaginatedResponse<IArticle>>('/articles', {
       params: filters,
     });
   }

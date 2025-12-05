@@ -32,7 +32,8 @@ export default async function BlogPage() {
   let articles: IArticle[] = [];
   
   try {
-    articles = await articleService.getArticles({ published: true });
+    const response = await articleService.getArticles({ published: true, page: 1, limit: 100 });
+    articles = response.items;
   } catch (error) {
     console.warn('Failed to fetch articles:', error);
   }
@@ -52,7 +53,7 @@ export default async function BlogPage() {
       "headline": article.title,
       "description": article.excerpt,
       "image": article.image.src,
-      "datePublished": article.publishedAt,
+      "datePublished": article.publishedAt || article.createdAt,
       "url": `${process.env.NEXT_PUBLIC_BASE_URL}/blog/${article.slug}`,
       "author": {
         "@type": "Person",
