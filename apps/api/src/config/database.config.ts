@@ -11,7 +11,7 @@ export default registerAs(
     password: process.env.DATABASE_PASSWORD || 'password',
     database: process.env.DATABASE_NAME || 'flowhq_db',
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
-    synchronize: process.env.NODE_ENV === 'development',
+    synchronize: false,
     logging: process.env.NODE_ENV === 'development',
     ssl:
       process.env.NODE_ENV === 'production'
