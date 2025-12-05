@@ -6,7 +6,7 @@ import { ArticleService, HttpClient } from '@repo/shared/http';
 import type { IArticle } from '@repo/shared/dtos';
 
 const httpClient = new HttpClient({
-  baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:4500/api',
+  baseURL: process.env.NEXT_PUBLIC_API_URL!,
   withCredentials: true,
 });
 const articleService = new ArticleService(httpClient);
