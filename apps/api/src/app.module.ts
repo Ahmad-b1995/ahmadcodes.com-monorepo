@@ -6,6 +6,7 @@ import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
 import { ArticleModule } from './article/article.module';
 import { UploadModule } from './upload/upload.module';
+import { SeedModule } from './seed/seed.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
 import s3Config from './config/s3.config';
@@ -29,6 +30,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     PermissionModule,
     ArticleModule,
     UploadModule,
+    SeedModule,
   ],
   providers: [
     {

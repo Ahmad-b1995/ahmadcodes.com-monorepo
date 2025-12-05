@@ -20,8 +20,8 @@ export default registerAs('database', (): TypeOrmModuleOptions => {
     database: process.env.DATABASE_NAME || 'flowhq_db',
     entities: [__dirname + '/../**/*.entity{.ts,.js}'],
     migrations: [__dirname + '/../migrations/*{.ts,.js}'],
-    synchronize: process.env.NODE_ENV === 'development',
-    migrationsRun: process.env.NODE_ENV === 'production',
+    synchronize: false,
+    migrationsRun: true,
     logging: process.env.NODE_ENV === 'development',
     ssl: sslConfig,
   };
