@@ -16,12 +16,22 @@ export class ArticleService {
   ) {}
 
   async create(createArticleDto: CreateArticleDto): Promise<Article> {
-    const existingArticle = await this.articleRepository.findOne({
+    // Check for existing slug
+    const existingSlug = await this.articleRepository.findOne({
       where: { slug: createArticleDto.slug },
     });
 
-    if (existingArticle) {
+    if (existingSlug) {
       throw new ConflictException('Article with this slug already exists');
+    }
+
+    // Check for existing title
+    const existingTitle = await this.articleRepository.findOne({
+      where: { title: createArticleDto.title },
+    });
+
+    if (existingTitle) {
+      throw new ConflictException('Article with this title already exists');
     }
 
     const article = this.articleRepository.create({
@@ -29,7 +39,21 @@ export class ArticleService {
       publishedAt: createArticleDto.published ? new Date() : null,
     });
 
-    return this.articleRepository.save(article);
+    try {
+      return await this.articleRepository.save(article);
+    } catch (error) {
+      // Handle database unique constraint violations
+      if (error.code === '23505') {
+        if (error.constraint?.includes('title')) {
+          throw new ConflictException('Article with this title already exists');
+        }
+        if (error.constraint?.includes('slug')) {
+          throw new ConflictException('Article with this slug already exists');
+        }
+        throw new ConflictException('Article with duplicate data already exists');
+      }
+      throw error;
+    }
   }
 
   async findAll(published?: boolean): Promise<Article[]> {
@@ -68,13 +92,25 @@ export class ArticleService {
   ): Promise<Article> {
     const article = await this.findOne(id);
 
+    // Check for existing slug if it's being changed
     if (updateArticleDto.slug && updateArticleDto.slug !== article.slug) {
-      const existingArticle = await this.articleRepository.findOne({
+      const existingSlug = await this.articleRepository.findOne({
         where: { slug: updateArticleDto.slug },
       });
 
-      if (existingArticle) {
+      if (existingSlug) {
         throw new ConflictException('Article with this slug already exists');
+      }
+    }
+
+    // Check for existing title if it's being changed
+    if (updateArticleDto.title && updateArticleDto.title !== article.title) {
+      const existingTitle = await this.articleRepository.findOne({
+        where: { title: updateArticleDto.title },
+      });
+
+      if (existingTitle) {
+        throw new ConflictException('Article with this title already exists');
       }
     }
 
@@ -83,7 +119,22 @@ export class ArticleService {
     }
 
     Object.assign(article, updateArticleDto);
-    return this.articleRepository.save(article);
+
+    try {
+      return await this.articleRepository.save(article);
+    } catch (error) {
+      // Handle database unique constraint violations
+      if (error.code === '23505') {
+        if (error.constraint?.includes('title')) {
+          throw new ConflictException('Article with this title already exists');
+        }
+        if (error.constraint?.includes('slug')) {
+          throw new ConflictException('Article with this slug already exists');
+        }
+        throw new ConflictException('Article with duplicate data already exists');
+      }
+      throw error;
+    }
   }
 
   async remove(id: number): Promise<void> {

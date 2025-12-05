@@ -2,6 +2,9 @@ import { Metadata } from 'next';
 import { getAllArticles } from '@/http/article.http';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { IArticleResponseDto } from '@repo/shared/dtos';
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Blog | Ahmad\'s Tech Insights',
@@ -20,7 +23,14 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-  const articles = await getAllArticles();
+  let articles: IArticleResponseDto[] = [];
+  
+  try {
+    articles = await getAllArticles();
+  } catch (error) {
+    // During build time, API might not be available
+    console.warn('Failed to fetch articles:', error);
+  }
 
   const structuredData = {
     "@context": "https://schema.org",

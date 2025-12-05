@@ -9,7 +9,7 @@ const searchSchema = z.object({
 
 export const Route = createFileRoute('/(auth)/sign-in')({
   beforeLoad: async () => {
-    const { auth } = useAuthStore.getState()
+    const auth = useAuthStore.getState()
     
     // If already authenticated, redirect to dashboard
     if (auth.isAuthenticated()) {

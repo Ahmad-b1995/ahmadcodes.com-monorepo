@@ -1,12 +1,12 @@
 import { useAuthStore } from '@/stores/auth-store'
 
 export function useAuth() {
-  const { auth } = useAuthStore()
+  const { user, isAuthenticated, reset } = useAuthStore()
 
   return {
-    user: auth.user,
-    isAuthenticated: auth.isAuthenticated(),
-    logout: auth.reset,
+    user,
+    isAuthenticated: isAuthenticated(),
+    logout: reset,
   }
 }
 

@@ -29,7 +29,7 @@ const processQueue = (error: Error | null = null) => {
 // Request interceptor for adding auth token
 axiosInstance.interceptors.request.use(
   (config: InternalAxiosRequestConfig) => {
-    const token = useAuthStore.getState().auth.accessToken
+    const token = useAuthStore.getState().accessToken
     if (token && config.headers) {
       config.headers.Authorization = `Bearer ${token}`
     }
@@ -64,10 +64,10 @@ axiosInstance.interceptors.response.use(
       originalRequest._retry = true
       isRefreshing = true
 
-      const refreshToken = useAuthStore.getState().auth.refreshToken
+      const refreshToken = useAuthStore.getState().refreshToken
 
       if (!refreshToken) {
-        useAuthStore.getState().auth.reset()
+        useAuthStore.getState().reset()
         isRefreshing = false
         return Promise.reject(error)
       }
@@ -77,7 +77,7 @@ axiosInstance.interceptors.response.use(
         const { refreshTokens } = await import('./auth.http')
         const response = await refreshTokens(refreshToken)
         
-        useAuthStore.getState().auth.setTokens(
+        useAuthStore.getState().setTokens(
           response.accessToken,
           response.refreshToken
         )
@@ -90,7 +90,7 @@ axiosInstance.interceptors.response.use(
         return axiosInstance(originalRequest)
       } catch (refreshError) {
         processQueue(refreshError as Error)
-        useAuthStore.getState().auth.reset()
+        useAuthStore.getState().reset()
         isRefreshing = false
         return Promise.reject(refreshError)
       }

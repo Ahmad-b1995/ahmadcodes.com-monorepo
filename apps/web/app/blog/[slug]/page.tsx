@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { getArticleBySlug } from '@/http/article.http';
 import type { IArticleResponseDto } from '@repo/shared/dtos';
 
+export const revalidate = 3600;
+
 interface Props {
   params: Promise<{ slug: string }>;
 }

@@ -22,4 +22,10 @@ export default defineConfig({
   server: {
     port: 7000,
   },
+  preview: {
+    allowedHosts: [
+      'cms.ahmadcodes.com',
+      'www.cms.ahmadcodes.com',
+    ],
+  },
 })

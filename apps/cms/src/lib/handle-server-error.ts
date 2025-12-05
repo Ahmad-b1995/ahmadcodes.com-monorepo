@@ -17,7 +17,12 @@ export function handleServerError(error: unknown) {
   }
 
   if (error instanceof AxiosError) {
-    errMsg = error.response?.data.title
+    // Try to get error message from response data
+    errMsg =
+      error.response?.data?.message ||
+      error.response?.data?.title ||
+      error.message ||
+      'Something went wrong!'
   }
 
   toast.error(errMsg)

@@ -5,9 +5,11 @@ import { UserModule } from './user/user.module';
 import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
 import { ArticleModule } from './article/article.module';
+import { UploadModule } from './upload/upload.module';
 import { SeedModule } from './seed/seed.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
+import s3Config from './config/s3.config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
@@ -16,7 +18,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      load: [databaseConfig, jwtConfig],
+      load: [databaseConfig, jwtConfig, s3Config],
     }),
     TypeOrmModule.forRootAsync({
       inject: [databaseConfig.KEY],
@@ -27,6 +29,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     RoleModule,
     PermissionModule,
     ArticleModule,
+    UploadModule,
     SeedModule,
   ],
   providers: [

@@ -17,20 +17,20 @@ import { SignOutDialog } from '@/components/sign-out-dialog'
 
 export function ProfileDropdown() {
   const [open, setOpen] = useDialogState()
-  const { auth } = useAuthStore()
+  const { user } = useAuthStore()
 
   const getInitials = () => {
-    if (auth.user?.firstName && auth.user?.lastName) {
-      return `${auth.user.firstName[0]}${auth.user.lastName[0]}`.toUpperCase()
+    if (user?.firstName && user?.lastName) {
+      return `${user.firstName[0]}${user.lastName[0]}`.toUpperCase()
     }
-    return auth.user?.email[0].toUpperCase() || 'U'
+    return user?.email[0].toUpperCase() || 'U'
   }
 
   const getDisplayName = () => {
-    if (auth.user?.firstName && auth.user?.lastName) {
-      return `${auth.user.firstName} ${auth.user.lastName}`
+    if (user?.firstName && user?.lastName) {
+      return `${user.firstName} ${user.lastName}`
     }
-    return auth.user?.email || 'User'
+    return user?.email || 'User'
   }
 
   return (
@@ -49,7 +49,7 @@ export function ProfileDropdown() {
             <div className='flex flex-col gap-1.5'>
               <p className='text-sm leading-none font-medium'>{getDisplayName()}</p>
               <p className='text-muted-foreground text-xs leading-none'>
-                {auth.user?.email || ''}
+                {user?.email || ''}
               </p>
             </div>
           </DropdownMenuLabel>
