@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
           },
         ],
         type: 'article',
-        publishedTime: article.publishedAt,
+        publishedTime: article.publishedAt || undefined,
       },
       twitter: {
         card: 'summary_large_image',
@@ -69,8 +69,8 @@ export default async function ArticlePage({ params }: Props) {
     "headline": article.title,
     "description": article.excerpt,
     "image": article.image.src,
-    "datePublished": article.publishedAt,
-    "dateModified": article.publishedAt,
+    "datePublished": article.publishedAt || article.createdAt,
+    "dateModified": article.publishedAt || article.createdAt,
     "author": {
       "@type": "Person",
       "name": "Ahmad"
@@ -136,8 +136,8 @@ export default async function ArticlePage({ params }: Props) {
             )}
             
             <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400">
-              <time dateTime={article.publishedAt}>
-                {new Date(article.publishedAt).toLocaleDateString('en-US', {
+              <time dateTime={article.publishedAt || article.createdAt}>
+                {new Date(article.publishedAt || article.createdAt).toLocaleDateString('en-US', {
                   year: 'numeric',
                   month: 'long',
                   day: 'numeric'

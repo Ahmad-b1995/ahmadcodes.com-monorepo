@@ -17,11 +17,9 @@ export function Articles() {
   const search = route.useSearch()
   const navigate = route.useNavigate()
   
-  // Fetch articles from API
   const { data: articlesData, isLoading, error } = useArticlesQuery()
   
-  // Transform API data to match our schema
-  const articles = articlesData ? transformArticlesToDTO(articlesData) : []
+  const articles = articlesData ? transformArticlesToDTO(articlesData.items) : []
 
   return (
     <>

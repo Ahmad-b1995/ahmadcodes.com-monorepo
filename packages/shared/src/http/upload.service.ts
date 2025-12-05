@@ -8,7 +8,7 @@ export class UploadService {
     const formData = new FormData();
     formData.append('file', file);
 
-    return this.client.post<IUploadResponse>('/upload/image', formData, {
+    return this.client.post<IUploadResponse>('/upload/article-image', formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
