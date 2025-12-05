@@ -9,10 +9,7 @@ const TAGS_QUERY_KEY = 'article-tags'
 export function useArticlesQuery(published?: boolean) {
   return useQuery({
     queryKey: [QUERY_KEY, published],
-    queryFn: async () => {
-      const response = await articleService.getArticles({ published });
-      return response.data;
-    },
+    queryFn: () => articleService.getArticles({ published }),
   })
 }
 
