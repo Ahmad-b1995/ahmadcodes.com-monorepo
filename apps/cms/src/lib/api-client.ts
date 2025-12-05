@@ -3,7 +3,7 @@ import type { IRefreshTokenResponse } from '@repo/shared/dtos';
 import { useAuthStore } from '@/stores/auth-store';
 
 const httpClient: HttpClient = new HttpClient({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:4500/api',
+  baseURL: import.meta.env.VITE_API_URL!,
   withCredentials: true,
   getAccessToken: () => useAuthStore.getState().accessToken,
   getRefreshToken: () => useAuthStore.getState().refreshToken,
