@@ -6,7 +6,7 @@ export interface ApiResponse<T = any> {
   message?: string;
 }
 
-export interface PaginatedResponse<T> {
+export interface ApiPaginatedResponse<T> {
   data: T[];
   total: number;
   page: number;

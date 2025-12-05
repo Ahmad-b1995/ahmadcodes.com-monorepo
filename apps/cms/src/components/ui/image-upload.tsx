@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { Upload, X, Image as ImageIcon, Loader2 } from 'lucide-react';
 import { Button } from './button';
 import { cn } from '@/lib/utils';
-import { uploadArticleImage, validateImageFile } from '@/http/upload.http';
+import { uploadService, validateImageFile } from '@/lib/api-client';
 
 interface ImageUploadProps {
   value?: { alt: string; src: string };
@@ -30,25 +30,22 @@ export function ImageUpload({
 
     setError(null);
 
-    // Validate file
     const validation = validateImageFile(file);
     if (!validation.valid) {
       setError(validation.error || 'Invalid file');
       return;
     }
 
-    // Show preview
     const reader = new FileReader();
     reader.onloadend = () => {
       setPreview(reader.result as string);
     };
     reader.readAsDataURL(file);
 
-    // Upload file
     setIsUploading(true);
     try {
-      const result = await uploadArticleImage(file);
-      onChange(result);
+      const result = await uploadService.uploadImage(file);
+      onChange(result.data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Upload failed');
       setPreview(null);
@@ -56,7 +53,6 @@ export function ImageUpload({
       setIsUploading(false);
     }
 
-    // Reset input
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }

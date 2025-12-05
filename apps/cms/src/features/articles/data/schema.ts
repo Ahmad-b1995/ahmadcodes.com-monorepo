@@ -1,11 +1,11 @@
 import { z } from 'zod'
-import type { IArticleResponseDto } from '@repo/shared/dtos'
+import type { IArticle } from '@repo/shared/dtos'
 
 /**
  * Frontend Article type extends the shared DTO
  * Only difference: dates are transformed to Date objects for easier manipulation
  */
-export type Article = Omit<IArticleResponseDto, 'createdAt' | 'publishedAt'> & {
+export type Article = Omit<IArticle, 'createdAt' | 'publishedAt'> & {
   createdAt: Date
   publishedAt: Date | null
 }

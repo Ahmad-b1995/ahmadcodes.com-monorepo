@@ -12,7 +12,7 @@ import {
   IArticleImage,
   ICreateArticleDto,
   IUpdateArticleDto,
-  IArticleResponseDto,
+  IArticle,
 } from '@repo/shared/dtos';
 
 export class ArticleImage implements IArticleImage {
@@ -97,7 +97,7 @@ export class UpdateArticleDto implements IUpdateArticleDto {
   published?: boolean;
 }
 
-export class ArticleResponseDto implements IArticleResponseDto {
+export class ArticleResponseDto implements IArticle {
   id!: number;
   title!: string;
   slug!: string;

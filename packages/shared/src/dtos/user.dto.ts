@@ -16,7 +16,7 @@ export interface IUpdateUserDto {
   roleIds?: string[];
 }
 
-export interface IUserResponseDto {
+export interface IUser {
   id: string;
   email: string;
   firstName: string;
