@@ -9,6 +9,7 @@ import {
   Query,
   UseGuards,
   ParseIntPipe,
+  DefaultValuePipe,
 } from '@nestjs/common';
 import { ArticleService } from './article.service';
 import { CreateArticleDto, UpdateArticleDto } from './article.dto';
@@ -30,9 +31,13 @@ export class ArticleController {
 
   @Get()
   @Public()
-  findAll(@Query('published') published?: string) {
+  findAll(
+    @Query('published') published?: string,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
+    @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
+  ) {
     const isPublished = published === 'true' ? true : published === 'false' ? false : undefined;
-    return this.articleService.findAll(isPublished);
+    return this.articleService.findAll({ page, limit: Math.min(limit, 100) }, isPublished);
   }
 
   @Get('tags')
