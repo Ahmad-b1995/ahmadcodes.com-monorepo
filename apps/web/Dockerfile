@@ -21,6 +21,12 @@ RUN pnpm install --frozen-lockfile
 
 # Build the web app
 WORKDIR /app/apps/web
+
+ARG NEXT_PUBLIC_API_URL
+ARG NEXT_PUBLIC_BASE_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_BASE_URL=$NEXT_PUBLIC_BASE_URL
+
 RUN pnpm build
 
 # Use a minimal Node.js runtime for the production image
