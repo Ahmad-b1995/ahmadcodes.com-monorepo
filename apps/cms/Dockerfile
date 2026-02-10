@@ -11,6 +11,12 @@ COPY apps/cms ./apps/cms
 RUN pnpm install --frozen-lockfile
 
 WORKDIR /app/apps/cms
+
+ARG VITE_API_URL
+ARG VITE_CLERK_PUBLISHABLE_KEY
+ENV VITE_API_URL=$VITE_API_URL
+ENV VITE_CLERK_PUBLISHABLE_KEY=$VITE_CLERK_PUBLISHABLE_KEY
+
 RUN pnpm build
 
 FROM node:20-alpine AS runner

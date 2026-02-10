@@ -21,6 +21,12 @@ if (!process.env.DATABASE_NAME) {
   throw new Error('DATABASE_NAME environment variable is required');
 }
 
+const databaseSsl = process.env.DATABASE_SSL;
+let sslConfig: boolean | { rejectUnauthorized: boolean } = false;
+if (databaseSsl === 'true' || databaseSsl === 'require') {
+  sslConfig = { rejectUnauthorized: false };
+}
+
 export const AppDataSource = new DataSource({
   type: 'postgres',
   host: process.env.DATABASE_HOST,
@@ -32,9 +38,6 @@ export const AppDataSource = new DataSource({
   migrations: ['src/migrations/*{.ts,.js}'],
   synchronize: false,
   logging: process.env.NODE_ENV === 'development',
-  ssl:
-    process.env.NODE_ENV === 'production'
-      ? { rejectUnauthorized: false }
-      : false,
+  ssl: sslConfig,
 });
 
