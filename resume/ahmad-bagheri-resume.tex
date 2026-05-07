@@ -1,0 +1,184 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage[sfdefault]{roboto}
+
+\usepackage{xcolor}
+\definecolor{accentTitle}{HTML}{0e7490}
+\definecolor{accentText}{HTML}{0e7490}
+\definecolor{accentLine}{HTML}{0e7490}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.4in}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\footskip}{3.7pt}
+\raggedbottom
+\raggedright
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\newcommand{\documentTitle}[2]{
+  \begin{center}
+    {\Huge\color{accentTitle} #1}
+    \vspace{10pt}
+    {\color{accentLine} \hrule}
+    \vspace{2pt}
+    \footnotesize{#2}
+    \vspace{2pt}
+    {\color{accentLine} \hrule}
+  \end{center}
+}
+
+\titleformat{\section}{
+  \vspace{-5pt}
+  \color{accentText}
+  \raggedright\large\bfseries
+}{}{0em}{}[\color{accentLine}\titlerule]
+
+\newcommand{\tinysection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\large{\bfseries\color{accentText}#1} {\color{accentLine} |}}
+}
+
+\newcommand{\heading}[2]{
+  \hspace{10pt}#1\hfill#2\\
+}
+
+\newcommand{\headingBf}[2]{
+  \heading{\textbf{#1}}{\textbf{#2}}
+}
+
+\newcommand{\headingIt}[2]{
+  \heading{\textit{#1}}{\textit{#2}}
+}
+
+\newenvironment{resume_list}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+}{
+  \end{itemize}
+}
+
+\newcommand{\companyDescription}[1]{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=12pt]
+    \item[] #1
+  \end{itemize}
+  \vspace{-7pt}
+}
+
+\renewcommand\labelitemi{--}
+
+\begin{document}
+
+  \documentTitle{ Ahmad Bagheri }{
+    \href{mailto:contact@ahmadcodes.com}{\raisebox{-0.15\height}{\faEnvelope}~contact@ahmadcodes.com} \quad$|$\quad
+    \raisebox{-0.05\height}{\faMapMarker}~Turkey (GMT+3) \quad$|$\quad
+    \href{https://ahmadcodes.com}{\raisebox{-0.15\height}{\faGlobe}~ahmadcodes.com} \quad$|$\quad
+    \href{https://www.linkedin.com/in/ahmad-bagheri/}{\raisebox{-0.15\height}{\faLinkedin}~ahmad-bagheri} \quad$|$\quad
+    \href{https://github.com/Ahmad-b1995}{\raisebox{-0.15\height}{\faGithub}~Ahmad-b1995}
+  }
+
+  \tinysection{Summary}
+  Senior full-stack engineer with 7+ years of experience building integration-heavy systems for ERP, fintech, and traditional enterprise environments. Specializing in NetSuite/SuiteScript integrations, TypeScript (NestJS, React, Next.js), and the production tools that wrap them. Sole-engineer-to-MVP type --- comfortable owning architecture, infrastructure, and delivery end-to-end. Available for contract and part-time engagements.
+
+  \section{Skills}
+  \begin{multicols}{2}
+    \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=10pt, label={}]
+      \item \textbf{Backend:} NestJS, Node.js, TypeScript, Python, Django, .NET, Express, GraphQL, REST
+      \item \textbf{Frontend:} React, Next.js, TypeScript, React Native, Angular, Vue, TanStack Query, Tailwind, Redux, Storybook
+      \item \textbf{Data:} PostgreSQL, MongoDB, Redis, pgvector, OOP, system design
+      \item \textbf{Integrations:} NetSuite, SuiteScript, RESTlets, OAuth 2.0/JWT, HubSpot, Stripe
+      \item \textbf{Infra \& DevOps:} Docker, Linux, Ansible, Coolify, GitLab/Jenkins CI/CD, AWS, GCP
+      \item \textbf{Testing:} Jest, Cypress, pytest, integration testing
+      \item \textbf{Languages:} English (fluent), German (A1), Persian (native)
+    \end{itemize}
+  \end{multicols}
+
+  \section{Experience}
+
+  \headingBf{ Barriertek (woodyportal.com) }{ Mar 2025 -- Present }
+  \headingIt{ Senior Full-Stack Developer }{ Remote (Toronto, Canada) }
+  \companyDescription{ Fire-retardant lumber manufacturer modernizing operations through a custom ERP-integrated customer and production portal. }
+  \begin{resume_list}
+    \item Sole engineer building a manufacturer customer portal that replaces phone-based order coordination, whiteboard production scheduling, and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production workers, and the office team.
+    \item Designed and shipped end-to-end in TypeScript: NestJS API, React + TanStack Query frontend, planned React Native mobile app with QR-based warehouse workflows, and bi-directional NetSuite integration via SuiteScript RESTlets and webhooks.
+    \item Built deployment infrastructure on Coolify with PostgreSQL, Linux, and Ansible. CI/CD with Docker and GitLab.
+    \item Currently in partial launch with internal users and pilot customers; full external rollout targeted for Oct 2026. Coordinate weekly with non-technical stakeholders and a cross-functional team of 5--8.
+  \end{resume_list}
+
+  \headingBf{ Dextrading }{ Dec 2022 -- Apr 2025 }
+  \headingIt{ Senior Full-Stack Developer }{ Remote (Toronto, Canada) }
+  \companyDescription{ Cryptocurrency trading and analytics platform serving retail and professional traders. }
+  \begin{resume_list}
+    \item Lead engineer on a 3-developer frontend team. Rebuilt the customer-facing app on Next.js + TanStack Query with substantial perceived-load improvements.
+    \item Designed and shipped a NestJS + GraphQL + PostgreSQL content platform that became a primary acquisition channel.
+    \item Built a Django-backed AI Q\&A API tied to subscription growth.
+    \item Integrated TradingView, Chart.js, and D3 for real-time market visualization. Implemented advanced filterable, sortable, and cached data tables.
+    \item Established CI/CD via Docker, GitLab, and Jenkins; tightened deployment cadence and reduced rollout incidents.
+  \end{resume_list}
+
+  \headingBf{ Azer Tech (Sahibkar) }{ Jul 2021 -- Jan 2023 }
+  \headingIt{ Full-Stack Developer }{ Remote (Sumqayit, Azerbaijan) }
+  \companyDescription{ Educational technology platform with a multi-language user base. }
+  \begin{resume_list}
+    \item Built the multi-language Next.js frontend with server-side rendering for performance and SEO.
+    \item Implemented React Beautiful DnD for drag-and-drop workflows in an exam-creation tool, simplifying a previously manual process.
+    \item Configured CI/CD pipelines with Portainer, Docker, and GitLab.
+    \item Consulted on backend performance optimization, reducing API latencies on hot paths.
+  \end{resume_list}
+
+  \headingBf{ Chargoon }{ Feb 2020 -- Aug 2021 }
+  \headingIt{ Full-Stack Developer }{ Remote (Tehran, Iran) }
+  \companyDescription{ Iranian enterprise software vendor delivering ERP solutions to mid-market and enterprise customers. Public site is geo-restricted outside Iran. }
+  \begin{resume_list}
+    \item Migrated legacy ERP modules to a React + .NET stack as part of a 15-engineer team, while shipping new features driven by customer requests.
+    \item Drove code-review practices that tightened defect rates and review cycle times.
+    \item Enhanced backend logic in .NET, delivering measurable throughput improvements on transaction-heavy modules.
+  \end{resume_list}
+
+  \headingBf{ Hamisheh }{ Aug 2018 -- Feb 2020 }
+  \headingIt{ Frontend Developer }{ Tehran, Iran }
+  \companyDescription{ PWA-based fitness video streaming startup (now defunct). }
+  \begin{resume_list}
+    \item Built the Angular front-end with HLS streaming for a fitness video product, including PWA install and offline capabilities.
+    \item Designed and shipped a CMS dashboard for content upload and curation workflows.
+    \item Dockerized the frontend deployment, cutting daily deployment time substantially.
+    \item Conducted A/B testing and user research feeding back into product iterations.
+  \end{resume_list}
+
+  \section{Selected Open Source}
+
+  \headingBf{ netsuite-restlet-typescript }{ \href{https://github.com/Ahmad-b1995/netsuite-restlet-typescript}{github.com/Ahmad-b1995/netsuite-restlet-typescript} }
+  \headingIt{ TypeScript SDK for NetSuite RESTlets }{ }
+  \companyDescription{ A typed client for calling NetSuite RESTlets with OAuth 2.0 / JWT authentication. Includes typed request/response handling, retry-with-backoff, structured error classes, and runnable examples for common saved-search and CRUD workflows. }
+
+  \section{Education}
+
+  \headingBf{ B.Sc. in Computer Science (Expected 2027) }{ }
+  \headingIt{ University of the People }{ Pasadena, CA }
+
+\end{document}

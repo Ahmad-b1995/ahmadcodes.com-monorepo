@@ -3,4 +3,5 @@ export * from './user.dto';
 export * from './role.dto';
 export * from './permission.dto';
 export * from './article.dto';
+export * from './mail.dto';
 export * from './upload.dto';

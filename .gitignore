@@ -36,3 +36,20 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# LaTeX build artifacts
+resume/*.aux
+resume/*.log
+resume/*.out
+resume/*.toc
+resume/*.fdb_latexmk
+resume/*.fls
+resume/*.synctex.gz
+resume/*.bak
+resume/previews/
+
+# Personal plans / private notes — never push these
+REMINDERS.md
+TODO.md
+private/
+.private/

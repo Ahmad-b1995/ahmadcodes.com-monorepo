@@ -12,12 +12,14 @@ const Header = () => {
           <Link href="/">Ahmad Bagheri</Link>
         </h1>
         <h2 className="mt-3 text-lg font-medium tracking-tight text-primary sm:text-xl">
-          Senior Full Stack Developer
+          Senior Full-Stack Engineer
         </h2>
         <p className="mt-4 max-w-xs leading-normal text-slate-600 dark:text-slate-400">
-          7 years of experience building scalable ERP web solutions for startups. 
-          Specializing in Next.js, TypeScript, Django, and GraphQL across 
-          cryptocurrency, e-commerce, and enterprise applications.
+          Sole-engineer specialist for ERP-integrated portals and dashboards.
+          NetSuite, NestJS, React. 7+ years.
+        </p>
+        <p className="mt-3 max-w-xs text-sm leading-normal text-slate-500 dark:text-slate-500">
+          Available for contract & part-time engagements (10&ndash;25 hrs/week). Remote, GMT+3.
         </p>
         <NavigationLinks /> 
       </div>
@@ -49,7 +51,7 @@ const Header = () => {
         <li className="mr-5 text-xs shrink-0">
         <Link
             className="block text-slate-600 dark:text-slate-400 hover:text-primary-300"
-            href="mailto:ahmadbagheri.dev@gmail.com"
+            href="mailto:contact@ahmadcodes.com"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Email (opens in a new tab)"

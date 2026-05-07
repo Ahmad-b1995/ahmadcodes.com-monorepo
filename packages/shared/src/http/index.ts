@@ -2,6 +2,7 @@ export { HttpClient } from './client';
 export type { HttpClientConfig, PaginatedResponse } from './client';
 export { AuthService } from './auth.service';
 export { ArticleService } from './article.service';
+export { MailService } from './mail.service';
 export { UserService } from './user.service';
 export { RoleService } from './role.service';
 export { UploadService } from './upload.service';
