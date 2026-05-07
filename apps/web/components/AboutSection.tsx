@@ -16,16 +16,31 @@ const AboutSection = () => {
         </div>
         <div>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
-            With 7 years of experience as a senior full-stack developer, I specialize in building scalable ERP web solutions for startups across diverse sectors including cryptocurrency, e-commerce, and enterprise applications. My expertise spans modern technologies such as Next.js, TypeScript, Django, and GraphQL, enabling me to deliver comprehensive solutions that drive business growth.
+            I&apos;m a senior full-stack engineer with 7+ years of experience building integration-heavy
+            systems for ERP, fintech, and traditional enterprise environments. I specialize in
+            <span className="text-slate-800 dark:text-slate-300"> NetSuite/SuiteScript integrations</span>,
+            TypeScript on both ends (NestJS + React/Next.js), and the production tools that wrap them.
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
-            Throughout my career, I&apos;ve achieved significant milestones including revamping DexTrading&apos;s web application with a 200% site speed increase and 50% user engagement boost. I successfully redesigned and launched their blog, resulting in a 500% increase in daily traffic and 200% improvement in user conversions. At Azer Tech, I optimized API performance by 50%, substantially enhancing platform efficiency and user satisfaction.
+            Currently at <a className="text-slate-800 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300" href="https://barriertek.com" target="_blank" rel="noreferrer">Barriertek</a>, I&apos;m the sole engineer on
+            <span className="text-slate-800 dark:text-slate-300"> Woody Portal</span> &mdash; a manufacturer
+            customer portal that replaces phone-based order coordination, whiteboard production scheduling,
+            and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production
+            workers, and the office team. Bi-directional NetSuite integration via SuiteScript RESTlets;
+            currently in partial launch with full external rollout targeted for October 2026.
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
-            Currently at Barriertek, I&apos;m developing a comprehensive ERP system from scratch using React, NestJS, and PostgreSQL. This system replaces manual processes and eliminates phone-based communication, projected to serve 500+ users while reducing operational costs. I&apos;ve successfully onboarded 156+ customers with advanced features including real-time updates, NetSuite integration, and multi-platform support.
+            Before that, I led the frontend rebuild at <a className="text-slate-800 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300" href="https://dextrading.com" target="_blank" rel="noreferrer">DexTrading</a>
+            (a crypto analytics platform), shipped an in-house content platform that became a primary acquisition
+            channel, and built a Django-backed AI Q&amp;A API tied to subscription growth. Earlier I worked at
+            <span> </span><span className="text-slate-800 dark:text-slate-300">Chargoon</span> &mdash; an Iranian ERP vendor
+            &mdash; migrating legacy modules to a React + .NET stack alongside a 15-engineer team.
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
-            My approach combines technical excellence with leadership skills, having led teams of up to 3 developers while collaborating effectively in larger groups of 15+ members. I&apos;m passionate about implementing CI/CD pipelines, optimizing performance, and creating scalable DevOps infrastructure. Whether working with PostgreSQL, Docker, or cloud platforms, I focus on building solutions that are both innovative and maintainable.
+            I&apos;m comfortable owning architecture, infrastructure, and delivery end-to-end &mdash; from Postgres
+            schema and API design through deployment on Coolify with Linux and Ansible, to CI/CD and the front-end
+            polish. I&apos;m available for contract and part-time engagements (10&ndash;25 hrs/week), remote,
+            GMT+3 with comfortable overlap with US Eastern and Western Europe.
           </p>
         </div>
       </section>

@@ -10,6 +10,7 @@ import {
   Command,
   GalleryVerticalEnd,
   FileText,
+  Mail,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
@@ -49,6 +50,11 @@ export const sidebarData: SidebarData = {
           title: 'Articles',
           url: '/articles',
           icon: FileText,
+        },
+        {
+          title: 'Mail',
+          url: '/mail',
+          icon: Mail,
         },
       ],
     },
