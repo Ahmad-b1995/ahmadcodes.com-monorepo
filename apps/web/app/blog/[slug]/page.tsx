@@ -160,12 +160,11 @@ export default async function ArticlePage({ params }: Props) {
           </header>
 
           {/* Article Content */}
-          <article className="prose prose-lg prose-slate dark:prose-invert max-w-none">
-            <div 
-              dangerouslySetInnerHTML={{ __html: article.content }}
-              className="[&>*]:mb-6 [&>h1]:text-2xl [&>h2]:text-xl [&>h3]:text-lg [&>h1]:font-bold [&>h2]:font-semibold [&>h3]:font-medium [&>p]:leading-relaxed [&>ul]:list-disc [&>ul]:pl-6 [&>ol]:list-decimal [&>ol]:pl-6 [&>blockquote]:border-l-4 [&>blockquote]:border-primary-500 [&>blockquote]:pl-4 [&>blockquote]:italic [&>code]:bg-slate-100 [&>code]:dark:bg-slate-800 [&>code]:px-1 [&>code]:py-0.5 [&>code]:rounded [&>code]:text-sm"
-            />
-          </article>
+          <article
+            className="prose prose-lg prose-slate dark:prose-invert max-w-none"
+            dangerouslySetInnerHTML={{ __html: article.content }}
+          />
+
 
           {/* Footer */}
           <footer className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-700">

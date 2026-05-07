@@ -201,7 +201,10 @@ export class AuthService {
 
     const accessToken = this.jwtService.sign(payload, {
       secret: this.configService.get<string>('jwt.secret'),
-      expiresIn: this.configService.get<string>('jwt.expiresIn'),
+      expiresIn:
+        (this.configService.get<string>('jwt.expiresIn') as
+          | `${number}${'s' | 'm' | 'h' | 'd'}`
+          | undefined) ?? '15m',
     });
 
     // Create refresh token
@@ -228,7 +231,10 @@ export class AuthService {
 
     const refreshToken = this.jwtService.sign(refreshPayload, {
       secret: this.configService.get<string>('jwt.refreshSecret'),
-      expiresIn: this.configService.get<string>('jwt.refreshExpiresIn'),
+      expiresIn:
+        (this.configService.get<string>('jwt.refreshExpiresIn') as
+          | `${number}${'s' | 'm' | 'h' | 'd'}`
+          | undefined) ?? '7d',
     });
 
     // Update the stored token with the signed JWT

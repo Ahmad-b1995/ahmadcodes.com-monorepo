@@ -17,9 +17,8 @@ const Hero: FC = () => {
                 <div className="w-2/3 ">
                     <h1 className="text-4xl font-bold text-gray-500">Ahmad Bagheri</h1>
                     <p className="mt-4 text-lg text-gray-600 leading-relaxed">
-                        This is a brief summary about yourself. You can include details
-                        like your current job, skills, or anything else that represents
-                        you.
+                        Senior full-stack engineer specializing in NetSuite & ERP integrations.
+                        I ship the integration-heavy portals and dashboards small teams can&apos;t.
                     </p>
                 </div>
             </div>

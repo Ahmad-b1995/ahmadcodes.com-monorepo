@@ -27,6 +27,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Switch } from '@/components/ui/switch'
 import { ImageUpload } from '@/components/ui/image-upload'
+import { RichTextEditor } from '@/components/ui/rich-text-editor'
 import { type Article, articleFormSchema, type ArticleFormData } from '../data/schema'
 
 type ArticleActionDialogProps = {
@@ -109,8 +110,8 @@ export function ArticlesActionDialog({
         onOpenChange(state)
       }}
     >
-      <DialogContent className='sm:max-w-2xl'>
-        <DialogHeader className='text-start'>
+      <DialogContent className='flex max-h-[92vh] flex-col gap-0 p-0 sm:max-w-5xl'>
+        <DialogHeader className='border-b px-6 py-4 text-start'>
           <DialogTitle>
             {isEdit ? 'Edit Article' : 'Add New Article'}
           </DialogTitle>
@@ -121,7 +122,7 @@ export function ArticlesActionDialog({
             Click save when you&apos;re done.
           </DialogDescription>
         </DialogHeader>
-        <div className='h-[32rem] w-[calc(100%+0.75rem)] overflow-y-auto py-1 pe-3'>
+        <div className='min-h-0 flex-1 overflow-y-auto px-6 py-4'>
           <Form {...form}>
             <form
               id='article-form'
@@ -187,11 +188,10 @@ export function ArticlesActionDialog({
                   <FormItem>
                     <FormLabel>Content</FormLabel>
                     <FormControl>
-                      <Textarea
-                        placeholder='Article content'
-                        className='resize-none'
-                        rows={6}
-                        {...field}
+                      <RichTextEditor
+                        value={field.value ?? ''}
+                        onChange={field.onChange}
+                        placeholder='Write your article here. Use the toolbar for formatting, headings, lists, links, code, and images.'
                       />
                     </FormControl>
                     <FormMessage />
@@ -314,7 +314,7 @@ export function ArticlesActionDialog({
             </form>
           </Form>
         </div>
-        <DialogFooter>
+        <DialogFooter className='border-t px-6 py-4'>
           <Button
             type='submit'
             form='article-form'

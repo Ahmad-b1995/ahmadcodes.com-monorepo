@@ -40,6 +40,6 @@ export class Article {
   @Column()
   metaDescription!: string;
 
-  @Column('simple-array')
+  @Column('text', { array: true })
   tags!: string[];
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import AboutSection from './AboutSection';
 import ExperienceSection from './ExperienceSection';
 import ProjectSection from './ProjectSection';
-import Blog from './Blog';
+// import Blog from './Blog'; // Re-enable once NetSuite-focused articles are ready to publish.
 
 const Homepage = async () => {
     return (
@@ -10,7 +10,7 @@ const Homepage = async () => {
             <AboutSection />
             <ExperienceSection />
             <ProjectSection />
-            <Blog/>
+            {/* <Blog/> */}
         </main>
     );
 };

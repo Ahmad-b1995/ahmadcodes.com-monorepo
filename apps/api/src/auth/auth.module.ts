@@ -19,10 +19,13 @@ import { RefreshToken } from './refresh-token.entity';
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
-      useFactory: async (configService: ConfigService) => ({
+      useFactory: (configService: ConfigService) => ({
         secret: configService.get<string>('jwt.secret'),
         signOptions: {
-          expiresIn: configService.get<string>('jwt.expiresIn'),
+          expiresIn:
+            (configService.get<string>('jwt.expiresIn') as
+              | `${number}${'s' | 'm' | 'h' | 'd'}`
+              | undefined) ?? '15m',
         },
       }),
       inject: [ConfigService],

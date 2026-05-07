@@ -46,11 +46,11 @@ const ErrorFallback = ({
         </h1>
         <p className="text-slate-600 dark:text-slate-400 mb-6">
           We encountered an unexpected error. Please try again or email me at{" "}
-          <a 
-            href="mailto:ahmadbagheri.dev@gmail.com" 
+          <a
+            href="mailto:contact@ahmadcodes.com"
             className="text-primary-600 dark:text-primary-400 hover:underline"
           >
-            ahmadbagheri.dev@gmail.com
+            contact@ahmadcodes.com
           </a>{" "}
           if the problem persists.
         </p>
@@ -103,7 +103,7 @@ const ErrorBoundaryComponent = ({
   fallback, 
   onReset 
 }: Props) => {
-  const handleError = (error: Error, errorInfo: ErrorInfo) => {
+  const handleError = (error: unknown, errorInfo: ErrorInfo) => {
     console.error("Error caught by boundary:", error, errorInfo);
   };
 

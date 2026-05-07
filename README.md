@@ -1,135 +1,93 @@
-# Turborepo starter
+# ahmadcodes.com
 
-This Turborepo starter is maintained by the Turborepo core team.
+Personal site, blog, and CMS for [ahmadcodes.com](https://ahmadcodes.com).
 
-## Using this example
+A Turborepo monorepo with three apps:
 
-Run the following command:
+| App   | Stack                                              | Purpose                                       |
+| ----- | -------------------------------------------------- | --------------------------------------------- |
+| `web` | Next.js 15 · React 19 · Tailwind v4                | Public site, portfolio, blog reader           |
+| `api` | NestJS 11 · TypeORM · Postgres · S3                | Article CRUD, auth, image uploads             |
+| `cms` | React 19 · Vite · TanStack Router/Query · TipTap   | Single-user admin to write and publish posts  |
 
-```sh
-npx create-turbo@latest
-```
+Self-hosted on [Dokploy](https://dokploy.com), Postgres on the same private
+network, Minio for image storage. Self-built rather than something off-the-shelf
+because (a) integration practice and (b) full control over the article schema.
 
-## What's inside?
-
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
+## Repo layout
 
 ```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build
-yarn dlx turbo build
-pnpm exec turbo build
+apps/
+  web/        Next.js public site (ahmadcodes.com)
+  api/        NestJS API (api.ahmadcodes.com)
+  cms/        React/Vite admin (cms.ahmadcodes.com)
+packages/
+  shared/         Shared DTOs, HTTP client, utilities
+  eslint-config/  Shared ESLint config
+  typescript-config/  Shared tsconfig presets
+resume/
+  ahmad-bagheri-resume.tex   LaTeX source for the resume PDF served on the site
+  build.sh                   Build the PDF (and optional color previews)
 ```
 
-You can build a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+## Develop
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo build --filter=docs
+```bash
+# Install
+pnpm install
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo build --filter=docs
-yarn exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+# Run all apps with hot reload
+pnpm dev
 
-### Develop
-
-To develop all apps and packages, run the following command:
-
-```
-cd my-turborepo
-
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev
-
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev
-yarn exec turbo dev
-pnpm exec turbo dev
+# Or one app at a time
+pnpm --filter web dev
+pnpm --filter api dev
+pnpm --filter cms dev
 ```
 
-You can develop a specific package by using a [filter](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters):
+The dev compose stack (`docker-compose.yml`) runs Postgres + the apps locally.
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo dev --filter=web
+## Build
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo dev --filter=web
-yarn exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
+```bash
+pnpm build
+pnpm resume:build               # compile resume PDF -> apps/web/public/
+pnpm resume:build:previews      # also produce color comparison PDFs
 ```
 
-### Remote Caching
+## Deploy
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+Each app deploys as its own Docker service on Dokploy:
 
-Turborepo can use a technique known as [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- `web` → `https://ahmadcodes.com`
+- `api` → `https://api.ahmadcodes.com`
+- `cms` → `https://cms.ahmadcodes.com`
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+Postgres and Minio are also Dokploy services on the private network.
 
-```
-cd my-turborepo
+## Article workflow
 
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo login
+1. Sign in to the CMS at `cms.ahmadcodes.com`
+2. Articles → "Add Article" → write in the TipTap WYSIWYG → toggle Publish → Save
+3. Article appears at `ahmadcodes.com/blog/<slug>` immediately
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo login
-yarn exec turbo login
-pnpm exec turbo login
-```
+Article HTML is stored as TipTap output and rendered with `prose` styles on
+the public side. Markdown is intentionally not used.
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+## Roadmap (not v1)
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- Email subscriber list capture on the blog
+- Article scheduling (publish at future date)
+- Tag pages on the public site
+- RSS feed
+- Analytics in the CMS dashboard
 
-```
-# With [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation) installed (recommended)
-turbo link
+## Resume
 
-# Without [global `turbo`](https://turborepo.com/docs/getting-started/installation#global-installation), use your package manager
-npx turbo link
-yarn exec turbo link
-pnpm exec turbo link
-```
+LaTeX source for the resume that's linked from the site lives in `resume/`.
+See `resume/README.md`.
 
-## Useful Links
+## License
 
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.com/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.com/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.com/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.com/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.com/docs/reference/configuration)
-- [CLI Usage](https://turborepo.com/docs/reference/command-line-reference)
+All rights reserved. Code is publicly visible for portfolio reasons but not
+licensed for reuse.
