@@ -23,49 +23,68 @@ import { Input } from '@/components/ui/input'
 import { RichTextEditor } from '@/components/ui/rich-text-editor'
 import { useSendMailMutation } from '../hooks/use-mail-query'
 
-const emailListSchema = z
-  .string()
-  .optional()
-  .transform((value) =>
-    (value ?? '')
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean),
-  )
-  .pipe(
-    z
-      .array(
-        z
-          .string()
-          .email({ message: 'Each address must be a valid email' }),
-      ),
-  )
+const invalidEmailMessage = 'Each address must be a valid email'
+
+const splitAddresses = (value: string): string[] =>
+  value
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
 
 const composeSchema = z.object({
   to: z
     .string()
     .min(1, 'At least one recipient is required')
-    .transform((value) =>
-      value
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean),
-    )
-    .pipe(
-      z
-        .array(z.string().email({ message: 'Each address must be a valid email' }))
-        .min(1, 'At least one recipient is required'),
-    ),
-  cc: emailListSchema,
-  bcc: emailListSchema,
+    .superRefine((val, ctx) => {
+      const parts = splitAddresses(val)
+      if (parts.length < 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'At least one recipient is required',
+        })
+        return
+      }
+      for (const p of parts) {
+        if (!z.email().safeParse(p).success) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: invalidEmailMessage,
+          })
+          return
+        }
+      }
+    }),
+  cc: z.string().superRefine((val, ctx) => {
+    const parts = splitAddresses(val)
+    if (parts.length === 0) return
+    for (const p of parts) {
+      if (!z.email().safeParse(p).success) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: invalidEmailMessage,
+        })
+        return
+      }
+    }
+  }),
+  bcc: z.string().superRefine((val, ctx) => {
+    const parts = splitAddresses(val)
+    if (parts.length === 0) return
+    for (const p of parts) {
+      if (!z.email().safeParse(p).success) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: invalidEmailMessage,
+        })
+        return
+      }
+    }
+  }),
   subject: z.string().min(1, 'Subject is required').max(200),
   bodyHtml: z.string().min(1, 'Body cannot be empty'),
 })
 
-/** Form field shapes before Zod transforms (matches resolver input). */
-type ComposeFormInput = z.input<typeof composeSchema>
-/** Values after Zod transforms — this is what `handleSubmit` receives. */
-type ComposeFormOutput = z.output<typeof composeSchema>
+type ComposeFormValues = z.infer<typeof composeSchema>
 
 type Props = {
   open: boolean
@@ -82,7 +101,7 @@ export function MailComposeDialog({
   initialSubject,
   initialBody,
 }: Props) {
-  const form = useForm<ComposeFormInput>({
+  const form = useForm<ComposeFormValues>({
     resolver: zodResolver(composeSchema),
     defaultValues: {
       to: initialTo ?? '',
@@ -95,12 +114,15 @@ export function MailComposeDialog({
 
   const sendMutation = useSendMailMutation()
 
-  const onSubmit = form.handleSubmit(async (data: ComposeFormOutput) => {
+  const onSubmit = form.handleSubmit(async (data) => {
     try {
+      const to = splitAddresses(data.to)
+      const cc = splitAddresses(data.cc)
+      const bcc = splitAddresses(data.bcc)
       await sendMutation.mutateAsync({
-        to: data.to,
-        cc: data.cc.length ? data.cc : undefined,
-        bcc: data.bcc.length ? data.bcc : undefined,
+        to,
+        cc: cc.length ? cc : undefined,
+        bcc: bcc.length ? bcc : undefined,
         subject: data.subject,
         bodyHtml: data.bodyHtml,
       })
