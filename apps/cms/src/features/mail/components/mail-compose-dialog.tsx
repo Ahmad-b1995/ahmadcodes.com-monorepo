@@ -23,52 +23,68 @@ import { Input } from '@/components/ui/input'
 import { RichTextEditor } from '@/components/ui/rich-text-editor'
 import { useSendMailMutation } from '../hooks/use-mail-query'
 
-const emailListSchema = z
-  .string()
-  .optional()
-  .transform((value) =>
-    (value ?? '')
-      .split(',')
-      .map((s) => s.trim())
-      .filter(Boolean),
-  )
-  .pipe(
-    z
-      .array(
-        z
-          .string()
-          .email({ message: 'Each address must be a valid email' }),
-      ),
-  )
+const invalidEmailMessage = 'Each address must be a valid email'
+
+const splitAddresses = (value: string): string[] =>
+  value
+    .split(',')
+    .map((s) => s.trim())
+    .filter(Boolean)
 
 const composeSchema = z.object({
   to: z
     .string()
     .min(1, 'At least one recipient is required')
-    .transform((value) =>
-      value
-        .split(',')
-        .map((s) => s.trim())
-        .filter(Boolean),
-    )
-    .pipe(
-      z
-        .array(z.string().email({ message: 'Each address must be a valid email' }))
-        .min(1, 'At least one recipient is required'),
-    ),
-  cc: emailListSchema,
-  bcc: emailListSchema,
+    .superRefine((val, ctx) => {
+      const parts = splitAddresses(val)
+      if (parts.length < 1) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: 'At least one recipient is required',
+        })
+        return
+      }
+      for (const p of parts) {
+        if (!z.email().safeParse(p).success) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: invalidEmailMessage,
+          })
+          return
+        }
+      }
+    }),
+  cc: z.string().superRefine((val, ctx) => {
+    const parts = splitAddresses(val)
+    if (parts.length === 0) return
+    for (const p of parts) {
+      if (!z.email().safeParse(p).success) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: invalidEmailMessage,
+        })
+        return
+      }
+    }
+  }),
+  bcc: z.string().superRefine((val, ctx) => {
+    const parts = splitAddresses(val)
+    if (parts.length === 0) return
+    for (const p of parts) {
+      if (!z.email().safeParse(p).success) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: invalidEmailMessage,
+        })
+        return
+      }
+    }
+  }),
   subject: z.string().min(1, 'Subject is required').max(200),
   bodyHtml: z.string().min(1, 'Body cannot be empty'),
 })
 
-type ComposeFormInput = {
-  to: string
-  cc: string
-  bcc: string
-  subject: string
-  bodyHtml: string
-}
+type ComposeFormValues = z.infer<typeof composeSchema>
 
 type Props = {
   open: boolean
@@ -85,8 +101,8 @@ export function MailComposeDialog({
   initialSubject,
   initialBody,
 }: Props) {
-  const form = useForm<ComposeFormInput>({
-    resolver: zodResolver(composeSchema as unknown as never),
+  const form = useForm<ComposeFormValues>({
+    resolver: zodResolver(composeSchema),
     defaultValues: {
       to: initialTo ?? '',
       cc: '',
@@ -98,18 +114,23 @@ export function MailComposeDialog({
 
   const sendMutation = useSendMailMutation()
 
-  const onSubmit = form.handleSubmit(async (raw) => {
-    const parsed = composeSchema.safeParse(raw)
-    if (!parsed.success) return
-    await sendMutation.mutateAsync({
-      to: parsed.data.to,
-      cc: parsed.data.cc.length ? parsed.data.cc : undefined,
-      bcc: parsed.data.bcc.length ? parsed.data.bcc : undefined,
-      subject: parsed.data.subject,
-      bodyHtml: parsed.data.bodyHtml,
-    })
-    form.reset()
-    onOpenChange(false)
+  const onSubmit = form.handleSubmit(async (data) => {
+    try {
+      const to = splitAddresses(data.to)
+      const cc = splitAddresses(data.cc)
+      const bcc = splitAddresses(data.bcc)
+      await sendMutation.mutateAsync({
+        to,
+        cc: cc.length ? cc : undefined,
+        bcc: bcc.length ? bcc : undefined,
+        subject: data.subject,
+        bodyHtml: data.bodyHtml,
+      })
+      form.reset()
+      onOpenChange(false)
+    } catch {
+      // Error toast is handled in useSendMailMutation onError
+    }
   })
 
   return (
