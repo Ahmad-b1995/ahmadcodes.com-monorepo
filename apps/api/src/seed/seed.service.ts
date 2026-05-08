@@ -60,14 +60,34 @@ export class SeedService {
     ];
 
     for (const permissionData of permissionsData) {
+      const parts = permissionData.name.split(':');
+      if (parts.length !== 2 || !parts[0] || !parts[1]) {
+        throw new Error(
+          `Permission name must be "action:resource", got: ${permissionData.name}`,
+        );
+      }
+      const [action, resource] = parts;
+
       const existing = await this.permissionRepository.findOne({
         where: { name: permissionData.name },
       });
 
       if (!existing) {
-        const permission = this.permissionRepository.create(permissionData);
+        const permission = this.permissionRepository.create({
+          ...permissionData,
+          action,
+          resource,
+          isActive: true,
+        });
         await this.permissionRepository.save(permission);
         this.logger.log(`  ✓ Created permission: ${permissionData.name}`);
+      } else if (existing.resource == null || existing.action == null) {
+        existing.resource = resource;
+        existing.action = action;
+        existing.description = permissionData.description;
+        existing.isActive = true;
+        await this.permissionRepository.save(existing);
+        this.logger.log(`  ↻ Backfilled permission: ${permissionData.name}`);
       } else {
         this.logger.log(`  ⊙ Permission already exists: ${permissionData.name}`);
       }
@@ -135,6 +155,7 @@ export class SeedService {
           name: roleData.name,
           description: roleData.description,
           permissions,
+          isActive: true,
         });
 
         await this.roleRepository.save(role);
