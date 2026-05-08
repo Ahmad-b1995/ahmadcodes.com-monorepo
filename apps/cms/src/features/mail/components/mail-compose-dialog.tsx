@@ -62,13 +62,10 @@ const composeSchema = z.object({
   bodyHtml: z.string().min(1, 'Body cannot be empty'),
 })
 
-type ComposeFormInput = {
-  to: string
-  cc: string
-  bcc: string
-  subject: string
-  bodyHtml: string
-}
+/** Form field shapes before Zod transforms (matches resolver input). */
+type ComposeFormInput = z.input<typeof composeSchema>
+/** Values after Zod transforms — this is what `handleSubmit` receives. */
+type ComposeFormOutput = z.output<typeof composeSchema>
 
 type Props = {
   open: boolean
@@ -86,7 +83,7 @@ export function MailComposeDialog({
   initialBody,
 }: Props) {
   const form = useForm<ComposeFormInput>({
-    resolver: zodResolver(composeSchema as unknown as never),
+    resolver: zodResolver(composeSchema),
     defaultValues: {
       to: initialTo ?? '',
       cc: '',
@@ -98,18 +95,20 @@ export function MailComposeDialog({
 
   const sendMutation = useSendMailMutation()
 
-  const onSubmit = form.handleSubmit(async (raw) => {
-    const parsed = composeSchema.safeParse(raw)
-    if (!parsed.success) return
-    await sendMutation.mutateAsync({
-      to: parsed.data.to,
-      cc: parsed.data.cc.length ? parsed.data.cc : undefined,
-      bcc: parsed.data.bcc.length ? parsed.data.bcc : undefined,
-      subject: parsed.data.subject,
-      bodyHtml: parsed.data.bodyHtml,
-    })
-    form.reset()
-    onOpenChange(false)
+  const onSubmit = form.handleSubmit(async (data: ComposeFormOutput) => {
+    try {
+      await sendMutation.mutateAsync({
+        to: data.to,
+        cc: data.cc.length ? data.cc : undefined,
+        bcc: data.bcc.length ? data.bcc : undefined,
+        subject: data.subject,
+        bodyHtml: data.bodyHtml,
+      })
+      form.reset()
+      onOpenChange(false)
+    } catch {
+      // Error toast is handled in useSendMailMutation onError
+    }
   })
 
   return (
