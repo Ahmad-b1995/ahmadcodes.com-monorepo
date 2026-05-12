@@ -74,6 +74,11 @@ Postgres and Minio are also Dokploy services on the private network.
 Article HTML is stored as TipTap output and rendered with `prose` styles on
 the public side. Markdown is intentionally not used.
 
+## Conventions
+
+Read [`CONVENTIONS.md`](./CONVENTIONS.md) once before submitting code.
+Covers naming, styling, reusability, dead-code policy, commits.
+
 ## Roadmap (not v1)
 
 - Email subscriber list capture on the blog

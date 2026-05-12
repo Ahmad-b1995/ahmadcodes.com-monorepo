@@ -1,47 +1,59 @@
-import { useState } from 'react'
-import { Mail as MailIcon, Plus, RefreshCw, Trash2 } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import { Plus, RefreshCw } from 'lucide-react'
 import { Header } from '@/components/layout/header'
 import { Main } from '@/components/layout/main'
 import { ProfileDropdown } from '@/components/profile-dropdown'
 import { Search } from '@/components/search'
 import { ThemeSwitch } from '@/components/theme-switch'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table'
+  ResizableHandle,
+  ResizablePanel,
+  ResizablePanelGroup,
+} from '@/components/ui/resizable'
+import { Separator } from '@/components/ui/separator'
+import { TooltipProvider } from '@/components/ui/tooltip'
+import { mailFolders, type MailFolder } from './data/folders'
+import { MailComposeDialog } from './components/mail-compose-dialog'
+import { MailDetailPanel } from './components/mail-detail-panel'
+import { MailList } from './components/mail-list'
 import {
-  Tabs,
-  TabsList,
-  TabsTrigger,
-} from '@/components/ui/tabs'
-import {
-  useDeleteMailMutation,
   useMailListQuery,
   useVerifySmtpMutation,
 } from './hooks/use-mail-query'
-import { MailComposeDialog } from './components/mail-compose-dialog'
-import { MailDetailDialog } from './components/mail-detail-dialog'
-import type { IMailMessage, MailDirection } from '@repo/shared/dtos'
+import type { IMailMessage } from '@repo/shared/dtos'
 
-export function Mail() {
-  const [composeOpen, setComposeOpen] = useState(false)
-  const [detailId, setDetailId] = useState<number | null>(null)
-  const [direction, setDirection] = useState<MailDirection>('sent')
+type Props = {
+  folder: MailFolder
+}
 
-  const list = useMailListQuery({ direction, page: 1, limit: 50 })
+export function Mail({ folder }: Props) {
+  const config = mailFolders[folder]
+  const list = useMailListQuery(config.filters)
   const verifyMutation = useVerifySmtpMutation()
-  const deleteMutation = useDeleteMailMutation()
 
-  const messages = list.data?.items ?? []
+  const [composeOpen, setComposeOpen] = useState(false)
+  const [replyContext, setReplyContext] = useState<IMailMessage | null>(null)
+  const [selectedId, setSelectedId] = useState<number | null>(null)
+
+  const messages = useMemo(() => list.data?.items ?? [], [list.data?.items])
+
+  // Auto-select first message when folder changes and there's data.
+  useEffect(() => {
+    setSelectedId(null)
+  }, [folder])
+
+  useEffect(() => {
+    if (selectedId === null && messages.length > 0) {
+      setSelectedId(messages[0].id)
+    }
+  }, [messages, selectedId])
+
+  const Icon = config.icon
+  const supported = config.filters !== null
 
   return (
-    <>
+    <TooltipProvider delayDuration={200}>
       <Header fixed>
         <Search />
         <div className='ms-auto flex items-center space-x-4'>
@@ -50,15 +62,18 @@ export function Mail() {
         </div>
       </Header>
 
-      <Main>
+      <Main fixed>
         <div className='mb-2 flex flex-wrap items-center justify-between gap-2'>
           <div>
             <h2 className='flex items-center gap-2 text-2xl font-bold tracking-tight'>
-              <MailIcon className='size-6' /> Mail
+              <Icon className='size-6' /> {config.title}
             </h2>
-            <p className='text-muted-foreground'>
-              Send mail from your branded address. SMTP via the configured
-              relay.
+            <p className='text-muted-foreground text-sm'>
+              {supported
+                ? folder === 'inbox'
+                  ? 'Inbound mail. Waiting on Cloudflare Email Worker → /mail/inbound webhook.'
+                  : 'Sent mail through the configured SMTP relay.'
+                : config.emptyDescription}
             </p>
           </div>
           <div className='flex items-center gap-2'>
@@ -73,160 +88,106 @@ export function Mail() {
               />
               Verify SMTP
             </Button>
-            <Button onClick={() => setComposeOpen(true)}>
-              <Plus className='size-4' />
-              Compose
-            </Button>
+            {config.showCompose && (
+              <Button onClick={() => setComposeOpen(true)}>
+                <Plus className='size-4' />
+                Compose
+              </Button>
+            )}
           </div>
         </div>
 
-        <Tabs
-          value={direction}
-          onValueChange={(value) => setDirection(value as MailDirection)}
-          className='mt-4'
-        >
-          <TabsList>
-            <TabsTrigger value='sent'>Sent</TabsTrigger>
-            <TabsTrigger value='received'>Received</TabsTrigger>
-          </TabsList>
-        </Tabs>
+        <Separator />
 
-        <div className='mt-4'>
-          {list.isLoading ? (
-            <div className='text-muted-foreground py-8 text-center'>
-              Loading...
-            </div>
-          ) : list.error ? (
-            <div className='text-destructive py-8 text-center'>
-              Failed to load mail.
-            </div>
-          ) : messages.length === 0 ? (
-            <EmptyState
-              direction={direction}
-              onCompose={() => setComposeOpen(true)}
+        <ResizablePanelGroup
+          direction='horizontal'
+          autoSaveId={`mail-${folder}`}
+          className='h-[calc(100vh-13rem)] min-h-[400px] items-stretch'
+        >
+          <ResizablePanel defaultSize={35} minSize={25} maxSize={55}>
+            {!supported ? (
+              <EmptyFolder
+                title={config.emptyTitle}
+                description={config.emptyDescription}
+              />
+            ) : list.isLoading ? (
+              <CenterMessage>Loading…</CenterMessage>
+            ) : list.error ? (
+              <CenterMessage tone='error'>
+                Failed to load. Try again later.
+              </CenterMessage>
+            ) : messages.length === 0 ? (
+              <EmptyFolder
+                title={config.emptyTitle}
+                description={config.emptyDescription}
+              />
+            ) : (
+              <MailList
+                folder={config}
+                messages={messages}
+                selectedId={selectedId}
+                onSelect={setSelectedId}
+              />
+            )}
+          </ResizablePanel>
+          <ResizableHandle withHandle />
+          <ResizablePanel defaultSize={65} minSize={30}>
+            <MailDetailPanel
+              selectedId={selectedId}
+              onReply={(message) => {
+                setReplyContext(message)
+                setComposeOpen(true)
+              }}
+              onCleared={() => setSelectedId(null)}
             />
-          ) : (
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className='w-[140px]'>Date</TableHead>
-                  <TableHead className='w-[110px]'>Status</TableHead>
-                  <TableHead>
-                    {direction === 'sent' ? 'To' : 'From'}
-                  </TableHead>
-                  <TableHead>Subject</TableHead>
-                  <TableHead className='w-[80px]'></TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {messages.map((message) => (
-                  <MailRow
-                    key={message.id}
-                    message={message}
-                    onOpen={() => setDetailId(message.id)}
-                    onDelete={() => deleteMutation.mutate(message.id)}
-                    deleting={deleteMutation.isPending}
-                  />
-                ))}
-              </TableBody>
-            </Table>
-          )}
-        </div>
+          </ResizablePanel>
+        </ResizablePanelGroup>
       </Main>
 
       <MailComposeDialog
         open={composeOpen}
-        onOpenChange={setComposeOpen}
-      />
-      <MailDetailDialog
-        id={detailId}
         onOpenChange={(open) => {
-          if (!open) setDetailId(null)
+          setComposeOpen(open)
+          if (!open) setReplyContext(null)
         }}
+        initialTo={replyContext?.fromAddress}
+        initialSubject={
+          replyContext ? `Re: ${replyContext.subject.replace(/^Re:\s*/i, '')}` : undefined
+        }
       />
-    </>
+    </TooltipProvider>
   )
 }
 
-function MailRow({
-  message,
-  onOpen,
-  onDelete,
-  deleting,
+function CenterMessage({
+  children,
+  tone = 'muted',
 }: {
-  message: IMailMessage
-  onOpen: () => void
-  onDelete: () => void
-  deleting: boolean
-}) {
-  const counterparty =
-    message.direction === 'sent'
-      ? message.toAddresses.join(', ')
-      : message.fromAddress
-  const date = new Date(
-    message.sentAt ?? message.receivedAt ?? message.createdAt,
-  )
-  return (
-    <TableRow className='cursor-pointer' onClick={onOpen}>
-      <TableCell className='text-muted-foreground text-xs whitespace-nowrap'>
-        {date.toLocaleDateString()}{' '}
-        <span className='ms-1 opacity-60'>
-          {date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
-        </span>
-      </TableCell>
-      <TableCell>
-        <StatusBadge status={message.status} />
-      </TableCell>
-      <TableCell className='max-w-[260px] truncate'>{counterparty}</TableCell>
-      <TableCell className='max-w-[480px] truncate font-medium'>
-        {message.subject}
-      </TableCell>
-      <TableCell className='text-end'>
-        <Button
-          variant='ghost'
-          size='icon'
-          onClick={(e) => {
-            e.stopPropagation()
-            onDelete()
-          }}
-          disabled={deleting}
-          title='Delete'
-        >
-          <Trash2 className='size-4' />
-        </Button>
-      </TableCell>
-    </TableRow>
-  )
-}
-
-function StatusBadge({ status }: { status: IMailMessage['status'] }) {
-  if (status === 'sent') return <Badge variant='secondary'>sent</Badge>
-  if (status === 'received') return <Badge>received</Badge>
-  if (status === 'queued') return <Badge variant='outline'>queued</Badge>
-  return <Badge variant='destructive'>failed</Badge>
-}
-
-function EmptyState({
-  direction,
-  onCompose,
-}: {
-  direction: MailDirection
-  onCompose: () => void
+  children: React.ReactNode
+  tone?: 'muted' | 'error'
 }) {
   return (
-    <div className='text-muted-foreground flex flex-col items-center justify-center gap-3 rounded-md border border-dashed py-16'>
-      <MailIcon className='size-8' />
-      <p className='text-sm'>
-        {direction === 'sent'
-          ? 'No sent mail yet.'
-          : 'No received mail yet. Inbound is wired separately (Cloudflare Worker → /mail/inbound webhook). See REMINDERS.md.'}
-      </p>
-      {direction === 'sent' && (
-        <Button onClick={onCompose}>
-          <Plus className='size-4' />
-          Send your first email
-        </Button>
-      )}
+    <div
+      className={`flex h-full items-center justify-center p-8 text-center text-sm ${
+        tone === 'error' ? 'text-destructive' : 'text-muted-foreground'
+      }`}
+    >
+      {children}
+    </div>
+  )
+}
+
+function EmptyFolder({
+  title,
+  description,
+}: {
+  title: string
+  description: string
+}) {
+  return (
+    <div className='flex h-full flex-col items-center justify-center gap-2 p-8 text-center'>
+      <div className='text-sm font-medium'>{title}</div>
+      <p className='text-muted-foreground max-w-xs text-xs'>{description}</p>
     </div>
   )
 }

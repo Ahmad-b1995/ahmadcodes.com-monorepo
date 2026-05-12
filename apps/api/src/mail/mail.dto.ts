@@ -3,15 +3,12 @@ import {
   ArrayUnique,
   IsArray,
   IsEmail,
-  IsInt,
   IsOptional,
   IsString,
-  Max,
   MaxLength,
-  Min,
   MinLength,
 } from 'class-validator';
-import { Transform, Type } from 'class-transformer';
+import { Transform } from 'class-transformer';
 
 const splitCommaList = (value: unknown): string[] | unknown => {
   if (typeof value !== 'string') return value;
@@ -72,19 +69,6 @@ export class SendMailDto {
 }
 
 export class ListMailQueryDto {
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  page?: number;
-
-  @IsOptional()
-  @Type(() => Number)
-  @IsInt()
-  @Min(1)
-  @Max(500)
-  limit?: number;
-
   @IsOptional()
   @IsString()
   direction?: 'sent' | 'received';

@@ -96,9 +96,10 @@ export class MailService implements OnModuleDestroy {
     }
   }
 
-  async list(query: ListMailQueryDto): Promise<Pagination<MailMessage>> {
-    const page = query.page ?? 1;
-    const limit = Math.min(query.limit ?? 20, 100);
+  async list(
+    options: IPaginationOptions,
+    query: ListMailQueryDto,
+  ): Promise<Pagination<MailMessage>> {
     const qb = this.mailRepo.createQueryBuilder('m');
     if (query.direction) {
       qb.andWhere('m.direction = :direction', { direction: query.direction });
@@ -107,7 +108,6 @@ export class MailService implements OnModuleDestroy {
       qb.andWhere('m.status = :status', { status: query.status });
     }
     qb.orderBy('m.createdAt', 'DESC');
-    const options: IPaginationOptions = { page, limit };
     return paginate<MailMessage>(qb, options);
   }
 

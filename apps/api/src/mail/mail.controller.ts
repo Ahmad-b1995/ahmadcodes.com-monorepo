@@ -1,6 +1,7 @@
 import {
   Body,
   Controller,
+  DefaultValuePipe,
   Delete,
   Get,
   Param,
@@ -32,8 +33,15 @@ export class MailController {
   }
 
   @Get()
-  list(@Query() query: ListMailQueryDto) {
-    return this.mailService.list(query);
+  list(
+    @Query() query: ListMailQueryDto,
+    @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
+    @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number = 20,
+  ) {
+    return this.mailService.list(
+      { page, limit: Math.min(limit, 100) },
+      query,
+    );
   }
 
   @Get(':id')
