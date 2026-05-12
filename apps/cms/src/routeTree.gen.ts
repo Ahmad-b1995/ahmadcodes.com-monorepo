@@ -25,6 +25,10 @@ import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
 import { Route as AuthenticatedSettingsAppearanceRouteImport } from './routes/_authenticated/settings/appearance'
 import { Route as AuthenticatedSettingsAccountRouteImport } from './routes/_authenticated/settings/account'
+import { Route as AuthenticatedMailTrashRouteImport } from './routes/_authenticated/mail/trash'
+import { Route as AuthenticatedMailSentRouteImport } from './routes/_authenticated/mail/sent'
+import { Route as AuthenticatedMailDraftsRouteImport } from './routes/_authenticated/mail/drafts'
+import { Route as AuthenticatedMailArchiveRouteImport } from './routes/_authenticated/mail/archive'
 import { Route as AuthenticatedErrorsErrorRouteImport } from './routes/_authenticated/errors/$error'
 
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -113,6 +117,27 @@ const AuthenticatedSettingsAccountRoute =
     path: '/account',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedMailTrashRoute = AuthenticatedMailTrashRouteImport.update({
+  id: '/mail/trash',
+  path: '/mail/trash',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMailSentRoute = AuthenticatedMailSentRouteImport.update({
+  id: '/mail/sent',
+  path: '/mail/sent',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMailDraftsRoute = AuthenticatedMailDraftsRouteImport.update({
+  id: '/mail/drafts',
+  path: '/mail/drafts',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedMailArchiveRoute =
+  AuthenticatedMailArchiveRouteImport.update({
+    id: '/mail/archive',
+    path: '/mail/archive',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedErrorsErrorRoute =
   AuthenticatedErrorsErrorRouteImport.update({
     id: '/errors/$error',
@@ -130,6 +155,10 @@ export interface FileRoutesByFullPath {
   '/500': typeof errors500Route
   '/503': typeof errors503Route
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/mail/archive': typeof AuthenticatedMailArchiveRoute
+  '/mail/drafts': typeof AuthenticatedMailDraftsRoute
+  '/mail/sent': typeof AuthenticatedMailSentRoute
+  '/mail/trash': typeof AuthenticatedMailTrashRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -147,6 +176,10 @@ export interface FileRoutesByTo {
   '/503': typeof errors503Route
   '/': typeof AuthenticatedIndexRoute
   '/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/mail/archive': typeof AuthenticatedMailArchiveRoute
+  '/mail/drafts': typeof AuthenticatedMailDraftsRoute
+  '/mail/sent': typeof AuthenticatedMailSentRoute
+  '/mail/trash': typeof AuthenticatedMailTrashRoute
   '/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -167,6 +200,10 @@ export interface FileRoutesById {
   '/(errors)/503': typeof errors503Route
   '/_authenticated/': typeof AuthenticatedIndexRoute
   '/_authenticated/errors/$error': typeof AuthenticatedErrorsErrorRoute
+  '/_authenticated/mail/archive': typeof AuthenticatedMailArchiveRoute
+  '/_authenticated/mail/drafts': typeof AuthenticatedMailDraftsRoute
+  '/_authenticated/mail/sent': typeof AuthenticatedMailSentRoute
+  '/_authenticated/mail/trash': typeof AuthenticatedMailTrashRoute
   '/_authenticated/settings/account': typeof AuthenticatedSettingsAccountRoute
   '/_authenticated/settings/appearance': typeof AuthenticatedSettingsAppearanceRoute
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
@@ -187,6 +224,10 @@ export interface FileRouteTypes {
     | '/500'
     | '/503'
     | '/errors/$error'
+    | '/mail/archive'
+    | '/mail/drafts'
+    | '/mail/sent'
+    | '/mail/trash'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -204,6 +245,10 @@ export interface FileRouteTypes {
     | '/503'
     | '/'
     | '/errors/$error'
+    | '/mail/archive'
+    | '/mail/drafts'
+    | '/mail/sent'
+    | '/mail/trash'
     | '/settings/account'
     | '/settings/appearance'
     | '/settings/display'
@@ -223,6 +268,10 @@ export interface FileRouteTypes {
     | '/(errors)/503'
     | '/_authenticated/'
     | '/_authenticated/errors/$error'
+    | '/_authenticated/mail/archive'
+    | '/_authenticated/mail/drafts'
+    | '/_authenticated/mail/sent'
+    | '/_authenticated/mail/trash'
     | '/_authenticated/settings/account'
     | '/_authenticated/settings/appearance'
     | '/_authenticated/settings/display'
@@ -356,6 +405,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsAccountRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/mail/trash': {
+      id: '/_authenticated/mail/trash'
+      path: '/mail/trash'
+      fullPath: '/mail/trash'
+      preLoaderRoute: typeof AuthenticatedMailTrashRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mail/sent': {
+      id: '/_authenticated/mail/sent'
+      path: '/mail/sent'
+      fullPath: '/mail/sent'
+      preLoaderRoute: typeof AuthenticatedMailSentRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mail/drafts': {
+      id: '/_authenticated/mail/drafts'
+      path: '/mail/drafts'
+      fullPath: '/mail/drafts'
+      preLoaderRoute: typeof AuthenticatedMailDraftsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/mail/archive': {
+      id: '/_authenticated/mail/archive'
+      path: '/mail/archive'
+      fullPath: '/mail/archive'
+      preLoaderRoute: typeof AuthenticatedMailArchiveRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/errors/$error': {
       id: '/_authenticated/errors/$error'
       path: '/errors/$error'
@@ -393,6 +470,10 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedSettingsRouteRoute: typeof AuthenticatedSettingsRouteRouteWithChildren
   AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
   AuthenticatedErrorsErrorRoute: typeof AuthenticatedErrorsErrorRoute
+  AuthenticatedMailArchiveRoute: typeof AuthenticatedMailArchiveRoute
+  AuthenticatedMailDraftsRoute: typeof AuthenticatedMailDraftsRoute
+  AuthenticatedMailSentRoute: typeof AuthenticatedMailSentRoute
+  AuthenticatedMailTrashRoute: typeof AuthenticatedMailTrashRoute
   AuthenticatedArticlesIndexRoute: typeof AuthenticatedArticlesIndexRoute
   AuthenticatedMailIndexRoute: typeof AuthenticatedMailIndexRoute
 }
@@ -401,6 +482,10 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedSettingsRouteRoute: AuthenticatedSettingsRouteRouteWithChildren,
   AuthenticatedIndexRoute: AuthenticatedIndexRoute,
   AuthenticatedErrorsErrorRoute: AuthenticatedErrorsErrorRoute,
+  AuthenticatedMailArchiveRoute: AuthenticatedMailArchiveRoute,
+  AuthenticatedMailDraftsRoute: AuthenticatedMailDraftsRoute,
+  AuthenticatedMailSentRoute: AuthenticatedMailSentRoute,
+  AuthenticatedMailTrashRoute: AuthenticatedMailTrashRoute,
   AuthenticatedArticlesIndexRoute: AuthenticatedArticlesIndexRoute,
   AuthenticatedMailIndexRoute: AuthenticatedMailIndexRoute,
 }

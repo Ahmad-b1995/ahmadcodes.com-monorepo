@@ -8,10 +8,11 @@ import type {
 
 const MAIL_QUERY_KEY = 'mail'
 
-export function useMailListQuery(filters?: IMailListFilters) {
+export function useMailListQuery(filters: IMailListFilters | null) {
   return useQuery({
     queryKey: [MAIL_QUERY_KEY, filters],
-    queryFn: () => mailService.list(filters),
+    queryFn: () => mailService.list(filters ?? undefined),
+    enabled: filters !== null,
     refetchInterval: 30_000,
   })
 }
