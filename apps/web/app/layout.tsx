@@ -10,8 +10,43 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Ahmad Bagheri - Senior Full Stack Developer",
-  description: "7 years of experience as a senior full-stack developer specializing in building scalable ERP web solutions. Expert in Next.js, TypeScript, Django, and GraphQL across cryptocurrency, e-commerce, and enterprise applications.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL ?? "https://ahmadcodes.com",
+  ),
+  title: {
+    default: "Ahmad Bagheri — NetSuite & ERP Integrations",
+    template: "%s · Ahmad Bagheri",
+  },
+  description:
+    "Senior full-stack engineer specializing in NetSuite & ERP integrations. Sole-engineer-to-MVP type — NestJS, React, SuiteScript RESTlets. Available for contract & part-time engagements.",
+  keywords: [
+    "NetSuite",
+    "SuiteScript",
+    "RESTlet",
+    "ERP integration",
+    "Full-stack engineer",
+    "Contract developer",
+    "Manufacturing software",
+  ],
+  authors: [{ name: "Ahmad Bagheri", url: "https://ahmadcodes.com" }],
+  openGraph: {
+    type: "website",
+    title: "Ahmad Bagheri — NetSuite & ERP Integrations",
+    description:
+      "Senior full-stack engineer specializing in NetSuite/ERP integrations. Available for contract & part-time engagements.",
+    url: "https://ahmadcodes.com",
+    siteName: "ahmadcodes.com",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Ahmad Bagheri — NetSuite & ERP Integrations",
+    description:
+      "Senior full-stack engineer specializing in NetSuite/ERP integrations.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({

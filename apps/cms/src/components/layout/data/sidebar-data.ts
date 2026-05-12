@@ -11,6 +11,11 @@ import {
   GalleryVerticalEnd,
   FileText,
   Mail,
+  Inbox,
+  Send,
+  FileEdit,
+  Archive,
+  Trash2,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
@@ -53,8 +58,34 @@ export const sidebarData: SidebarData = {
         },
         {
           title: 'Mail',
-          url: '/mail',
           icon: Mail,
+          items: [
+            {
+              title: 'Inbox',
+              url: '/mail',
+              icon: Inbox,
+            },
+            {
+              title: 'Sent',
+              url: '/mail/sent',
+              icon: Send,
+            },
+            {
+              title: 'Drafts',
+              url: '/mail/drafts',
+              icon: FileEdit,
+            },
+            {
+              title: 'Archive',
+              url: '/mail/archive',
+              icon: Archive,
+            },
+            {
+              title: 'Trash',
+              url: '/mail/trash',
+              icon: Trash2,
+            },
+          ],
         },
       ],
     },
