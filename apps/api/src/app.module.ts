@@ -8,6 +8,7 @@ import { ArticleModule } from './article/article.module';
 import { MailModule } from './mail/mail.module';
 import { TaskModule } from './tasks/task.module';
 import { LinkedInPostModule } from './linkedin-posts/linkedin-post.module';
+import { OutreachModule } from './outreach/outreach.module';
 import { UploadModule } from './upload/upload.module';
 import { SeedModule } from './seed/seed.module';
 import databaseConfig from './config/database.config';
@@ -36,6 +37,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     MailModule,
     TaskModule,
     LinkedInPostModule,
+    OutreachModule,
     UploadModule,
     SeedModule,
   ],
