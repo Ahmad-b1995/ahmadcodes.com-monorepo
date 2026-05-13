@@ -6,6 +6,7 @@ import { RoleModule } from './role/role.module';
 import { PermissionModule } from './permission/permission.module';
 import { ArticleModule } from './article/article.module';
 import { MailModule } from './mail/mail.module';
+import { TaskModule } from './tasks/task.module';
 import { UploadModule } from './upload/upload.module';
 import { SeedModule } from './seed/seed.module';
 import databaseConfig from './config/database.config';
@@ -32,6 +33,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     PermissionModule,
     ArticleModule,
     MailModule,
+    TaskModule,
     UploadModule,
     SeedModule,
   ],
