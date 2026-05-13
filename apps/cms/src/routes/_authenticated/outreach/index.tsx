@@ -1,11 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
+import { Outreach } from '@/features/outreach'
 
 export const Route = createFileRoute('/_authenticated/outreach/')({
-  component: function OutreachPlaceholder() {
-    return (
-      <div className='text-muted-foreground p-6 text-sm'>
-        Outreach — table and forms load on this route.
-      </div>
-    )
-  },
+  component: Outreach,
 })
