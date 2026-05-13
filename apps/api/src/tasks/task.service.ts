@@ -3,16 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Task } from './task.entity';
 import { CreateTaskDto, ListTasksQueryDto, UpdateTaskDto } from './task.dto';
-
-function startOfUtcDay(d: Date): Date {
-  return new Date(Date.UTC(d.getUTCFullYear(), d.getUTCMonth(), d.getUTCDate()));
-}
-
-function addUtcDays(start: Date, days: number): Date {
-  const t = new Date(start);
-  t.setUTCDate(t.getUTCDate() + days);
-  return t;
-}
+import { startOfUtcDay, addUtcDays } from '../common/utc-boundaries';
 
 @Injectable()
 export class TaskService {
@@ -95,6 +86,28 @@ export class TaskService {
     }
     if (dto.metadata !== undefined) task.metadata = dto.metadata;
     return this.taskRepo.save(task);
+  }
+
+  /**
+   * Reminders with due date from start of today through end of today + extraDays (UTC).
+   */
+  async findRemindersDueWithinDaysFromToday(
+    extraDaysAfterToday: number,
+  ): Promise<Task[]> {
+    const now = new Date();
+    const startToday = startOfUtcDay(now);
+    const endExclusive = addUtcDays(startToday, extraDaysAfterToday + 1);
+    return this.taskRepo
+      .createQueryBuilder('t')
+      .where('t.type = :type', { type: 'reminder' })
+      .andWhere('t.status NOT IN (:...closed)', {
+        closed: ['done', 'cancelled'],
+      })
+      .andWhere('t.due_at IS NOT NULL')
+      .andWhere('t.due_at >= :startToday', { startToday })
+      .andWhere('t.due_at < :endExclusive', { endExclusive })
+      .orderBy('t.due_at', 'ASC')
+      .getMany();
   }
 
   async remove(id: number): Promise<void> {

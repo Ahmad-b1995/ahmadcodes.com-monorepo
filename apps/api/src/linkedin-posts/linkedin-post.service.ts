@@ -1,6 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { addUtcDays, startOfUtcDay } from '../common/utc-boundaries';
 import { LinkedInPost } from './linkedin-post.entity';
 import {
   CreateLinkedInPostDto,
@@ -43,6 +44,20 @@ export class LinkedInPostService {
       .andWhere('p.scheduled_at IS NOT NULL')
       .andWhere('p.scheduled_at >= :now', { now })
       .andWhere('p.scheduled_at <= :until', { until })
+      .orderBy('p.scheduled_at', 'ASC')
+      .getMany();
+  }
+
+  async findScheduledTodayUtc(): Promise<LinkedInPost[]> {
+    const now = new Date();
+    const start = startOfUtcDay(now);
+    const end = addUtcDays(start, 1);
+    return this.repo
+      .createQueryBuilder('p')
+      .where('p.posted_at IS NULL')
+      .andWhere('p.scheduled_at IS NOT NULL')
+      .andWhere('p.scheduled_at >= :start', { start })
+      .andWhere('p.scheduled_at < :end', { end })
       .orderBy('p.scheduled_at', 'ASC')
       .getMany();
   }
