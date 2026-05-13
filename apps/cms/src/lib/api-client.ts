@@ -1,4 +1,4 @@
-import { HttpClient, AuthService, ArticleService, MailService, UserService, RoleService, UploadService } from '@repo/shared/http';
+import { HttpClient, AuthService, ArticleService, MailService, UserService, RoleService, UploadService, TaskService, LinkedInPostService, OutreachService } from '@repo/shared/http';
 import type { IRefreshTokenResponse } from '@repo/shared/dtos';
 import { useAuthStore } from '@/stores/auth-store';
 
@@ -25,6 +25,9 @@ export const mailService = new MailService(httpClient);
 export const userService = new UserService(httpClient);
 export const roleService = new RoleService(httpClient);
 export const uploadService = new UploadService(httpClient);
+export const taskService = new TaskService(httpClient);
+export const linkedInPostService = new LinkedInPostService(httpClient);
+export const outreachService = new OutreachService(httpClient);
 
 export { httpClient };
 
