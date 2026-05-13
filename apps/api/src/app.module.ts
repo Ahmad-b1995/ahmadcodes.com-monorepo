@@ -9,13 +9,15 @@ import { MailModule } from './mail/mail.module';
 import { TaskModule } from './tasks/task.module';
 import { LinkedInPostModule } from './linkedin-posts/linkedin-post.module';
 import { OutreachModule } from './outreach/outreach.module';
+import { DigestModule } from './digest/digest.module';
 import { UploadModule } from './upload/upload.module';
 import { SeedModule } from './seed/seed.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
 import s3Config from './config/s3.config';
 import smtpConfig from './config/smtp.config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, type TypeOrmModuleOptions } from '@nestjs/typeorm';
+import { ScheduleModule } from '@nestjs/schedule';
 import { APP_GUARD } from '@nestjs/core';
 import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
 
@@ -27,8 +29,9 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     }),
     TypeOrmModule.forRootAsync({
       inject: [databaseConfig.KEY],
-      useFactory: (config) => config,
+      useFactory: (config: TypeOrmModuleOptions) => config,
     }),
+    ScheduleModule.forRoot(),
     AuthModule,
     UserModule,
     RoleModule,
@@ -38,6 +41,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     TaskModule,
     LinkedInPostModule,
     OutreachModule,
+    DigestModule,
     UploadModule,
     SeedModule,
   ],
