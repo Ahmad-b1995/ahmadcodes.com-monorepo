@@ -19,7 +19,9 @@ import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedOutreachIndexRouteImport } from './routes/_authenticated/outreach/index'
 import { Route as AuthenticatedMailIndexRouteImport } from './routes/_authenticated/mail/index'
+import { Route as AuthenticatedLinkedinPostsIndexRouteImport } from './routes/_authenticated/linkedin-posts/index'
 import { Route as AuthenticatedArticlesIndexRouteImport } from './routes/_authenticated/articles/index'
 import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes/_authenticated/settings/notifications'
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
@@ -82,11 +84,23 @@ const AuthenticatedSettingsIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedOutreachIndexRoute =
+  AuthenticatedOutreachIndexRouteImport.update({
+    id: '/outreach/',
+    path: '/outreach/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedMailIndexRoute = AuthenticatedMailIndexRouteImport.update({
   id: '/mail/',
   path: '/mail/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedLinkedinPostsIndexRoute =
+  AuthenticatedLinkedinPostsIndexRouteImport.update({
+    id: '/linkedin-posts/',
+    path: '/linkedin-posts/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedArticlesIndexRoute =
   AuthenticatedArticlesIndexRouteImport.update({
     id: '/articles/',
@@ -164,7 +178,9 @@ export interface FileRoutesByFullPath {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/articles/': typeof AuthenticatedArticlesIndexRoute
+  '/linkedin-posts/': typeof AuthenticatedLinkedinPostsIndexRoute
   '/mail/': typeof AuthenticatedMailIndexRoute
+  '/outreach/': typeof AuthenticatedOutreachIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -185,7 +201,9 @@ export interface FileRoutesByTo {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/articles': typeof AuthenticatedArticlesIndexRoute
+  '/linkedin-posts': typeof AuthenticatedLinkedinPostsIndexRoute
   '/mail': typeof AuthenticatedMailIndexRoute
+  '/outreach': typeof AuthenticatedOutreachIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRoutesById {
@@ -209,7 +227,9 @@ export interface FileRoutesById {
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/_authenticated/articles/': typeof AuthenticatedArticlesIndexRoute
+  '/_authenticated/linkedin-posts/': typeof AuthenticatedLinkedinPostsIndexRoute
   '/_authenticated/mail/': typeof AuthenticatedMailIndexRoute
+  '/_authenticated/outreach/': typeof AuthenticatedOutreachIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
 }
 export interface FileRouteTypes {
@@ -233,7 +253,9 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/articles/'
+    | '/linkedin-posts/'
     | '/mail/'
+    | '/outreach/'
     | '/settings/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -254,7 +276,9 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/articles'
+    | '/linkedin-posts'
     | '/mail'
+    | '/outreach'
     | '/settings'
   id:
     | '__root__'
@@ -277,7 +301,9 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
     | '/_authenticated/articles/'
+    | '/_authenticated/linkedin-posts/'
     | '/_authenticated/mail/'
+    | '/_authenticated/outreach/'
     | '/_authenticated/settings/'
   fileRoutesById: FileRoutesById
 }
@@ -363,11 +389,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/outreach/': {
+      id: '/_authenticated/outreach/'
+      path: '/outreach'
+      fullPath: '/outreach/'
+      preLoaderRoute: typeof AuthenticatedOutreachIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/mail/': {
       id: '/_authenticated/mail/'
       path: '/mail'
       fullPath: '/mail/'
       preLoaderRoute: typeof AuthenticatedMailIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/linkedin-posts/': {
+      id: '/_authenticated/linkedin-posts/'
+      path: '/linkedin-posts'
+      fullPath: '/linkedin-posts/'
+      preLoaderRoute: typeof AuthenticatedLinkedinPostsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/articles/': {
@@ -475,7 +515,9 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedMailSentRoute: typeof AuthenticatedMailSentRoute
   AuthenticatedMailTrashRoute: typeof AuthenticatedMailTrashRoute
   AuthenticatedArticlesIndexRoute: typeof AuthenticatedArticlesIndexRoute
+  AuthenticatedLinkedinPostsIndexRoute: typeof AuthenticatedLinkedinPostsIndexRoute
   AuthenticatedMailIndexRoute: typeof AuthenticatedMailIndexRoute
+  AuthenticatedOutreachIndexRoute: typeof AuthenticatedOutreachIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -487,7 +529,9 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedMailSentRoute: AuthenticatedMailSentRoute,
   AuthenticatedMailTrashRoute: AuthenticatedMailTrashRoute,
   AuthenticatedArticlesIndexRoute: AuthenticatedArticlesIndexRoute,
+  AuthenticatedLinkedinPostsIndexRoute: AuthenticatedLinkedinPostsIndexRoute,
   AuthenticatedMailIndexRoute: AuthenticatedMailIndexRoute,
+  AuthenticatedOutreachIndexRoute: AuthenticatedOutreachIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
