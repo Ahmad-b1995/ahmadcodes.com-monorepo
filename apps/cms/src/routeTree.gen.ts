@@ -23,6 +23,7 @@ import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authen
 import { Route as AuthenticatedOutreachIndexRouteImport } from './routes/_authenticated/outreach/index'
 import { Route as AuthenticatedMailIndexRouteImport } from './routes/_authenticated/mail/index'
 import { Route as AuthenticatedLinkedinPostsIndexRouteImport } from './routes/_authenticated/linkedin-posts/index'
+import { Route as AuthenticatedGoalsIndexRouteImport } from './routes/_authenticated/goals/index'
 import { Route as AuthenticatedArticlesIndexRouteImport } from './routes/_authenticated/articles/index'
 import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes/_authenticated/settings/notifications'
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
@@ -107,6 +108,11 @@ const AuthenticatedLinkedinPostsIndexRoute =
     path: '/linkedin-posts/',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedGoalsIndexRoute = AuthenticatedGoalsIndexRouteImport.update({
+  id: '/goals/',
+  path: '/goals/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedArticlesIndexRoute =
   AuthenticatedArticlesIndexRouteImport.update({
     id: '/articles/',
@@ -184,6 +190,7 @@ export interface FileRoutesByFullPath {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/articles/': typeof AuthenticatedArticlesIndexRoute
+  '/goals/': typeof AuthenticatedGoalsIndexRoute
   '/linkedin-posts/': typeof AuthenticatedLinkedinPostsIndexRoute
   '/mail/': typeof AuthenticatedMailIndexRoute
   '/outreach/': typeof AuthenticatedOutreachIndexRoute
@@ -208,6 +215,7 @@ export interface FileRoutesByTo {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/articles': typeof AuthenticatedArticlesIndexRoute
+  '/goals': typeof AuthenticatedGoalsIndexRoute
   '/linkedin-posts': typeof AuthenticatedLinkedinPostsIndexRoute
   '/mail': typeof AuthenticatedMailIndexRoute
   '/outreach': typeof AuthenticatedOutreachIndexRoute
@@ -235,6 +243,7 @@ export interface FileRoutesById {
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/_authenticated/articles/': typeof AuthenticatedArticlesIndexRoute
+  '/_authenticated/goals/': typeof AuthenticatedGoalsIndexRoute
   '/_authenticated/linkedin-posts/': typeof AuthenticatedLinkedinPostsIndexRoute
   '/_authenticated/mail/': typeof AuthenticatedMailIndexRoute
   '/_authenticated/outreach/': typeof AuthenticatedOutreachIndexRoute
@@ -262,6 +271,7 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/articles/'
+    | '/goals/'
     | '/linkedin-posts/'
     | '/mail/'
     | '/outreach/'
@@ -286,6 +296,7 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/articles'
+    | '/goals'
     | '/linkedin-posts'
     | '/mail'
     | '/outreach'
@@ -312,6 +323,7 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
     | '/_authenticated/articles/'
+    | '/_authenticated/goals/'
     | '/_authenticated/linkedin-posts/'
     | '/_authenticated/mail/'
     | '/_authenticated/outreach/'
@@ -429,6 +441,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedLinkedinPostsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/goals/': {
+      id: '/_authenticated/goals/'
+      path: '/goals'
+      fullPath: '/goals/'
+      preLoaderRoute: typeof AuthenticatedGoalsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/articles/': {
       id: '/_authenticated/articles/'
       path: '/articles'
@@ -534,6 +553,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedMailSentRoute: typeof AuthenticatedMailSentRoute
   AuthenticatedMailTrashRoute: typeof AuthenticatedMailTrashRoute
   AuthenticatedArticlesIndexRoute: typeof AuthenticatedArticlesIndexRoute
+  AuthenticatedGoalsIndexRoute: typeof AuthenticatedGoalsIndexRoute
   AuthenticatedLinkedinPostsIndexRoute: typeof AuthenticatedLinkedinPostsIndexRoute
   AuthenticatedMailIndexRoute: typeof AuthenticatedMailIndexRoute
   AuthenticatedOutreachIndexRoute: typeof AuthenticatedOutreachIndexRoute
@@ -549,6 +569,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedMailSentRoute: AuthenticatedMailSentRoute,
   AuthenticatedMailTrashRoute: AuthenticatedMailTrashRoute,
   AuthenticatedArticlesIndexRoute: AuthenticatedArticlesIndexRoute,
+  AuthenticatedGoalsIndexRoute: AuthenticatedGoalsIndexRoute,
   AuthenticatedLinkedinPostsIndexRoute: AuthenticatedLinkedinPostsIndexRoute,
   AuthenticatedMailIndexRoute: AuthenticatedMailIndexRoute,
   AuthenticatedOutreachIndexRoute: AuthenticatedOutreachIndexRoute,
