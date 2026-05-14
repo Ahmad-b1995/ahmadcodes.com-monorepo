@@ -12,6 +12,7 @@ import { GoalController } from './goal.controller';
 import { PlanTaskController } from './plan-task.controller';
 import { DailyPlanController } from './daily-plan.controller';
 import { MemoryNoteController } from './memory-note.controller';
+import { DailyPlanCronService } from './daily-plan-cron.service';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { MemoryNoteController } from './memory-note.controller';
     PlanTaskService,
     DailyPlanService,
     MemoryNoteService,
+    DailyPlanCronService,
   ],
   exports: [
     GoalService,
