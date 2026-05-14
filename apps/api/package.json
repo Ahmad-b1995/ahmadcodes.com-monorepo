@@ -30,6 +30,7 @@
     "migration:show": "typeorm-ts-node-commonjs migration:show -d src/data-source.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.96.0",
     "@aws-sdk/client-s3": "^3.1044.0",
     "@nestjs/common": "^11.1.19",
     "@nestjs/config": "^4.0.4",
@@ -53,7 +54,8 @@
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2",
     "typeorm": "^0.3.28",
-    "uuid": "^13.0.2"
+    "uuid": "^13.0.2",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
