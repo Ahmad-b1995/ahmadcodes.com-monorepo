@@ -9,3 +9,4 @@ export * from './task.dto';
 export * from './linkedin-post.dto';
 export * from './outreach.dto';
 export * from './dashboard.dto';
+export * from './daily-planning.dto';
