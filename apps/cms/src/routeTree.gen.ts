@@ -18,6 +18,7 @@ import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
+import { Route as AuthenticatedTodayIndexRouteImport } from './routes/_authenticated/today/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
 import { Route as AuthenticatedOutreachIndexRouteImport } from './routes/_authenticated/outreach/index'
 import { Route as AuthenticatedMailIndexRouteImport } from './routes/_authenticated/mail/index'
@@ -78,6 +79,11 @@ const AuthenticatedSettingsRouteRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedTodayIndexRoute = AuthenticatedTodayIndexRouteImport.update({
+  id: '/today/',
+  path: '/today/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSettingsIndexRoute =
   AuthenticatedSettingsIndexRouteImport.update({
     id: '/',
@@ -182,6 +188,7 @@ export interface FileRoutesByFullPath {
   '/mail/': typeof AuthenticatedMailIndexRoute
   '/outreach/': typeof AuthenticatedOutreachIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
+  '/today/': typeof AuthenticatedTodayIndexRoute
 }
 export interface FileRoutesByTo {
   '/sign-in': typeof authSignInRoute
@@ -205,6 +212,7 @@ export interface FileRoutesByTo {
   '/mail': typeof AuthenticatedMailIndexRoute
   '/outreach': typeof AuthenticatedOutreachIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
+  '/today': typeof AuthenticatedTodayIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -231,6 +239,7 @@ export interface FileRoutesById {
   '/_authenticated/mail/': typeof AuthenticatedMailIndexRoute
   '/_authenticated/outreach/': typeof AuthenticatedOutreachIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
+  '/_authenticated/today/': typeof AuthenticatedTodayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -257,6 +266,7 @@ export interface FileRouteTypes {
     | '/mail/'
     | '/outreach/'
     | '/settings/'
+    | '/today/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/sign-in'
@@ -280,6 +290,7 @@ export interface FileRouteTypes {
     | '/mail'
     | '/outreach'
     | '/settings'
+    | '/today'
   id:
     | '__root__'
     | '/_authenticated'
@@ -305,6 +316,7 @@ export interface FileRouteTypes {
     | '/_authenticated/mail/'
     | '/_authenticated/outreach/'
     | '/_authenticated/settings/'
+    | '/_authenticated/today/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -380,6 +392,13 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/today/': {
+      id: '/_authenticated/today/'
+      path: '/today'
+      fullPath: '/today/'
+      preLoaderRoute: typeof AuthenticatedTodayIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/settings/': {
@@ -518,6 +537,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedLinkedinPostsIndexRoute: typeof AuthenticatedLinkedinPostsIndexRoute
   AuthenticatedMailIndexRoute: typeof AuthenticatedMailIndexRoute
   AuthenticatedOutreachIndexRoute: typeof AuthenticatedOutreachIndexRoute
+  AuthenticatedTodayIndexRoute: typeof AuthenticatedTodayIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -532,6 +552,7 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedLinkedinPostsIndexRoute: AuthenticatedLinkedinPostsIndexRoute,
   AuthenticatedMailIndexRoute: AuthenticatedMailIndexRoute,
   AuthenticatedOutreachIndexRoute: AuthenticatedOutreachIndexRoute,
+  AuthenticatedTodayIndexRoute: AuthenticatedTodayIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
