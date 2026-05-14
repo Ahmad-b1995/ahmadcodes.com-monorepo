@@ -37,6 +37,9 @@ export class DailyPlan {
   @Column({ name: 'context_hash', type: 'varchar', length: 64 })
   contextHash!: string;
 
+  @Column({ name: 'available_minutes', type: 'int' })
+  availableMinutes!: number;
+
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })
   createdAt!: Date;
 }

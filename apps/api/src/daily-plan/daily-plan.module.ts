@@ -6,15 +6,35 @@ import { MemoryNote } from './memory-note.entity';
 import { DailyPlan } from './daily-plan.entity';
 import { GoalService } from './goal.service';
 import { PlanTaskService } from './plan-task.service';
+import { DailyPlanService } from './daily-plan.service';
+import { MemoryNoteService } from './memory-note.service';
 import { GoalController } from './goal.controller';
 import { PlanTaskController } from './plan-task.controller';
+import { DailyPlanController } from './daily-plan.controller';
+import { MemoryNoteController } from './memory-note.controller';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([Goal, PlanTask, MemoryNote, DailyPlan]),
   ],
-  controllers: [GoalController, PlanTaskController],
-  providers: [GoalService, PlanTaskService],
-  exports: [GoalService, PlanTaskService, TypeOrmModule],
+  controllers: [
+    GoalController,
+    PlanTaskController,
+    DailyPlanController,
+    MemoryNoteController,
+  ],
+  providers: [
+    GoalService,
+    PlanTaskService,
+    DailyPlanService,
+    MemoryNoteService,
+  ],
+  exports: [
+    GoalService,
+    PlanTaskService,
+    DailyPlanService,
+    MemoryNoteService,
+    TypeOrmModule,
+  ],
 })
 export class DailyPlanModule {}
