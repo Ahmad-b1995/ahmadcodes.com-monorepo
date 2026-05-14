@@ -14,6 +14,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { UploadModule } from './upload/upload.module';
 import { SeedModule } from './seed/seed.module';
 import { DailyPlanModule } from './daily-plan/daily-plan.module';
+import { LlmModule } from './llm/llm.module';
 import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
 import s3Config from './config/s3.config';
@@ -48,6 +49,7 @@ import { JwtAuthGuard } from './auth/guards/jwt-auth.guard';
     UploadModule,
     SeedModule,
     DailyPlanModule,
+    LlmModule,
   ],
   providers: [
     {
