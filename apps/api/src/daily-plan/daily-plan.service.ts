@@ -53,9 +53,7 @@ function buildSummaryFromTasks(tasks: IDailyPlanGeneratedTask[]): string {
 }
 
 function hashContextPayload(payload: unknown): string {
-  return createHash('sha256')
-    .update(JSON.stringify(payload))
-    .digest('hex');
+  return createHash('sha256').update(JSON.stringify(payload)).digest('hex');
 }
 
 function serializeGoal(g: Goal): IGenerateDailyPlanGoal {
@@ -119,7 +117,9 @@ export class DailyPlanService {
   }
 
   private defaultAvailableMinutes(fallback: number | undefined): number {
-    const fromEnv = this.configService.get<string>('DAILY_PLAN_DEFAULT_MINUTES');
+    const fromEnv = this.configService.get<string>(
+      'DAILY_PLAN_DEFAULT_MINUTES',
+    );
     const parsed = fromEnv ? parseInt(fromEnv, 10) : Number.NaN;
     if (!Number.isNaN(parsed) && parsed > 0) {
       return parsed;
@@ -133,8 +133,7 @@ export class DailyPlanService {
       currentLocation:
         this.configService.get<string>('DAILY_PLAN_PROFILE_LOCATION') ?? '',
       careerStage:
-        this.configService.get<string>('DAILY_PLAN_PROFILE_CAREER_STAGE') ??
-        '',
+        this.configService.get<string>('DAILY_PLAN_PROFILE_CAREER_STAGE') ?? '',
     };
   }
 
@@ -150,9 +149,8 @@ export class DailyPlanService {
 
     const memorySince = new Date();
     memorySince.setUTCDate(memorySince.getUTCDate() - 30);
-    const memoryNotes = await this.memoryNoteService.findRecentForLlm(
-      memorySince,
-    );
+    const memoryNotes =
+      await this.memoryNoteService.findRecentForLlm(memorySince);
 
     const completedSince = new Date();
     completedSince.setUTCDate(completedSince.getUTCDate() - 14);
@@ -296,8 +294,7 @@ export class DailyPlanService {
         existing.scheduledFor = t.scheduledFor ?? null;
         existing.dueAt = t.dueAt ? new Date(t.dueAt) : null;
         existing.estimatedMinutes = est;
-        existing.completedAt =
-          status === 'done' ? new Date() : null;
+        existing.completedAt = status === 'done' ? new Date() : null;
         existing.actionable = actionable;
         existing.metadata = t.metadata ?? {};
         const saved = await em.save(existing);
@@ -328,11 +325,7 @@ export class DailyPlanService {
     freeText: string,
     action: DailyPlanFeedbackAction,
   ): Promise<void> {
-    const tags = [
-      'daily-plan-feedback',
-      `action:${action}`,
-      `plan:${planId}`,
-    ];
+    const tags = ['daily-plan-feedback', `action:${action}`, `plan:${planId}`];
     await this.memoryNoteService.create({
       content: freeText,
       tags,

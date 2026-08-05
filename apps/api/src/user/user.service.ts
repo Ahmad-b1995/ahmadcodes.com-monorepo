@@ -17,7 +17,7 @@ export class UserService {
     @InjectRepository(User)
     private userRepository: Repository<User>,
     @InjectRepository(Role)
-    private roleRepository: Repository<Role>
+    private roleRepository: Repository<Role>,
   ) {}
 
   async findAll(): Promise<User[]> {

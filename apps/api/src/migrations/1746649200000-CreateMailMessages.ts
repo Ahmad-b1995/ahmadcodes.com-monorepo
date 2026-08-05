@@ -38,8 +38,12 @@ export class CreateMailMessages1746649200000 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`DROP INDEX IF EXISTS "IDX_mail_messages_message_id";`);
-    await queryRunner.query(`DROP INDEX IF EXISTS "IDX_mail_messages_direction_created";`);
+    await queryRunner.query(
+      `DROP INDEX IF EXISTS "IDX_mail_messages_message_id";`,
+    );
+    await queryRunner.query(
+      `DROP INDEX IF EXISTS "IDX_mail_messages_direction_created";`,
+    );
     await queryRunner.query(`DROP TABLE IF EXISTS "mail_messages";`);
   }
 }

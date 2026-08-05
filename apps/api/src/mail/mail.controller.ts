@@ -38,10 +38,7 @@ export class MailController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(20), ParseIntPipe) limit: number = 20,
   ) {
-    return this.mailService.list(
-      { page, limit: Math.min(limit, 100) },
-      query,
-    );
+    return this.mailService.list({ page, limit: Math.min(limit, 100) }, query);
   }
 
   @Get(':id')

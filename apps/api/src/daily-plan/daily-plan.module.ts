@@ -15,9 +15,7 @@ import { MemoryNoteController } from './memory-note.controller';
 import { DailyPlanCronService } from './daily-plan-cron.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Goal, PlanTask, MemoryNote, DailyPlan]),
-  ],
+  imports: [TypeOrmModule.forFeature([Goal, PlanTask, MemoryNote, DailyPlan])],
   controllers: [
     GoalController,
     PlanTaskController,

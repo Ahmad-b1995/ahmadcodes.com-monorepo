@@ -13,7 +13,10 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
 import { RolesGuard } from '../auth/guards/roles.guard';
 import { Roles } from '../auth/decorators/roles.decorator';
 import { OutreachService } from './outreach.service';
-import { CreateOutreachContactDto, UpdateOutreachContactDto } from './outreach.dto';
+import {
+  CreateOutreachContactDto,
+  UpdateOutreachContactDto,
+} from './outreach.dto';
 
 @Controller('outreach')
 @UseGuards(JwtAuthGuard, RolesGuard)

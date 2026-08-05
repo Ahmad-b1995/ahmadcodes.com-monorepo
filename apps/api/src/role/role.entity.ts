@@ -53,7 +53,7 @@ export class Role {
   hasPermission(permissionName: string): boolean {
     return (
       this.permissions?.some(
-        (permission) => permission.name === permissionName
+        (permission) => permission.name === permissionName,
       ) || false
     );
   }

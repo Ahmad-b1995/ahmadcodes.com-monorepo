@@ -30,8 +30,7 @@ export class DigestService {
 
   @Cron('0 6 * * *')
   async sendDailyDigest(): Promise<void> {
-    const to =
-      process.env.DIGEST_TO?.trim() || 'contact@ahmadcodes.com';
+    const to = process.env.DIGEST_TO?.trim() || 'contact@ahmadcodes.com';
 
     let posts: LinkedInPost[] = [];
     let overdue: OutreachContact[] = [];
@@ -40,20 +39,14 @@ export class DigestService {
     try {
       posts = await this.linkedInPostService.findScheduledTodayUtc();
       overdue = await this.outreachService.findOverdue();
-      reminders = await this.taskService.findRemindersDueWithinDaysFromToday(
-        3,
-      );
+      reminders = await this.taskService.findRemindersDueWithinDaysFromToday(3);
     } catch (err) {
       const message = err instanceof Error ? err.message : String(err);
       this.logger.error(`Digest query failed: ${message}`, err as Error);
       return;
     }
 
-    if (
-      posts.length === 0 &&
-      overdue.length === 0 &&
-      reminders.length === 0
-    ) {
+    if (posts.length === 0 && overdue.length === 0 && reminders.length === 0) {
       return;
     }
 

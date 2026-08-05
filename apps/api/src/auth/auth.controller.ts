@@ -58,12 +58,12 @@ export class AuthController {
   @HttpCode(HttpStatus.OK)
   async changePassword(
     @CurrentUser() user: User,
-    @Body() changePasswordDto: ChangePasswordDto
+    @Body() changePasswordDto: ChangePasswordDto,
   ) {
     await this.authService.changePassword(
       user.id,
       changePasswordDto.currentPassword,
-      changePasswordDto.newPassword
+      changePasswordDto.newPassword,
     );
     return { message: 'Password changed successfully' };
   }

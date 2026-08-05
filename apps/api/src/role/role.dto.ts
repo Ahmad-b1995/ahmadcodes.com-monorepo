@@ -6,11 +6,7 @@ import {
   IsArray,
   IsUUID,
 } from 'class-validator';
-import {
-  ICreateRoleDto,
-  IUpdateRoleDto,
-  IRole,
-} from '@repo/shared/dtos';
+import { ICreateRoleDto, IUpdateRoleDto, IRole } from '@repo/shared/dtos';
 
 export class CreateRoleDto implements ICreateRoleDto {
   @IsString()
@@ -25,7 +21,7 @@ export class CreateRoleDto implements ICreateRoleDto {
   @IsOptional()
   @IsUUID('4', { each: true })
   permissionIds?: string[];
-} 
+}
 
 export class UpdateRoleDto implements IUpdateRoleDto {
   @IsString()

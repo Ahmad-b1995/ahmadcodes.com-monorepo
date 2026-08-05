@@ -10,12 +10,7 @@ import {
 } from 'class-validator';
 import type { GoalPriority } from './goal.entity';
 
-const GOAL_PRIORITIES: GoalPriority[] = [
-  'critical',
-  'high',
-  'medium',
-  'low',
-];
+const GOAL_PRIORITIES: GoalPriority[] = ['critical', 'high', 'medium', 'low'];
 
 export class CreateGoalDto {
   @IsString()

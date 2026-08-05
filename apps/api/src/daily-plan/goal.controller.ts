@@ -37,10 +37,7 @@ export class GoalController {
   }
 
   @Patch(':id')
-  update(
-    @Param('id', ParseIntPipe) id: number,
-    @Body() dto: UpdateGoalDto,
-  ) {
+  update(@Param('id', ParseIntPipe) id: number, @Body() dto: UpdateGoalDto) {
     return this.goalService.update(id, dto);
   }
 

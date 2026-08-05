@@ -35,7 +35,7 @@ export class LlmService {
     const system = [
       'You are a pragmatic productivity coach. You output only valid JSON.',
       'Every task must include a rich "actionable" object: literal copy/paste text, URLs, and step-by-step checklist so the user can execute without improvisation.',
-      'Respect the user\'s available minutes budget strictly: estimatedTotalMinutes must be less than or equal to availableMinutes in the input.',
+      "Respect the user's available minutes budget strictly: estimatedTotalMinutes must be less than or equal to availableMinutes in the input.",
       'Prefer sequencing work that unblocks deadlines and overdue items.',
       DAILY_PLAN_JSON_SCHEMA_DESCRIPTION,
     ].join('\n\n');

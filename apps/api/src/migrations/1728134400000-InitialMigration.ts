@@ -134,22 +134,46 @@ export class InitialMigration1728134400000 implements MigrationInterface {
     `);
 
     // Create indexes
-    await queryRunner.query(`CREATE INDEX "IDX_articles_slug" ON "articles" ("slug")`);
-    await queryRunner.query(`CREATE INDEX "IDX_articles_published" ON "articles" ("published")`);
-    await queryRunner.query(`CREATE INDEX "IDX_users_email" ON "users" ("email")`);
-    await queryRunner.query(`CREATE INDEX "IDX_role_permissions_role" ON "role_permissions" ("roleId")`);
-    await queryRunner.query(`CREATE INDEX "IDX_role_permissions_permission" ON "role_permissions" ("permissionId")`);
-    await queryRunner.query(`CREATE INDEX "IDX_user_roles_user" ON "user_roles" ("userId")`);
-    await queryRunner.query(`CREATE INDEX "IDX_user_roles_role" ON "user_roles" ("roleId")`);
+    await queryRunner.query(
+      `CREATE INDEX "IDX_articles_slug" ON "articles" ("slug")`,
+    );
+    await queryRunner.query(
+      `CREATE INDEX "IDX_articles_published" ON "articles" ("published")`,
+    );
+    await queryRunner.query(
+      `CREATE INDEX "IDX_users_email" ON "users" ("email")`,
+    );
+    await queryRunner.query(
+      `CREATE INDEX "IDX_role_permissions_role" ON "role_permissions" ("roleId")`,
+    );
+    await queryRunner.query(
+      `CREATE INDEX "IDX_role_permissions_permission" ON "role_permissions" ("permissionId")`,
+    );
+    await queryRunner.query(
+      `CREATE INDEX "IDX_user_roles_user" ON "user_roles" ("userId")`,
+    );
+    await queryRunner.query(
+      `CREATE INDEX "IDX_user_roles_role" ON "user_roles" ("roleId")`,
+    );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
     // Drop foreign keys
-    await queryRunner.query(`ALTER TABLE "user_roles" DROP CONSTRAINT "FK_user_roles_role"`);
-    await queryRunner.query(`ALTER TABLE "user_roles" DROP CONSTRAINT "FK_user_roles_user"`);
-    await queryRunner.query(`ALTER TABLE "role_permissions" DROP CONSTRAINT "FK_role_permissions_permission"`);
-    await queryRunner.query(`ALTER TABLE "role_permissions" DROP CONSTRAINT "FK_role_permissions_role"`);
-    await queryRunner.query(`ALTER TABLE "refresh_tokens" DROP CONSTRAINT "FK_refresh_tokens_user"`);
+    await queryRunner.query(
+      `ALTER TABLE "user_roles" DROP CONSTRAINT "FK_user_roles_role"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "user_roles" DROP CONSTRAINT "FK_user_roles_user"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "role_permissions" DROP CONSTRAINT "FK_role_permissions_permission"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "role_permissions" DROP CONSTRAINT "FK_role_permissions_role"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "refresh_tokens" DROP CONSTRAINT "FK_refresh_tokens_user"`,
+    );
 
     // Drop indexes
     await queryRunner.query(`DROP INDEX "IDX_user_roles_role"`);
@@ -170,4 +194,3 @@ export class InitialMigration1728134400000 implements MigrationInterface {
     await queryRunner.query(`DROP TABLE "permissions"`);
   }
 }
-

@@ -6,7 +6,12 @@ import { Task } from './task.entity';
 
 describe('TaskService', () => {
   let service: TaskService;
-  let repo: jest.Mocked<Pick<Repository<Task>, 'create' | 'save' | 'findOne' | 'remove' | 'createQueryBuilder'>>;
+  let repo: jest.Mocked<
+    Pick<
+      Repository<Task>,
+      'create' | 'save' | 'findOne' | 'remove' | 'createQueryBuilder'
+    >
+  >;
 
   beforeEach(async () => {
     const qb = {

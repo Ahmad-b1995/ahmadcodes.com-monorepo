@@ -7,7 +7,6 @@ export class InitialSchema1764928625924 implements MigrationInterface {
     // This migration is a placeholder for the initial schema
     // The schema was created using TypeORM synchronize feature
     // All future schema changes should be done via migrations
-    
     // Entities already in database:
     // - permissions
     // - roles

@@ -47,9 +47,17 @@ export class AddUserEmailVerificationColumns1768000000000 implements MigrationIn
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`ALTER TABLE "users" DROP COLUMN IF EXISTS "passwordResetExpires"`);
-    await queryRunner.query(`ALTER TABLE "users" DROP COLUMN IF EXISTS "passwordResetToken"`);
-    await queryRunner.query(`ALTER TABLE "users" DROP COLUMN IF EXISTS "emailVerificationToken"`);
-    await queryRunner.query(`ALTER TABLE "users" DROP COLUMN IF EXISTS "isEmailVerified"`);
+    await queryRunner.query(
+      `ALTER TABLE "users" DROP COLUMN IF EXISTS "passwordResetExpires"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "users" DROP COLUMN IF EXISTS "passwordResetToken"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "users" DROP COLUMN IF EXISTS "emailVerificationToken"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "users" DROP COLUMN IF EXISTS "isEmailVerified"`,
+    );
   }
 }
