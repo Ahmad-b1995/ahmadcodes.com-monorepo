@@ -40,6 +40,25 @@ main () {
   fi
 
   clean_aux
+
+  if [[ "${1:-}" == "--with-applications" || "${2:-}" == "--with-applications" ]]; then
+    build_applications
+  fi
+}
+
+build_applications () {
+  local apps_dir="${WORKSPACE_ROOT}/applications"
+  if [[ ! -d "${apps_dir}" ]]; then return; fi
+  echo "==> Building application documents in ${apps_dir}"
+  cd "${apps_dir}"
+  for f in cv-academic.tex motivation-*.tex; do
+    [[ -f "${f}" ]] || continue
+    echo "    --> ${f}"
+    pdflatex -interaction=nonstopmode -halt-on-error "${f}" >/dev/null
+    pdflatex -interaction=nonstopmode -halt-on-error "${f}" >/dev/null
+  done
+  rm -f *.aux *.log *.out *.toc *.fdb_latexmk *.fls *.synctex.gz
+  cd "${SCRIPT_DIR}"
 }
 
 build_previews () {

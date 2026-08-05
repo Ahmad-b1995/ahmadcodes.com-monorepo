@@ -16,7 +16,7 @@ export class RoleService {
     @InjectRepository(Role)
     private roleRepository: Repository<Role>,
     @InjectRepository(Permission)
-    private permissionRepository: Repository<Permission>
+    private permissionRepository: Repository<Permission>,
   ) {}
 
   async findAll(): Promise<Role[]> {
@@ -141,7 +141,7 @@ export class RoleService {
   async removePermission(roleId: string, permissionId: string): Promise<Role> {
     const role = await this.findById(roleId);
     role.permissions = role.permissions.filter(
-      (permission) => permission.id !== permissionId
+      (permission) => permission.id !== permissionId,
     );
     return this.roleRepository.save(role);
   }

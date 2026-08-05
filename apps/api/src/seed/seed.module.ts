@@ -16,4 +16,3 @@ import { Article } from '../article/article.entity';
   exports: [SeedService],
 })
 export class SeedModule {}
-

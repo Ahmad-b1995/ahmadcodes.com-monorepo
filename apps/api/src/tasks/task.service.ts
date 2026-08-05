@@ -27,7 +27,9 @@ export class TaskService {
   }
 
   async findAll(query: ListTasksQueryDto): Promise<Task[]> {
-    const qb = this.taskRepo.createQueryBuilder('t').orderBy('t.due_at', 'ASC', 'NULLS LAST');
+    const qb = this.taskRepo
+      .createQueryBuilder('t')
+      .orderBy('t.due_at', 'ASC', 'NULLS LAST');
 
     if (query.type) {
       qb.andWhere('t.type = :type', { type: query.type });
@@ -46,7 +48,9 @@ export class TaskService {
       if (due === 'overdue') {
         qb.andWhere('t.due_at IS NOT NULL')
           .andWhere('t.due_at < :startToday', { startToday })
-          .andWhere('t.status NOT IN (:...closed)', { closed: ['done', 'cancelled'] });
+          .andWhere('t.status NOT IN (:...closed)', {
+            closed: ['done', 'cancelled'],
+          });
       } else if (due === 'today') {
         qb.andWhere('t.due_at IS NOT NULL')
           .andWhere('t.due_at >= :startToday', { startToday })

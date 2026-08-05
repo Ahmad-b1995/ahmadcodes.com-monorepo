@@ -110,4 +110,3 @@ export class ArticleResponseDto implements IArticle {
   metaDescription!: string;
   tags!: string[];
 }
-

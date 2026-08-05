@@ -12,7 +12,7 @@ import { CreatePermissionDto, UpdatePermissionDto } from './permission.dto';
 export class PermissionService {
   constructor(
     @InjectRepository(Permission)
-    private permissionRepository: Repository<Permission>
+    private permissionRepository: Repository<Permission>,
   ) {}
 
   async findAll(): Promise<Permission[]> {
@@ -62,7 +62,7 @@ export class PermissionService {
 
   async update(
     id: string,
-    updatePermissionDto: UpdatePermissionDto
+    updatePermissionDto: UpdatePermissionDto,
   ): Promise<Permission> {
     const permission = await this.findById(id);
 

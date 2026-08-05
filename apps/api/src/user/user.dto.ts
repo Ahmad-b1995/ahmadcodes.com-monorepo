@@ -7,11 +7,7 @@ import {
   IsArray,
   IsUUID,
 } from 'class-validator';
-import {
-  ICreateUserDto,
-  IUpdateUserDto,
-  IUser,
-} from '@repo/shared/dtos';
+import { ICreateUserDto, IUpdateUserDto, IUser } from '@repo/shared/dtos';
 
 export class CreateUserDto implements ICreateUserDto {
   @IsEmail()

@@ -37,7 +37,12 @@ export class OutreachContact {
   @Column({ type: 'varchar', length: 320, default: '' })
   email!: string;
 
-  @Column({ name: 'linkedin_url', type: 'varchar', length: 998, nullable: true })
+  @Column({
+    name: 'linkedin_url',
+    type: 'varchar',
+    length: 998,
+    nullable: true,
+  })
   linkedinUrl!: string | null;
 
   @Column({ type: 'varchar', length: 32 })

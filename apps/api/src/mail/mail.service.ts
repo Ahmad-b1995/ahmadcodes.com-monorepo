@@ -5,6 +5,7 @@ import {
   Logger,
   NotFoundException,
   OnModuleDestroy,
+  PayloadTooLargeException,
 } from '@nestjs/common';
 import type { ConfigType } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -17,7 +18,11 @@ import { Repository } from 'typeorm';
 import * as nodemailer from 'nodemailer';
 import smtpConfig from '../config/smtp.config';
 import { MailMessage } from './mail.entity';
-import { ListMailQueryDto, SendMailDto } from './mail.dto';
+import { InboundMailDto, ListMailQueryDto, SendMailDto } from './mail.dto';
+import {
+  INBOUND_MAX_BODY_LENGTH,
+  INBOUND_MAX_SUBJECT_LENGTH,
+} from './mail-inbound.constants';
 
 @Injectable()
 export class MailService implements OnModuleDestroy {
@@ -25,7 +30,8 @@ export class MailService implements OnModuleDestroy {
   private transporter: nodemailer.Transporter | null = null;
 
   constructor(
-    @Inject(smtpConfig.KEY) private readonly smtp: ConfigType<typeof smtpConfig>,
+    @Inject(smtpConfig.KEY)
+    private readonly smtp: ConfigType<typeof smtpConfig>,
     @InjectRepository(MailMessage)
     private readonly mailRepo: Repository<MailMessage>,
   ) {}
@@ -33,6 +39,66 @@ export class MailService implements OnModuleDestroy {
   onModuleDestroy(): void {
     this.transporter?.close();
     this.transporter = null;
+  }
+
+  /**
+   * Persist an inbound message (Email Worker, etc.). Enforces size caps;
+   * de-duplicates by RFC Message-ID when provided.
+   */
+  async receiveInbound(dto: InboundMailDto): Promise<MailMessage> {
+    const subjectLen = dto.subject.length;
+    if (subjectLen > INBOUND_MAX_SUBJECT_LENGTH) {
+      throw new PayloadTooLargeException(
+        `subject exceeds ${INBOUND_MAX_SUBJECT_LENGTH} characters`,
+      );
+    }
+
+    const bodyHtml = dto.bodyHtml ?? '';
+    const bodyText = dto.bodyText ?? '';
+    if (bodyHtml.length > INBOUND_MAX_BODY_LENGTH) {
+      throw new PayloadTooLargeException(
+        `bodyHtml exceeds ${INBOUND_MAX_BODY_LENGTH} bytes`,
+      );
+    }
+    if (bodyText.length > INBOUND_MAX_BODY_LENGTH) {
+      throw new PayloadTooLargeException(
+        `bodyText exceeds ${INBOUND_MAX_BODY_LENGTH} bytes`,
+      );
+    }
+
+    const messageId =
+      dto.messageId && dto.messageId.trim().length > 0
+        ? dto.messageId.trim()
+        : null;
+
+    if (messageId) {
+      const existing = await this.mailRepo.findOne({
+        where: { messageId },
+      });
+      if (existing) {
+        return existing;
+      }
+    }
+
+    const now = new Date();
+    const record = this.mailRepo.create({
+      direction: 'received',
+      status: 'received',
+      fromAddress: dto.fromAddress,
+      toAddresses: dto.toAddresses,
+      ccAddresses: dto.ccAddresses ?? [],
+      bccAddresses: dto.bccAddresses ?? [],
+      subject: dto.subject,
+      bodyHtml,
+      bodyText,
+      messageId,
+      inReplyTo: dto.inReplyTo?.trim().length ? dto.inReplyTo.trim() : null,
+      error: null,
+      sentAt: null,
+      receivedAt: now,
+    });
+
+    return this.mailRepo.save(record);
   }
 
   async send(dto: SendMailDto): Promise<MailMessage> {
@@ -67,6 +133,7 @@ export class MailService implements OnModuleDestroy {
 
     try {
       const transporter = this.getTransporter();
+      /* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access -- nodemailer sendMail */
       const info = await transporter.sendMail({
         from: fromHeader,
         to: dto.to,
@@ -84,6 +151,7 @@ export class MailService implements OnModuleDestroy {
 
       record.status = 'sent';
       record.messageId = info.messageId ?? null;
+      /* eslint-enable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
       record.sentAt = new Date();
       return await this.mailRepo.save(record);
     } catch (err) {

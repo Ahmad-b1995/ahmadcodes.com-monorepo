@@ -89,7 +89,9 @@ export class SeedService {
         await this.permissionRepository.save(existing);
         this.logger.log(`  ↻ Backfilled permission: ${permissionData.name}`);
       } else {
-        this.logger.log(`  ⊙ Permission already exists: ${permissionData.name}`);
+        this.logger.log(
+          `  ⊙ Permission already exists: ${permissionData.name}`,
+        );
       }
     }
   }
@@ -448,14 +450,16 @@ function useAuth() {
   return { user, login, logout };
 }
 \`\`\``,
-        excerpt: 'Master advanced React patterns for better component architecture.',
+        excerpt:
+          'Master advanced React patterns for better component architecture.',
         image: {
           alt: 'React patterns',
           src: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
         },
         published: false,
         publishedAt: null,
-        metaDescription: 'Learn advanced React patterns for scalable applications',
+        metaDescription:
+          'Learn advanced React patterns for scalable applications',
         tags: ['react', 'javascript', 'frontend', 'patterns'],
       },
       {
@@ -528,7 +532,8 @@ services:
         },
         published: true,
         publishedAt: new Date('2024-03-01'),
-        metaDescription: 'Learn how to containerize Node.js applications with Docker',
+        metaDescription:
+          'Learn how to containerize Node.js applications with Docker',
         tags: ['docker', 'nodejs', 'devops', 'containers'],
       },
     ];
@@ -572,4 +577,3 @@ services:
     this.logger.log('✅ All seeded data cleared successfully!');
   }
 }
-

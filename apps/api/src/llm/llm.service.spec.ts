@@ -30,7 +30,9 @@ function minimalValidPlanJson(availableMinutes: number) {
     ],
     rationale: longRationale,
     estimatedTotalMinutes: Math.min(25, availableMinutes),
-    suggestedMemoryNotes: [{ content: 'Remember to pack originals', tags: ['travel'] }],
+    suggestedMemoryNotes: [
+      { content: 'Remember to pack originals', tags: ['travel'] },
+    ],
   };
 }
 
@@ -81,7 +83,11 @@ describe('LlmService', () => {
       content: [
         {
           type: 'text',
-          text: JSON.stringify({ tasks: [], rationale: 'short', estimatedTotalMinutes: 0 }),
+          text: JSON.stringify({
+            tasks: [],
+            rationale: 'short',
+            estimatedTotalMinutes: 0,
+          }),
         },
       ],
       usage: { input_tokens: 1, output_tokens: 2 },

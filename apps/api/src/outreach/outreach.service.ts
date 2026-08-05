@@ -2,7 +2,10 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { OutreachContact } from './outreach.entity';
-import { CreateOutreachContactDto, UpdateOutreachContactDto } from './outreach.dto';
+import {
+  CreateOutreachContactDto,
+  UpdateOutreachContactDto,
+} from './outreach.dto';
 
 @Injectable()
 export class OutreachService {

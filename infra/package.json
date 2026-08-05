@@ -1,0 +1,9 @@
+{
+  "name": "ahmadcodes-email-worker-infra",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Standalone deps for Cloudflare Email Worker (wrangler bundle)",
+  "dependencies": {
+    "postal-mime": "^2.4.4"
+  }
+}

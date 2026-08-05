@@ -92,10 +92,14 @@ export class DailyPlanSchema1768400000000 implements MigrationInterface {
       `DROP INDEX IF EXISTS "IDX_memory_notes_pinned_created";`,
     );
     await queryRunner.query(`DROP TABLE IF EXISTS "memory_notes";`);
-    await queryRunner.query(`DROP INDEX IF EXISTS "IDX_plan_tasks_status_due";`);
+    await queryRunner.query(
+      `DROP INDEX IF EXISTS "IDX_plan_tasks_status_due";`,
+    );
     await queryRunner.query(`DROP INDEX IF EXISTS "IDX_plan_tasks_goal_id";`);
     await queryRunner.query(`DROP TABLE IF EXISTS "plan_tasks";`);
-    await queryRunner.query(`DROP INDEX IF EXISTS "IDX_goals_active_priority";`);
+    await queryRunner.query(
+      `DROP INDEX IF EXISTS "IDX_goals_active_priority";`,
+    );
     await queryRunner.query(`DROP TABLE IF EXISTS "goals";`);
   }
 }

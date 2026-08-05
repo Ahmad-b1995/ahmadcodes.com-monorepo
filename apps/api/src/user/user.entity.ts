@@ -81,7 +81,9 @@ export class User {
     if (!this.roles) return false;
 
     return this.roles.some((role) =>
-      role.permissions?.some((permission) => permission.name === permissionName)
+      role.permissions?.some(
+        (permission) => permission.name === permissionName,
+      ),
     );
   }
 

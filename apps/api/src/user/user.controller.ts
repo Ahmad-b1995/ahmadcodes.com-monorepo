@@ -42,7 +42,7 @@ export class UserController {
   @RequirePermissions('users:update')
   update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() updateUserDto: UpdateUserDto
+    @Body() updateUserDto: UpdateUserDto,
   ) {
     return this.userService.update(id, updateUserDto);
   }
@@ -63,7 +63,7 @@ export class UserController {
   @RequirePermissions('users:update')
   assignRole(
     @Param('userId', ParseUUIDPipe) userId: string,
-    @Param('roleId', ParseUUIDPipe) roleId: string
+    @Param('roleId', ParseUUIDPipe) roleId: string,
   ) {
     return this.userService.assignRole(userId, roleId);
   }
@@ -72,7 +72,7 @@ export class UserController {
   @RequirePermissions('users:update')
   removeRole(
     @Param('userId', ParseUUIDPipe) userId: string,
-    @Param('roleId', ParseUUIDPipe) roleId: string
+    @Param('roleId', ParseUUIDPipe) roleId: string,
   ) {
     return this.userService.removeRole(userId, roleId);
   }

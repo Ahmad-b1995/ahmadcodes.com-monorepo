@@ -41,7 +41,7 @@ export class PermissionController {
   @RequirePermissions('permissions:update')
   update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() updatePermissionDto: UpdatePermissionDto
+    @Body() updatePermissionDto: UpdatePermissionDto,
   ) {
     return this.permissionService.update(id, updatePermissionDto);
   }

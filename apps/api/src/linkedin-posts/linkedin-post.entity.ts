@@ -26,7 +26,12 @@ export class LinkedInPost {
   @Column({ name: 'posted_at', type: 'timestamptz', nullable: true })
   postedAt!: Date | null;
 
-  @Column({ name: 'external_url', type: 'varchar', length: 998, nullable: true })
+  @Column({
+    name: 'external_url',
+    type: 'varchar',
+    length: 998,
+    nullable: true,
+  })
   externalUrl!: string | null;
 
   @Column({ name: 'image_url', type: 'varchar', length: 998, nullable: true })

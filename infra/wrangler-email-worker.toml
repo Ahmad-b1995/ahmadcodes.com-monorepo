@@ -1,0 +1,16 @@
+# Cloudflare Email Worker — inbound relay for ahmadcodes.com
+# Deploy from repo root: cd infra && wrangler deploy -c wrangler-email-worker.toml
+
+name = "ahmadcodes-email"
+main = "cloudflare-email-worker.js"
+compatibility_date = "2025-05-01"
+
+# Plain environment (not secret). Use your real Gmail (or backup inbox).
+[vars]
+FORWARD_TO = "you@gmail.com"
+
+# Optional: override API URL (defaults in worker to https://api.ahmadcodes.com/mail/inbound)
+# INBOUND_API_URL = "https://api.ahmadcodes.com/mail/inbound"
+
+# Secret: wrangler secret put INBOUND_MAIL_SECRET -c wrangler-email-worker.toml
+# Must match INBOUND_MAIL_SECRET on the Nest API.

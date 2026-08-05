@@ -44,7 +44,7 @@ export class AuthService {
     private refreshTokenRepository: Repository<RefreshToken>,
     userService: UserService,
     private jwtService: JwtService,
-    private configService: ConfigService
+    private configService: ConfigService,
   ) {}
 
   async validateUser(email: string, password: string): Promise<User | null> {
@@ -160,14 +160,14 @@ export class AuthService {
   async logoutAll(userId: string): Promise<void> {
     await this.refreshTokenRepository.update(
       { userId, isRevoked: false },
-      { isRevoked: true }
+      { isRevoked: true },
     );
   }
 
   async changePassword(
     userId: string,
     currentPassword: string,
-    newPassword: string
+    newPassword: string,
   ): Promise<void> {
     const user = await this.userRepository.findOne({
       where: { id: userId },
@@ -179,7 +179,7 @@ export class AuthService {
 
     const isCurrentPasswordValid = await bcrypt.compare(
       currentPassword,
-      user.password
+      user.password,
     );
     if (!isCurrentPasswordValid) {
       throw new BadRequestException('Current password is incorrect');
@@ -214,14 +214,13 @@ export class AuthService {
       expiresAt: new Date(
         Date.now() +
           this.parseExpiresIn(
-            this.configService.getOrThrow<string>('jwt.refreshExpiresIn')
-          )
+            this.configService.getOrThrow<string>('jwt.refreshExpiresIn'),
+          ),
       ),
     });
 
-    const savedRefreshToken = await this.refreshTokenRepository.save(
-      refreshTokenEntity
-    );
+    const savedRefreshToken =
+      await this.refreshTokenRepository.save(refreshTokenEntity);
 
     const refreshPayload: JwtRefreshPayload = {
       sub: user.id,

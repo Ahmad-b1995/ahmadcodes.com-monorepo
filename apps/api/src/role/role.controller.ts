@@ -41,7 +41,7 @@ export class RoleController {
   @RequirePermissions('roles:update')
   update(
     @Param('id', ParseUUIDPipe) id: string,
-    @Body() updateRoleDto: UpdateRoleDto
+    @Body() updateRoleDto: UpdateRoleDto,
   ) {
     return this.roleService.update(id, updateRoleDto);
   }
@@ -56,7 +56,7 @@ export class RoleController {
   @RequirePermissions('roles:update')
   assignPermission(
     @Param('roleId', ParseUUIDPipe) roleId: string,
-    @Param('permissionId', ParseUUIDPipe) permissionId: string
+    @Param('permissionId', ParseUUIDPipe) permissionId: string,
   ) {
     return this.roleService.assignPermission(roleId, permissionId);
   }
@@ -65,7 +65,7 @@ export class RoleController {
   @RequirePermissions('roles:update')
   removePermission(
     @Param('roleId', ParseUUIDPipe) roleId: string,
-    @Param('permissionId', ParseUUIDPipe) permissionId: string
+    @Param('permissionId', ParseUUIDPipe) permissionId: string,
   ) {
     return this.roleService.removePermission(roleId, permissionId);
   }
