@@ -92,6 +92,15 @@ Covers naming, styling, reusability, dead-code policy, commits.
 LaTeX source for the resume that's linked from the site lives in `resume/`.
 See `resume/README.md`.
 
+## University applications
+
+LaTeX motivation letters, academic CV, and pre-application templates for
+Italy + Germany live in `applications/`. See `applications/README.md`.
+
+```bash
+pnpm applications:build
+```
+
 ## License
 
 All rights reserved. Code is publicly visible for portfolio reasons but not

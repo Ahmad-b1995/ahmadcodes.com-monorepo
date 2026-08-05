@@ -48,6 +48,16 @@ resume/*.synctex.gz
 resume/*.bak
 resume/previews/
 
+applications/*.aux
+applications/*.log
+applications/*.out
+applications/*.toc
+applications/*.fdb_latexmk
+applications/*.fls
+applications/*.synctex.gz
+applications/*.bak
+applications/*.pdf
+
 # Personal plans / private notes — never push these
 REMINDERS.md
 TODO.md

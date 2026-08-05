@@ -44,7 +44,7 @@ export class UploadService implements OnModuleInit {
       await this.s3.send(new HeadBucketCommand({ Bucket: this.bucketName }));
       console.log(`✅ Bucket "${this.bucketName}" is ready for uploads`);
     } catch (error) {
-      if ((error as any).$metadata?.httpStatusCode === 404) {
+      if (error.$metadata?.httpStatusCode === 404) {
         try {
           await this.s3.send(
             new CreateBucketCommand({ Bucket: this.bucketName }),
@@ -145,4 +145,3 @@ export class UploadService implements OnModuleInit {
     };
   }
 }
-

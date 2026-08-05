@@ -1,0 +1,144 @@
+% Europass-leaning academic CV for university applications.
+% Build:  cd applications && pdflatex cv-academic.tex && pdflatex cv-academic.tex
+
+\documentclass[a4paper,10pt]{article}
+
+\usepackage[a4paper,margin=2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage[sfdefault]{roboto}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+
+\definecolor{accent}{HTML}{0e7490}
+
+\titleformat{\section}{\large\bfseries\color{accent}}{}{0pt}{}[\color{accent}\titlerule]
+\titlespacing*{\section}{0pt}{12pt}{4pt}
+
+\titleformat{\subsection}[runin]{\bfseries}{}{0pt}{}[ ---]
+\titlespacing*{\subsection}{0pt}{6pt}{0pt}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+\renewcommand{\labelitemi}{\textcolor{accent}{\textbullet}}
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\begin{document}
+
+\begin{center}
+  {\Huge\bfseries Ahmad Baghereslami}\\[4pt]
+  {\footnotesize\textcolor{gray}{professionally known as Ahmad Bagheri}}\\[6pt]
+  \footnotesize
+  \href{mailto:contact@ahmadcodes.com}{\faEnvelope~contact@ahmadcodes.com} \quad
+  \href{tel:+37494308785}{\faPhone~+37494308785} \quad
+  \href{https://ahmadcodes.com}{\faGlobe~ahmadcodes.com} \quad
+  \href{https://www.linkedin.com/in/ahmad-bagheri/}{\faLinkedin~ahmad-bagheri} \quad
+  \href{https://github.com/Ahmad-b1995}{\faGithub~Ahmad-b1995}\\
+  \faMapMarker~Armenia \quad
+  \faIdCard~Iranian citizen \quad
+  \faCalendar~Born 1996
+\end{center}
+
+\section*{Personal Statement}
+Senior full-stack engineer with 7+ years building integration-heavy systems across ERP, fintech, and education-technology. Currently sole engineer on a manufacturer customer portal at Barriertek (Toronto), with bi-directional NetSuite integration via SuiteScript RESTlets. Open-source author of \texttt{netsuite-restlet-typescript}. Applying to formalize seven years of self-directed professional learning with a Bachelor's degree in Computer Science.
+
+\section{Professional Experience}
+
+\subsection{Senior Full-Stack Engineer, Barriertek Inc.}
+\emph{Mar 2025 -- Present \textbar{} Toronto, Canada (Remote)}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Sole engineer building \textbf{Woody Portal} --- a manufacturer customer portal that replaces phone-tag, whiteboard production scheduling, and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production workers, and the office team.
+  \item End-to-end TypeScript: NestJS API, React + TanStack Query frontend, planned React Native mobile app with QR-based warehouse workflows, and bi-directional NetSuite integration via SuiteScript RESTlets and webhooks.
+  \item Deployment infrastructure: Coolify, PostgreSQL, Linux, Ansible. CI/CD with Docker and GitLab.
+  \item Coordinate weekly with non-technical stakeholders and a cross-functional team of 5--8.
+\end{itemize}
+
+\subsection{Senior Full-Stack Engineer, DexTrading}
+\emph{Dec 2022 -- Apr 2025 \textbar{} Toronto, Canada (Remote)}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Lead engineer on a 3-developer frontend team for a cryptocurrency analytics platform.
+  \item Rebuilt the customer-facing application on Next.js + TanStack Query with substantial perceived-load improvements.
+  \item Designed and shipped a NestJS + GraphQL + PostgreSQL content platform; built a Django-backed AI Q\&A API tied to subscription growth.
+  \item Integrated TradingView, Chart.js, and D3 for real-time market visualization; implemented advanced filterable, sortable, cached data tables.
+  \item Established CI/CD via Docker, GitLab, and Jenkins.
+\end{itemize}
+
+\subsection{Full-Stack Engineer, Azer Tech (Sahibkar)}
+\emph{Jul 2021 -- Jan 2023 \textbar{} Sumqayit, Azerbaijan (Remote)}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Built a multi-language Next.js frontend with server-side rendering for an educational technology platform.
+  \item Implemented React Beautiful DnD for drag-and-drop workflows in an exam-creation tool.
+  \item Configured CI/CD pipelines with Portainer, Docker, and GitLab; consulted on backend performance optimization.
+\end{itemize}
+
+\subsection{Full-Stack Engineer, Chargoon}
+\emph{Feb 2020 -- Aug 2021 \textbar{} Tehran, Iran}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Iranian enterprise software vendor delivering ERP solutions to mid-market and enterprise customers.
+  \item Migrated legacy ERP modules to React + .NET as part of a 15-engineer team.
+  \item Drove code-review practices that tightened defect rates and review cycle times.
+\end{itemize}
+
+\subsection{Frontend Engineer, Hamisheh}
+\emph{Aug 2018 -- Feb 2020 \textbar{} Tehran, Iran}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item PWA-based fitness video streaming startup (now defunct).
+  \item Built the Angular front-end with HLS streaming, PWA install, and offline capabilities.
+  \item Designed and shipped a CMS dashboard; conducted A/B testing and user research.
+\end{itemize}
+
+\section{Open Source}
+
+\subsection{netsuite-restlet-typescript}
+\emph{\href{https://github.com/Ahmad-b1995/netsuite-restlet-typescript}{github.com/Ahmad-b1995/netsuite-restlet-typescript} \textbar{} MIT}
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Typed TypeScript client for calling NetSuite RESTlets with OAuth 2.0 / JWT bearer authentication.
+  \item Retry-with-exponential-backoff, structured error classes (\texttt{NetSuiteAuthError}, \texttt{NetSuiteRequestError}, \texttt{NetSuiteRateLimitError}).
+  \item Runnable examples for saved-search and customer CRUD workflows.
+  \item Born from production integration work at Barriertek.
+\end{itemize}
+
+\section{Education}
+
+\subsection{Pre-University Certificate (Madrak-e Pish-Daneshgahi)}
+\emph{Iran \textbar{} 2014 \textbar{} Humanities track (Olum-e-Ensani)}
+
+\subsection{Technical-Vocational Diploma (Madrak-e Fani-Herfe'i)}
+\emph{Iran \textbar{} 17/20 average}\\
+Practical technical training program issued by the Iranian Ministry of Education's Technical and Vocational Training Organization. Demonstrated applied competence prior to professional career.
+
+\section{Technical Skills}
+
+\textbf{Languages:} TypeScript, JavaScript, Python, SQL, .NET (basic), HTML, CSS\\
+\textbf{Frameworks:} NestJS, Next.js, React, React Native, Angular, Django, GraphQL\\
+\textbf{Data:} PostgreSQL, MongoDB, Redis, pgvector\\
+\textbf{Integration:} NetSuite, SuiteScript, RESTlets, OAuth 2.0/JWT, HubSpot, Stripe\\
+\textbf{Infrastructure:} Docker, Linux, Ansible, Coolify, GitLab/Jenkins CI/CD, AWS\\
+\textbf{Testing:} Jest, Vitest, Cypress, pytest
+
+\section{Languages}
+
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Persian --- Native
+  \item English --- C1/C2 (former IELTS instructor; IELTS Academic to be retaken before application)
+  \item German --- A1, ongoing
+  \item Italian --- in progress, targeting A2 by mid-2027
+\end{itemize}
+
+\section{Relevant Certifications}
+
+\begin{itemize}[leftmargin=14pt,itemsep=2pt]
+  \item Node.js Essential Training --- LinkedIn Learning, Nov 2024
+  \item Learning npm: A Package Manager --- LinkedIn Learning, Nov 2024
+  \item NetSuite SuiteFoundation --- Oracle (planned, mid-2026)
+\end{itemize}
+
+\end{document}

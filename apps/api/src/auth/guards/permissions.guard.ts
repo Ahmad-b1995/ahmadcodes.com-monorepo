@@ -10,7 +10,7 @@ export class PermissionsGuard implements CanActivate {
   canActivate(context: ExecutionContext): boolean {
     const requiredPermissions = this.reflector.getAllAndOverride<string[]>(
       PERMISSIONS_KEY,
-      [context.getHandler(), context.getClass()]
+      [context.getHandler(), context.getClass()],
     );
 
     if (!requiredPermissions) {
@@ -24,7 +24,7 @@ export class PermissionsGuard implements CanActivate {
     }
 
     return requiredPermissions.every((permission) =>
-      user.hasPermission(permission)
+      user.hasPermission(permission),
     );
   }
 }

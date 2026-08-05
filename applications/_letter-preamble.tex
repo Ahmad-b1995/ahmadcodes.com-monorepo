@@ -1,0 +1,33 @@
+% Shared LaTeX preamble for all motivation letters.
+% Don't compile this file directly --- it's imported by each per-university .tex.
+\documentclass[11pt,a4paper]{letter}
+
+\usepackage[a4paper,margin=2.2cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[sfdefault]{roboto}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{parskip}
+
+\definecolor{accent}{HTML}{0e7490}
+
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+}
+
+% Legal name used here — required on university applications.
+% Professional name "Ahmad Bagheri" is used on LinkedIn / resume / OSS.
+\name{Ahmad Baghereslami}
+\address{
+  contact@ahmadcodes.com \\
+  +37494308785 \\
+  ahmadcodes.com \\
+  Armenia
+}
+\signature{Ahmad Baghereslami}
+
+\input{glyphtounicode}
+\pdfgentounicode=1

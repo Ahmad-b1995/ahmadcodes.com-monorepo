@@ -9,7 +9,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "resume:build": "./resume/build.sh",
-    "resume:build:previews": "./resume/build.sh --previews"
+    "resume:build:previews": "./resume/build.sh --previews",
+    "applications:build": "./resume/build.sh --with-applications"
   },
   "devDependencies": {
     "prettier": "^3.8.3",

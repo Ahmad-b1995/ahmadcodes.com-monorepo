@@ -16,6 +16,10 @@ import {
   FileEdit,
   Archive,
   Trash2,
+  Linkedin,
+  Users,
+  Sun,
+  Target,
 } from 'lucide-react'
 import { type SidebarData } from '../types'
 
@@ -46,6 +50,16 @@ export const sidebarData: SidebarData = {
     {
       title: 'General',
       items: [
+        {
+          title: 'Today',
+          url: '/today',
+          icon: Sun,
+        },
+        {
+          title: 'Goals',
+          url: '/goals',
+          icon: Target,
+        },
         {
           title: 'Dashboard',
           url: '/',
@@ -86,6 +100,16 @@ export const sidebarData: SidebarData = {
               icon: Trash2,
             },
           ],
+        },
+        {
+          title: 'LinkedIn',
+          url: '/linkedin-posts',
+          icon: Linkedin,
+        },
+        {
+          title: 'Outreach',
+          url: '/outreach',
+          icon: Users,
         },
       ],
     },

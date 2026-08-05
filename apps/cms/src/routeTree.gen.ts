@@ -18,8 +18,12 @@ import { Route as errors403RouteImport } from './routes/(errors)/403'
 import { Route as errors401RouteImport } from './routes/(errors)/401'
 import { Route as authSignInRouteImport } from './routes/(auth)/sign-in'
 import { Route as AuthenticatedSettingsRouteRouteImport } from './routes/_authenticated/settings/route'
+import { Route as AuthenticatedTodayIndexRouteImport } from './routes/_authenticated/today/index'
 import { Route as AuthenticatedSettingsIndexRouteImport } from './routes/_authenticated/settings/index'
+import { Route as AuthenticatedOutreachIndexRouteImport } from './routes/_authenticated/outreach/index'
 import { Route as AuthenticatedMailIndexRouteImport } from './routes/_authenticated/mail/index'
+import { Route as AuthenticatedLinkedinPostsIndexRouteImport } from './routes/_authenticated/linkedin-posts/index'
+import { Route as AuthenticatedGoalsIndexRouteImport } from './routes/_authenticated/goals/index'
 import { Route as AuthenticatedArticlesIndexRouteImport } from './routes/_authenticated/articles/index'
 import { Route as AuthenticatedSettingsNotificationsRouteImport } from './routes/_authenticated/settings/notifications'
 import { Route as AuthenticatedSettingsDisplayRouteImport } from './routes/_authenticated/settings/display'
@@ -76,15 +80,37 @@ const AuthenticatedSettingsRouteRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
+const AuthenticatedTodayIndexRoute = AuthenticatedTodayIndexRouteImport.update({
+  id: '/today/',
+  path: '/today/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedSettingsIndexRoute =
   AuthenticatedSettingsIndexRouteImport.update({
     id: '/',
     path: '/',
     getParentRoute: () => AuthenticatedSettingsRouteRoute,
   } as any)
+const AuthenticatedOutreachIndexRoute =
+  AuthenticatedOutreachIndexRouteImport.update({
+    id: '/outreach/',
+    path: '/outreach/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedMailIndexRoute = AuthenticatedMailIndexRouteImport.update({
   id: '/mail/',
   path: '/mail/',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedLinkedinPostsIndexRoute =
+  AuthenticatedLinkedinPostsIndexRouteImport.update({
+    id: '/linkedin-posts/',
+    path: '/linkedin-posts/',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedGoalsIndexRoute = AuthenticatedGoalsIndexRouteImport.update({
+  id: '/goals/',
+  path: '/goals/',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
 const AuthenticatedArticlesIndexRoute =
@@ -164,8 +190,12 @@ export interface FileRoutesByFullPath {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/articles/': typeof AuthenticatedArticlesIndexRoute
+  '/goals/': typeof AuthenticatedGoalsIndexRoute
+  '/linkedin-posts/': typeof AuthenticatedLinkedinPostsIndexRoute
   '/mail/': typeof AuthenticatedMailIndexRoute
+  '/outreach/': typeof AuthenticatedOutreachIndexRoute
   '/settings/': typeof AuthenticatedSettingsIndexRoute
+  '/today/': typeof AuthenticatedTodayIndexRoute
 }
 export interface FileRoutesByTo {
   '/sign-in': typeof authSignInRoute
@@ -185,8 +215,12 @@ export interface FileRoutesByTo {
   '/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/articles': typeof AuthenticatedArticlesIndexRoute
+  '/goals': typeof AuthenticatedGoalsIndexRoute
+  '/linkedin-posts': typeof AuthenticatedLinkedinPostsIndexRoute
   '/mail': typeof AuthenticatedMailIndexRoute
+  '/outreach': typeof AuthenticatedOutreachIndexRoute
   '/settings': typeof AuthenticatedSettingsIndexRoute
+  '/today': typeof AuthenticatedTodayIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -209,8 +243,12 @@ export interface FileRoutesById {
   '/_authenticated/settings/display': typeof AuthenticatedSettingsDisplayRoute
   '/_authenticated/settings/notifications': typeof AuthenticatedSettingsNotificationsRoute
   '/_authenticated/articles/': typeof AuthenticatedArticlesIndexRoute
+  '/_authenticated/goals/': typeof AuthenticatedGoalsIndexRoute
+  '/_authenticated/linkedin-posts/': typeof AuthenticatedLinkedinPostsIndexRoute
   '/_authenticated/mail/': typeof AuthenticatedMailIndexRoute
+  '/_authenticated/outreach/': typeof AuthenticatedOutreachIndexRoute
   '/_authenticated/settings/': typeof AuthenticatedSettingsIndexRoute
+  '/_authenticated/today/': typeof AuthenticatedTodayIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -233,8 +271,12 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/articles/'
+    | '/goals/'
+    | '/linkedin-posts/'
     | '/mail/'
+    | '/outreach/'
     | '/settings/'
+    | '/today/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/sign-in'
@@ -254,8 +296,12 @@ export interface FileRouteTypes {
     | '/settings/display'
     | '/settings/notifications'
     | '/articles'
+    | '/goals'
+    | '/linkedin-posts'
     | '/mail'
+    | '/outreach'
     | '/settings'
+    | '/today'
   id:
     | '__root__'
     | '/_authenticated'
@@ -277,8 +323,12 @@ export interface FileRouteTypes {
     | '/_authenticated/settings/display'
     | '/_authenticated/settings/notifications'
     | '/_authenticated/articles/'
+    | '/_authenticated/goals/'
+    | '/_authenticated/linkedin-posts/'
     | '/_authenticated/mail/'
+    | '/_authenticated/outreach/'
     | '/_authenticated/settings/'
+    | '/_authenticated/today/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -356,6 +406,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/today/': {
+      id: '/_authenticated/today/'
+      path: '/today'
+      fullPath: '/today/'
+      preLoaderRoute: typeof AuthenticatedTodayIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings/': {
       id: '/_authenticated/settings/'
       path: '/'
@@ -363,11 +420,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedSettingsIndexRouteImport
       parentRoute: typeof AuthenticatedSettingsRouteRoute
     }
+    '/_authenticated/outreach/': {
+      id: '/_authenticated/outreach/'
+      path: '/outreach'
+      fullPath: '/outreach/'
+      preLoaderRoute: typeof AuthenticatedOutreachIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/mail/': {
       id: '/_authenticated/mail/'
       path: '/mail'
       fullPath: '/mail/'
       preLoaderRoute: typeof AuthenticatedMailIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/linkedin-posts/': {
+      id: '/_authenticated/linkedin-posts/'
+      path: '/linkedin-posts'
+      fullPath: '/linkedin-posts/'
+      preLoaderRoute: typeof AuthenticatedLinkedinPostsIndexRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/goals/': {
+      id: '/_authenticated/goals/'
+      path: '/goals'
+      fullPath: '/goals/'
+      preLoaderRoute: typeof AuthenticatedGoalsIndexRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
     '/_authenticated/articles/': {
@@ -475,7 +553,11 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedMailSentRoute: typeof AuthenticatedMailSentRoute
   AuthenticatedMailTrashRoute: typeof AuthenticatedMailTrashRoute
   AuthenticatedArticlesIndexRoute: typeof AuthenticatedArticlesIndexRoute
+  AuthenticatedGoalsIndexRoute: typeof AuthenticatedGoalsIndexRoute
+  AuthenticatedLinkedinPostsIndexRoute: typeof AuthenticatedLinkedinPostsIndexRoute
   AuthenticatedMailIndexRoute: typeof AuthenticatedMailIndexRoute
+  AuthenticatedOutreachIndexRoute: typeof AuthenticatedOutreachIndexRoute
+  AuthenticatedTodayIndexRoute: typeof AuthenticatedTodayIndexRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
@@ -487,7 +569,11 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedMailSentRoute: AuthenticatedMailSentRoute,
   AuthenticatedMailTrashRoute: AuthenticatedMailTrashRoute,
   AuthenticatedArticlesIndexRoute: AuthenticatedArticlesIndexRoute,
+  AuthenticatedGoalsIndexRoute: AuthenticatedGoalsIndexRoute,
+  AuthenticatedLinkedinPostsIndexRoute: AuthenticatedLinkedinPostsIndexRoute,
   AuthenticatedMailIndexRoute: AuthenticatedMailIndexRoute,
+  AuthenticatedOutreachIndexRoute: AuthenticatedOutreachIndexRoute,
+  AuthenticatedTodayIndexRoute: AuthenticatedTodayIndexRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =

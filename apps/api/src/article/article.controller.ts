@@ -36,8 +36,12 @@ export class ArticleController {
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit: number = 10,
   ) {
-    const isPublished = published === 'true' ? true : published === 'false' ? false : undefined;
-    return this.articleService.findAll({ page, limit: Math.min(limit, 100) }, isPublished);
+    const isPublished =
+      published === 'true' ? true : published === 'false' ? false : undefined;
+    return this.articleService.findAll(
+      { page, limit: Math.min(limit, 100) },
+      isPublished,
+    );
   }
 
   @Get('tags')
@@ -87,4 +91,3 @@ export class ArticleController {
     return this.articleService.remove(id);
   }
 }
-

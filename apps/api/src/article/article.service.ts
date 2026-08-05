@@ -5,7 +5,11 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { paginate, Pagination, IPaginationOptions } from 'nestjs-typeorm-paginate';
+import {
+  paginate,
+  Pagination,
+  IPaginationOptions,
+} from 'nestjs-typeorm-paginate';
 import { Article } from './article.entity';
 import { CreateArticleDto, UpdateArticleDto } from './article.dto';
 
@@ -51,13 +55,18 @@ export class ArticleService {
         if (error.constraint?.includes('slug')) {
           throw new ConflictException('Article with this slug already exists');
         }
-        throw new ConflictException('Article with duplicate data already exists');
+        throw new ConflictException(
+          'Article with duplicate data already exists',
+        );
       }
       throw error;
     }
   }
 
-  async findAll(options: IPaginationOptions, published?: boolean): Promise<Pagination<Article>> {
+  async findAll(
+    options: IPaginationOptions,
+    published?: boolean,
+  ): Promise<Pagination<Article>> {
     const queryBuilder = this.articleRepository.createQueryBuilder('article');
 
     if (published !== undefined) {
@@ -134,7 +143,9 @@ export class ArticleService {
         if (error.constraint?.includes('slug')) {
           throw new ConflictException('Article with this slug already exists');
         }
-        throw new ConflictException('Article with duplicate data already exists');
+        throw new ConflictException(
+          'Article with duplicate data already exists',
+        );
       }
       throw error;
     }
@@ -177,4 +188,3 @@ export class ArticleService {
     return uniqueTags.sort();
   }
 }
-

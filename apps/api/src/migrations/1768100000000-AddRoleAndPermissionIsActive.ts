@@ -27,7 +27,11 @@ export class AddRoleAndPermissionIsActive1768100000000 implements MigrationInter
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.query(`ALTER TABLE "permissions" DROP COLUMN IF EXISTS "isActive"`);
-    await queryRunner.query(`ALTER TABLE "roles" DROP COLUMN IF EXISTS "isActive"`);
+    await queryRunner.query(
+      `ALTER TABLE "permissions" DROP COLUMN IF EXISTS "isActive"`,
+    );
+    await queryRunner.query(
+      `ALTER TABLE "roles" DROP COLUMN IF EXISTS "isActive"`,
+    );
   }
 }
