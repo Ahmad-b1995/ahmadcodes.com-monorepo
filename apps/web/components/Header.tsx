@@ -50,7 +50,7 @@ const Header = () => {
         <li className="mr-5 text-xs shrink-0">
         <Link
             className="block text-slate-600 dark:text-slate-400 hover:text-primary-300"
-            href="mailto:contact@ahmadcodes.com"
+            href="mailto:ahmadbagheri.tech@gmail.com"
             target="_blank"
             rel="noreferrer noopener"
             aria-label="Email (opens in a new tab)"

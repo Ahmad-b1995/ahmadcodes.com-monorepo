@@ -11,6 +11,9 @@
 import PostalMime from 'postal-mime';
 
 const DEFAULT_INBOUND_URL = 'https://api.ahmadcodes.com/mail/inbound';
+
+/**
+ * @param {unknown} addr
  * @returns {string}
  */
 function pickAddress(addr) {
