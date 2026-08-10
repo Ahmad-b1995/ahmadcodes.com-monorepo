@@ -47,10 +47,10 @@ const ErrorFallback = ({
         <p className="text-slate-600 dark:text-slate-400 mb-6">
           We encountered an unexpected error. Please try again or email me at{" "}
           <a
-            href="mailto:contact@ahmadcodes.com"
+            href="mailto:ahmadbagheri.tech@gmail.com"
             className="text-primary-600 dark:text-primary-400 hover:underline"
           >
-            contact@ahmadcodes.com
+            ahmadbagheri.tech@gmail.com
           </a>{" "}
           if the problem persists.
         </p>
