@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     template: "%s · Ahmad Bagheri",
   },
   description:
-    "Senior full-stack engineer specializing in NetSuite & ERP integrations. Sole-engineer-to-MVP type — NestJS, React, SuiteScript RESTlets. Available for contract & part-time engagements.",
+    "Senior full-stack engineer specializing in NetSuite & ERP integrations. Sole-engineer-to-MVP type — NestJS, React, SuiteScript RESTlets. Available for contract & full-time engagements.",
   keywords: [
     "NetSuite",
     "SuiteScript",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     type: "website",
     title: "Ahmad Bagheri — NetSuite & ERP Integrations",
     description:
-      "Senior full-stack engineer specializing in NetSuite/ERP integrations. Available for contract & part-time engagements.",
+      "Senior full-stack engineer specializing in NetSuite/ERP integrations. Available for contract & full-time engagements.",
     url: "https://ahmadcodes.com",
     siteName: "ahmadcodes.com",
   },
