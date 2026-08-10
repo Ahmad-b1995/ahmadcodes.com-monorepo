@@ -39,7 +39,7 @@ const AboutSection = () => {
           <p className="mb-4 text-slate-700 dark:text-slate-400">
             I&apos;m comfortable owning architecture, infrastructure, and delivery end-to-end &mdash; from Postgres
             schema and API design through deployment on Coolify with Linux and Ansible, to CI/CD and the front-end
-            polish. I&apos;m available for contract and part-time engagements (10&ndash;25 hrs/week), remote,
+            polish. I&apos;m available for contract and full-time engagements, remote,
             GMT+4 with comfortable overlap with US Eastern and Western Europe.
           </p>
         </div>
