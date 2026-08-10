@@ -1,8 +1,15 @@
 # Resume
 
-LaTeX source for `ahmad-bagheri-resume.pdf`. The compiled PDF is served by the
-web app at `https://ahmadcodes.com/ahmad-bagheri-resume.pdf` after running the
-build script (it copies the output into `apps/web/public/`).
+Two variants, both built by `build.sh` and copied into `apps/web/public/`:
+
+| File | Use for | Served at |
+|---|---|---|
+| `ahmad-bagheri-resume.tex` | NetSuite/ERP/integration roles, freelance outreach | `ahmadcodes.com/ahmad-bagheri-resume.pdf` |
+| `ahmad-bagheri-resume-fullstack.tex` | Generic React/Node/full-stack job applications | `ahmadcodes.com/ahmad-bagheri-resume-fullstack.pdf` |
+
+Same facts in both — only the emphasis differs (the full-stack variant demotes
+NetSuite from headline specialty to one differentiator line). Keep them in
+sync when adding new experience.
 
 ## Build
 

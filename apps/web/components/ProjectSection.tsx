@@ -33,7 +33,7 @@ const ProjectSection = () => {
     <NavigationWrapper elementName="projects">
       <section
         id="projects"
-        className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
+        className="mb-16 min-h-[calc(100vh-6rem)] scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
         aria-label="Selected projects"
       >
         <div className="sticky top-0 z-20 -mx-6 mb-4 w-screen bg-white/75 dark:bg-slate-950/75 px-6 py-5 backdrop-blur md:-mx-12 md:px-12 lg:sr-only lg:relative lg:top-auto lg:mx-auto lg:w-full lg:px-0 lg:py-0 lg:opacity-0">
