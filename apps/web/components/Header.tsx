@@ -1,4 +1,3 @@
-// Header.jsx
 import React from "react";
 import { FaEnvelope, FaGithub, FaLinkedin } from "react-icons/fa";
 import NavigationLinks from "./NavigationLinks";

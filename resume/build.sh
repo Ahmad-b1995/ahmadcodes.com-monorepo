@@ -15,11 +15,21 @@ WORKSPACE_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 SOURCE_TEX="ahmad-bagheri-resume.tex"
 OUTPUT_PDF="ahmad-bagheri-resume.pdf"
+FULLSTACK_TEX="ahmad-bagheri-resume-fullstack.tex"
+FULLSTACK_PDF="ahmad-bagheri-resume-fullstack.pdf"
 PUBLIC_DIR="${WORKSPACE_ROOT}/apps/web/public"
 
 cd "${SCRIPT_DIR}"
 
+build_tex () {
+  local tex_file="$1"
+  echo "==> Building ${tex_file}"
+  pdflatex -interaction=nonstopmode -halt-on-error "${tex_file}" >/dev/null
+  pdflatex -interaction=nonstopmode -halt-on-error "${tex_file}" >/dev/null
+}
+
 build_once () {
+  # Kept for the previews flow, which rewrites SOURCE_TEX in place.
   local label="$1"
   echo "==> Building ${label}"
   pdflatex -interaction=nonstopmode -halt-on-error "${SOURCE_TEX}" >/dev/null
@@ -31,9 +41,15 @@ clean_aux () {
 }
 
 main () {
-  build_once "default"
+  build_tex "${SOURCE_TEX}"
   cp -f "${OUTPUT_PDF}" "${PUBLIC_DIR}/${OUTPUT_PDF}"
   echo "==> Copied to ${PUBLIC_DIR}/${OUTPUT_PDF}"
+
+  if [[ -f "${FULLSTACK_TEX}" ]]; then
+    build_tex "${FULLSTACK_TEX}"
+    cp -f "${FULLSTACK_PDF}" "${PUBLIC_DIR}/${FULLSTACK_PDF}"
+    echo "==> Copied to ${PUBLIC_DIR}/${FULLSTACK_PDF}"
+  fi
 
   if [[ "${1:-}" == "--previews" ]]; then
     build_previews
