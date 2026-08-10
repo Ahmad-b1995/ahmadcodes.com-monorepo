@@ -18,7 +18,7 @@ const Header = () => {
           NetSuite, NestJS, React. 7+ years.
         </p>
         <p className="mt-3 max-w-xs text-sm leading-normal text-slate-500 dark:text-slate-500">
-          Available for contract & part-time engagements (10&ndash;25 hrs/week). Remote, GMT+4.
+          Available for contract & full-time engagements. Remote, GMT+4.
         </p>
         <NavigationLinks /> 
       </div>
