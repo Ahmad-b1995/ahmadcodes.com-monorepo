@@ -1,3 +1,8 @@
+% Generic full-stack variant of the resume.
+% Use this for React/Node/TypeScript/full-stack job applications.
+% Use ahmad-bagheri-resume.tex (the ERP/NetSuite variant) for
+% NetSuite/ERP/integration roles and freelance outreach.
+
 \documentclass[letterpaper,10pt]{article}
 
 \usepackage[empty]{fullpage}
@@ -104,18 +109,18 @@
   }
 
   \tinysection{Summary}
-  Senior full-stack engineer with 7+ years of experience building integration-heavy systems for ERP, fintech, and traditional enterprise environments. Specializing in NetSuite/SuiteScript integrations, TypeScript (NestJS, React, Next.js), and the production tools that wrap them. Sole-engineer-to-MVP type --- comfortable owning architecture, infrastructure, and delivery end-to-end. Open to full-time, contract, and part-time engagements.
+  Senior full-stack engineer with 7+ years of experience shipping production web applications across fintech, e-commerce, and enterprise. Deep in TypeScript on both ends --- NestJS/Node.js APIs and React/Next.js frontends --- with PostgreSQL, Docker, and CI/CD as the daily toolkit. Comfortable owning architecture, infrastructure, and delivery end-to-end, solo or leading a small team. Also brings rare ERP/NetSuite integration experience. Open to full-time, contract, and part-time roles (on-site Yerevan or remote).
 
   \section{Skills}
   \begin{multicols}{2}
     \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=10pt, label={}]
-      \item \textbf{Backend:} NestJS, Node.js, TypeScript, Python, Django, .NET, Express, GraphQL, REST
-      \item \textbf{Frontend:} React, Next.js, TypeScript, React Native, Angular, Vue, TanStack Query, Tailwind, Redux, Storybook
-      \item \textbf{Data:} PostgreSQL, MongoDB, Redis, pgvector, OOP, system design
-      \item \textbf{Integrations:} NetSuite, SuiteScript, RESTlets, OAuth 2.0/JWT, HubSpot, Stripe
+      \item \textbf{Frontend:} React, Next.js, TypeScript, TanStack Query, Redux, Tailwind, React Native, Angular, Vue, Storybook
+      \item \textbf{Backend:} NestJS, Node.js, TypeScript, Python, Django, Express, GraphQL, REST, .NET
+      \item \textbf{Data:} PostgreSQL, MongoDB, Redis, pgvector, system design
       \item \textbf{Infra \& DevOps:} Docker, Linux, Ansible, Coolify, GitLab/Jenkins CI/CD, AWS, GCP
       \item \textbf{Testing:} Jest, Cypress, pytest, integration testing
-      \item \textbf{Languages:} English (fluent), German (A1), Persian (native)
+      \item \textbf{Integrations:} REST/webhook system integration, OAuth 2.0/JWT, NetSuite/SuiteScript, HubSpot, Stripe
+      \item \textbf{Languages:} English (fluent), Persian (native), German (A1)
     \end{itemize}
   \end{multicols}
 
@@ -123,12 +128,13 @@
 
   \headingBf{ Barriertek (woodyportal.com) }{ Mar 2025 -- Present }
   \headingIt{ Senior Full-Stack Developer }{ Remote (Toronto, Canada) }
-  \companyDescription{ Fire-retardant lumber manufacturer modernizing operations through a custom ERP-integrated customer and production portal. }
+  \companyDescription{ Manufacturer modernizing operations through a custom customer and production portal. }
   \begin{resume_list}
-    \item Sole engineer building a manufacturer customer portal that replaces phone-based order coordination, whiteboard production scheduling, and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production workers, and the office team.
-    \item Designed and shipped end-to-end in TypeScript: NestJS API, React + TanStack Query frontend, planned React Native mobile app with QR-based warehouse workflows, and bi-directional NetSuite integration via SuiteScript RESTlets and webhooks.
-    \item Built deployment infrastructure on Coolify with PostgreSQL, Linux, and Ansible. CI/CD with Docker and GitLab.
-    \item Currently in partial launch with internal users and pilot customers; full external rollout targeted for Oct 2026. Coordinate weekly with non-technical stakeholders and a cross-functional team of 5--8.
+    \item Sole engineer: designed and shipped an end-to-end TypeScript platform --- NestJS API, React + TanStack Query frontend, planned React Native mobile app with QR-based warehouse workflows.
+    \item Replaced phone-based order coordination, whiteboard production scheduling, and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production workers, and the office team.
+    \item Built bi-directional sync with the company's ERP (NetSuite) via REST APIs and webhooks, handling rate limits, partial-data states, and two-phase syncing.
+    \item Owned deployment infrastructure: Coolify, PostgreSQL, Linux, Ansible; CI/CD with Docker and GitLab.
+    \item Partial launch with internal users and pilot customers; coordinated weekly with non-technical stakeholders and a cross-functional team of 5--8.
   \end{resume_list}
 
   \headingBf{ Dextrading }{ Dec 2022 -- Apr 2025 }
@@ -154,9 +160,9 @@
 
   \headingBf{ Chargoon }{ Feb 2020 -- Aug 2021 }
   \headingIt{ Full-Stack Developer }{ Remote (Tehran, Iran) }
-  \companyDescription{ Iranian enterprise software vendor delivering ERP solutions to mid-market and enterprise customers. Public site is geo-restricted outside Iran. }
+  \companyDescription{ Enterprise software vendor delivering business solutions to mid-market and enterprise customers. }
   \begin{resume_list}
-    \item Migrated legacy ERP modules to a React + .NET stack as part of a 15-engineer team, while shipping new features driven by customer requests.
+    \item Migrated legacy modules to a React + .NET stack as part of a 15-engineer team, while shipping new features driven by customer requests.
     \item Drove code-review practices that tightened defect rates and review cycle times.
     \item Enhanced backend logic in .NET, delivering measurable throughput improvements on transaction-heavy modules.
   \end{resume_list}
@@ -174,7 +180,7 @@
   \section{Selected Open Source}
 
   \headingBf{ netsuite-restlet-typescript }{ \href{https://github.com/Ahmad-b1995/netsuite-restlet-typescript}{github.com/Ahmad-b1995/netsuite-restlet-typescript} }
-  \headingIt{ TypeScript SDK for NetSuite RESTlets }{ }
-  \companyDescription{ A typed client for calling NetSuite RESTlets with OAuth 2.0 / JWT authentication. Includes typed request/response handling, retry-with-backoff, structured error classes, and runnable examples for common saved-search and CRUD workflows. }
+  \headingIt{ Typed API client (TypeScript) }{ }
+  \companyDescription{ A typed client for a third-party REST API with OAuth 2.0 / JWT authentication: typed request/response generics, retry-with-backoff, structured error classes, and runnable examples. Demonstrates production-grade API client design in TypeScript. }
 
 \end{document}
