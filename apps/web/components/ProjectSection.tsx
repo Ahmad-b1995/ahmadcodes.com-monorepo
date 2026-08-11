@@ -1,5 +1,4 @@
 import React from "react";
-import NavigationWrapper from "./NavigationWrapper";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,7 +29,6 @@ const projects: Project[] = [
 
 const ProjectSection = () => {
   return (
-    <NavigationWrapper elementName="projects">
       <section
         id="projects"
         className="mb-16 min-h-[calc(100vh-6rem)] scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
@@ -145,7 +143,6 @@ const ProjectSection = () => {
           </Link>
         </div>
       </section>
-    </NavigationWrapper>
   );
 };
 
