@@ -1,5 +1,4 @@
 import React from "react";
-import NavigationWrapper from "./NavigationWrapper";
 import Image from "next/image";
 import { ArticleService, HttpClient } from "@repo/shared/http";
 import { connection } from "next/server";
@@ -17,7 +16,6 @@ const Blog = async () => {
   const articles = response.items;
 
   return (
-    <NavigationWrapper elementName="blog">
       <section
         id="blog"
         className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
@@ -120,7 +118,6 @@ const Blog = async () => {
           </Link>
         </div>
       </section>
-    </NavigationWrapper>
   );
 };
 

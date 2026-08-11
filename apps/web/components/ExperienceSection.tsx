@@ -1,5 +1,4 @@
 import React from "react";
-import NavigationWrapper from "./NavigationWrapper";
 
 type Experience = {
   range: string;
@@ -57,7 +56,6 @@ const experiences: Experience[] = [
 
 const ExperienceSection = () => {
   return (
-    <NavigationWrapper elementName="experience">
       <section
         id="experience"
         className="mb-16 scroll-mt-16 md:mb-24 lg:mb-36 lg:scroll-mt-24"
@@ -173,7 +171,6 @@ const ExperienceSection = () => {
           </div>
         </div>
       </section>
-    </NavigationWrapper>
   );
 };
 
