@@ -14,10 +14,12 @@ const AboutSection = () => {
         </div>
         <div>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
-            I&apos;m a senior full-stack engineer with 7+ years of experience building integration-heavy
-            systems for ERP, fintech, and traditional enterprise environments. I specialize in
-            <span className="text-slate-800 dark:text-slate-300"> NetSuite/SuiteScript integrations</span>,
-            TypeScript on both ends (NestJS + React/Next.js), and the production tools that wrap them.
+            I&apos;m a senior full-stack engineer with 7+ years of experience shipping production
+            web applications in TypeScript --- React and Next.js on the front, NestJS and Node
+            on the back, PostgreSQL underneath. I also have uncommon
+            <span className="text-slate-800 dark:text-slate-300"> NetSuite/SuiteScript integration</span>
+            experience from manufacturing and enterprise work, which I use when the job needs it
+            rather than leading with it.
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
             Currently at <a className="text-slate-800 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300" href="https://barriertek.com" target="_blank" rel="noreferrer">Barriertek</a>, I&apos;m the sole engineer on
