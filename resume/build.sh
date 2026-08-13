@@ -15,9 +15,15 @@ WORKSPACE_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
 
 SOURCE_TEX="ahmad-bagheri-resume.tex"
 OUTPUT_PDF="ahmad-bagheri-resume.pdf"
-FULLSTACK_TEX="ahmad-bagheri-resume-fullstack.tex"
-FULLSTACK_PDF="ahmad-bagheri-resume-fullstack.pdf"
 PUBLIC_DIR="${WORKSPACE_ROOT}/apps/web/public"
+
+# Extra variants built alongside the ERP default. Same facts, different emphasis.
+VARIANTS=(
+  "ahmad-bagheri-resume-fullstack.tex"
+  "ahmad-bagheri-resume-python.tex"
+  "ahmad-bagheri-resume-devops.tex"
+  "ahmad-bagheri-resume-frontend.tex"
+)
 
 cd "${SCRIPT_DIR}"
 
@@ -45,11 +51,14 @@ main () {
   cp -f "${OUTPUT_PDF}" "${PUBLIC_DIR}/${OUTPUT_PDF}"
   echo "==> Copied to ${PUBLIC_DIR}/${OUTPUT_PDF}"
 
-  if [[ -f "${FULLSTACK_TEX}" ]]; then
-    build_tex "${FULLSTACK_TEX}"
-    cp -f "${FULLSTACK_PDF}" "${PUBLIC_DIR}/${FULLSTACK_PDF}"
-    echo "==> Copied to ${PUBLIC_DIR}/${FULLSTACK_PDF}"
-  fi
+  for tex_file in "${VARIANTS[@]}"; do
+    if [[ -f "${tex_file}" ]]; then
+      local pdf_file="${tex_file%.tex}.pdf"
+      build_tex "${tex_file}"
+      cp -f "${pdf_file}" "${PUBLIC_DIR}/${pdf_file}"
+      echo "==> Copied to ${PUBLIC_DIR}/${pdf_file}"
+    fi
+  done
 
   if [[ "${1:-}" == "--previews" ]]; then
     build_previews

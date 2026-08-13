@@ -14,34 +14,35 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_BASE_URL ?? "https://ahmadcodes.com",
   ),
   title: {
-    default: "Ahmad Bagheri — NetSuite & ERP Integrations",
+    default: "Ahmad Bagheri — Senior Full-Stack Engineer",
     template: "%s · Ahmad Bagheri",
   },
   description:
-    "Senior full-stack engineer specializing in NetSuite & ERP integrations. Sole-engineer-to-MVP type — NestJS, React, SuiteScript RESTlets. Available for contract & full-time engagements.",
+    "Senior full-stack engineer. TypeScript across React, Next.js, and NestJS. 7+ years shipping production apps. Also ERP/NetSuite integrations. Open to full-time and contract, Armenia or remote.",
   keywords: [
-    "NetSuite",
-    "SuiteScript",
-    "RESTlet",
-    "ERP integration",
     "Full-stack engineer",
+    "TypeScript",
+    "React",
+    "Next.js",
+    "NestJS",
+    "PostgreSQL",
+    "NetSuite",
     "Contract developer",
-    "Manufacturing software",
   ],
   authors: [{ name: "Ahmad Bagheri", url: "https://ahmadcodes.com" }],
   openGraph: {
     type: "website",
-    title: "Ahmad Bagheri — NetSuite & ERP Integrations",
+    title: "Ahmad Bagheri — Senior Full-Stack Engineer",
     description:
-      "Senior full-stack engineer specializing in NetSuite/ERP integrations. Available for contract & full-time engagements.",
+      "Senior full-stack engineer. TypeScript across React, Next.js, and NestJS. Open to full-time and contract.",
     url: "https://ahmadcodes.com",
     siteName: "ahmadcodes.com",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ahmad Bagheri — NetSuite & ERP Integrations",
+    title: "Ahmad Bagheri — Senior Full-Stack Engineer",
     description:
-      "Senior full-stack engineer specializing in NetSuite/ERP integrations.",
+      "Senior full-stack engineer. TypeScript across React, Next.js, and NestJS.",
   },
   robots: {
     index: true,
