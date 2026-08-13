@@ -139,17 +139,17 @@ const ExperienceSection = () => {
               );
             })}
           </ol>
-          <div className="mt-12">
+          <div className="mt-12 flex flex-col gap-3">
             <a
               className="inline-flex items-center font-medium leading-tight text-slate-800 dark:text-slate-100 hover:text-primary-600 dark:hover:text-primary-300 focus-visible:text-primary-600 dark:focus-visible:text-primary-300 group"
-              aria-label="View Full Résumé (opens in a new tab)"
-              href="/ahmad-bagheri-resume.pdf"
+              aria-label="View full-stack résumé (opens in a new tab)"
+              href="/ahmad-bagheri-resume-fullstack.pdf"
               target="_blank"
               rel="noreferrer noopener"
             >
               <span>
                 <span className="border-b border-transparent pb-px transition group-hover:border-primary-600 dark:group-hover:border-primary-300 motion-reduce:transition-none">
-                  View Full Résumé
+                  View Full-Stack Résumé
                 </span>
                 <span className="whitespace-nowrap">
                   <svg
@@ -166,6 +166,17 @@ const ExperienceSection = () => {
                     ></path>
                   </svg>
                 </span>
+              </span>
+            </a>
+            <a
+              className="inline-flex items-center text-sm font-medium leading-tight text-slate-600 dark:text-slate-400 hover:text-primary-600 dark:hover:text-primary-300 focus-visible:text-primary-600 dark:focus-visible:text-primary-300 group"
+              aria-label="View ERP and NetSuite résumé (opens in a new tab)"
+              href="/ahmad-bagheri-resume.pdf"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <span className="border-b border-transparent pb-px transition group-hover:border-primary-600 dark:group-hover:border-primary-300 motion-reduce:transition-none">
+                ERP / NetSuite variant
               </span>
             </a>
           </div>

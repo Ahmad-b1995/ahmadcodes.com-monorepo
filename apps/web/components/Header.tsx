@@ -14,11 +14,11 @@ const Header = () => {
           Senior Full-Stack Engineer
         </h2>
         <p className="mt-4 max-w-xs leading-normal text-slate-600 dark:text-slate-400">
-          Sole-engineer specialist for ERP-integrated portals and dashboards.
-          NetSuite, NestJS, React. 7+ years.
+          TypeScript across React, Next.js, and NestJS. 7+ years shipping
+          production apps. Also ERP/NetSuite integrations.
         </p>
         <p className="mt-3 max-w-xs text-sm leading-normal text-slate-500 dark:text-slate-500">
-          Available for contract & full-time engagements. Remote, GMT+4.
+          Open to full-time & contract. Armenia, remote, GMT+4.
         </p>
         <NavigationLinks /> 
       </div>
