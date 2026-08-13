@@ -16,11 +16,13 @@
 \usepackage{bookmark}
 \usepackage{lastpage}
 \usepackage[sfdefault]{roboto}
+\usepackage{microtype}
 
 \usepackage{xcolor}
 \definecolor{accentTitle}{HTML}{0e7490}
 \definecolor{accentText}{HTML}{0e7490}
 \definecolor{accentLine}{HTML}{0e7490}
+\definecolor{textMuted}{HTML}{475569}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -33,7 +35,7 @@
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1.19in}
 \addtolength{\topmargin}{-0.7in}
-\addtolength{\textheight}{1.4in}
+\addtolength{\textheight}{1.5in}
 
 \setlength{\multicolsep}{-3.0pt}
 \setlength{\columnsep}{-1pt}
@@ -48,7 +50,7 @@
 \newcommand{\documentTitle}[2]{
   \begin{center}
     {\Huge\color{accentTitle} #1}
-    \vspace{10pt}
+    \vspace{7pt}
     {\color{accentLine} \hrule}
     \vspace{2pt}
     \footnotesize{#2}
@@ -62,6 +64,7 @@
   \color{accentText}
   \raggedright\large\bfseries
 }{}{0em}{}[\color{accentLine}\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
 
 \newcommand{\tinysection}[1]{
   \phantomsection
@@ -86,14 +89,17 @@
   \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
 }{
   \end{itemize}
+  \vspace{1pt}
 }
 
+% Muted italic, with a little air before the bullet list that follows,
+% so the company blurb reads as context rather than another bullet.
 \newcommand{\companyDescription}[1]{
   \vspace{-7pt}
   \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=12pt]
-    \item[] #1
+    \item[] {\color{textMuted}\textit{#1}}
   \end{itemize}
-  \vspace{-7pt}
+  \vspace{-4pt}
 }
 
 \renewcommand\labelitemi{--}
@@ -121,7 +127,7 @@
       \item \textbf{Data:} PostgreSQL, MongoDB, Redis, pgvector
       \item \textbf{Infra:} Docker, Linux, Ansible, Coolify, GitLab/Jenkins CI/CD
       \item \textbf{Integrations:} REST/webhook system integration, OAuth 2.0/JWT, Stripe
-      \item \textbf{Languages:} English (fluent), Persian (native), German (A1)
+      \item \textbf{Languages:} English (fluent), German (A1)
     \end{itemize}
   \end{multicols}
 
