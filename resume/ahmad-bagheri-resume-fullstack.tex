@@ -15,11 +15,13 @@
 \usepackage{bookmark}
 \usepackage{lastpage}
 \usepackage[sfdefault]{roboto}
+\usepackage{microtype}
 
 \usepackage{xcolor}
 \definecolor{accentTitle}{HTML}{0e7490}
 \definecolor{accentText}{HTML}{0e7490}
 \definecolor{accentLine}{HTML}{0e7490}
+\definecolor{textMuted}{HTML}{475569}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -32,7 +34,7 @@
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1.19in}
 \addtolength{\topmargin}{-0.7in}
-\addtolength{\textheight}{1.4in}
+\addtolength{\textheight}{1.5in}
 
 \setlength{\multicolsep}{-3.0pt}
 \setlength{\columnsep}{-1pt}
@@ -47,7 +49,7 @@
 \newcommand{\documentTitle}[2]{
   \begin{center}
     {\Huge\color{accentTitle} #1}
-    \vspace{10pt}
+    \vspace{7pt}
     {\color{accentLine} \hrule}
     \vspace{2pt}
     \footnotesize{#2}
@@ -61,6 +63,7 @@
   \color{accentText}
   \raggedright\large\bfseries
 }{}{0em}{}[\color{accentLine}\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
 
 \newcommand{\tinysection}[1]{
   \phantomsection
@@ -85,14 +88,17 @@
   \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
 }{
   \end{itemize}
+  \vspace{1pt}
 }
 
+% Muted italic, with a little air before the bullet list that follows,
+% so the company blurb reads as context rather than another bullet.
 \newcommand{\companyDescription}[1]{
   \vspace{-7pt}
   \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=12pt]
-    \item[] #1
+    \item[] {\color{textMuted}\textit{#1}}
   \end{itemize}
-  \vspace{-7pt}
+  \vspace{-4pt}
 }
 
 \renewcommand\labelitemi{--}
@@ -120,7 +126,7 @@
       \item \textbf{Infra \& DevOps:} Docker, Linux, Ansible, Coolify, GitLab/Jenkins CI/CD, AWS, GCP
       \item \textbf{Testing:} Jest, Cypress, pytest, integration testing
       \item \textbf{Integrations:} REST/webhook system integration, OAuth 2.0/JWT, NetSuite/SuiteScript, HubSpot, Stripe
-      \item \textbf{Languages:} English (fluent), Persian (native), German (A1)
+      \item \textbf{Languages:} English (fluent), German (A1)
     \end{itemize}
   \end{multicols}
 
@@ -134,7 +140,7 @@
     \item Replaced phone-based order coordination, whiteboard production scheduling, and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production workers, and the office team.
     \item Built bi-directional sync with the company's ERP (NetSuite) via REST APIs and webhooks, handling rate limits, partial-data states, and two-phase syncing.
     \item Owned deployment infrastructure: Coolify, PostgreSQL, Linux, Ansible; CI/CD with Docker and GitLab.
-    \item Partial launch with internal users and pilot customers; coordinated weekly with non-technical stakeholders and a cross-functional team of 5--8.
+    \item Partial launch with pilot customers; weekly coordination with non-technical stakeholders on a team of 5--8.
   \end{resume_list}
 
   \headingBf{ Dextrading }{ Dec 2022 -- Apr 2025 }
@@ -155,7 +161,6 @@
     \item Built the multi-language Next.js frontend with server-side rendering for performance and SEO.
     \item Implemented React Beautiful DnD for drag-and-drop workflows in an exam-creation tool, simplifying a previously manual process.
     \item Configured CI/CD pipelines with Portainer, Docker, and GitLab.
-    \item Consulted on backend performance optimization, reducing API latencies on hot paths.
   \end{resume_list}
 
   \headingBf{ Chargoon }{ Feb 2020 -- Aug 2021 }
@@ -174,13 +179,6 @@
     \item Built the Angular front-end with HLS streaming for a fitness video product, including PWA install and offline capabilities.
     \item Designed and shipped a CMS dashboard for content upload and curation workflows.
     \item Dockerized the frontend deployment, cutting daily deployment time substantially.
-    \item Conducted A/B testing and user research feeding back into product iterations.
   \end{resume_list}
-
-  \section{Selected Open Source}
-
-  \headingBf{ netsuite-restlet-typescript }{ \href{https://github.com/Ahmad-b1995/netsuite-restlet-typescript}{github.com/Ahmad-b1995/netsuite-restlet-typescript} }
-  \headingIt{ Typed API client (TypeScript) }{ }
-  \companyDescription{ A typed client for a third-party REST API with OAuth 2.0 / JWT authentication: typed request/response generics, retry-with-backoff, structured error classes, and runnable examples. Demonstrates production-grade API client design in TypeScript. }
 
 \end{document}

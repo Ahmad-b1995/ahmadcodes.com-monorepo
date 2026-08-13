@@ -10,11 +10,13 @@
 \usepackage{bookmark}
 \usepackage{lastpage}
 \usepackage[sfdefault]{roboto}
+\usepackage{microtype}
 
 \usepackage{xcolor}
 \definecolor{accentTitle}{HTML}{0e7490}
 \definecolor{accentText}{HTML}{0e7490}
 \definecolor{accentLine}{HTML}{0e7490}
+\definecolor{textMuted}{HTML}{475569}
 
 \pagestyle{fancy}
 \fancyhf{}
@@ -27,7 +29,7 @@
 \addtolength{\evensidemargin}{-0.5in}
 \addtolength{\textwidth}{1.19in}
 \addtolength{\topmargin}{-0.7in}
-\addtolength{\textheight}{1.4in}
+\addtolength{\textheight}{1.5in}
 
 \setlength{\multicolsep}{-3.0pt}
 \setlength{\columnsep}{-1pt}
@@ -42,7 +44,7 @@
 \newcommand{\documentTitle}[2]{
   \begin{center}
     {\Huge\color{accentTitle} #1}
-    \vspace{10pt}
+    \vspace{7pt}
     {\color{accentLine} \hrule}
     \vspace{2pt}
     \footnotesize{#2}
@@ -56,6 +58,7 @@
   \color{accentText}
   \raggedright\large\bfseries
 }{}{0em}{}[\color{accentLine}\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
 
 \newcommand{\tinysection}[1]{
   \phantomsection
@@ -80,14 +83,17 @@
   \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
 }{
   \end{itemize}
+  \vspace{1pt}
 }
 
+% Muted italic, with a little air before the bullet list that follows,
+% so the company blurb reads as context rather than another bullet.
 \newcommand{\companyDescription}[1]{
   \vspace{-7pt}
   \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=12pt]
-    \item[] #1
+    \item[] {\color{textMuted}\textit{#1}}
   \end{itemize}
-  \vspace{-7pt}
+  \vspace{-4pt}
 }
 
 \renewcommand\labelitemi{--}
@@ -115,7 +121,7 @@
       \item \textbf{Integrations:} NetSuite, SuiteScript, RESTlets, OAuth 2.0/JWT, HubSpot, Stripe
       \item \textbf{Infra \& DevOps:} Docker, Linux, Ansible, Coolify, GitLab/Jenkins CI/CD, AWS, GCP
       \item \textbf{Testing:} Jest, Cypress, pytest, integration testing
-      \item \textbf{Languages:} English (fluent), German (A1), Persian (native)
+      \item \textbf{Languages:} English (fluent), German (A1)
     \end{itemize}
   \end{multicols}
 
@@ -128,7 +134,7 @@
     \item Sole engineer building a manufacturer customer portal that replaces phone-based order coordination, whiteboard production scheduling, and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production workers, and the office team.
     \item Designed and shipped end-to-end in TypeScript: NestJS API, React + TanStack Query frontend, planned React Native mobile app with QR-based warehouse workflows, and bi-directional NetSuite integration via SuiteScript RESTlets and webhooks.
     \item Built deployment infrastructure on Coolify with PostgreSQL, Linux, and Ansible. CI/CD with Docker and GitLab.
-    \item Currently in partial launch with internal users and pilot customers; full external rollout targeted for Oct 2026. Coordinate weekly with non-technical stakeholders and a cross-functional team of 5--8.
+    \item Partial launch with pilot customers, full rollout targeted Oct 2026; weekly coordination with stakeholders.
   \end{resume_list}
 
   \headingBf{ Dextrading }{ Dec 2022 -- Apr 2025 }
@@ -139,7 +145,6 @@
     \item Designed and shipped a NestJS + GraphQL + PostgreSQL content platform that became a primary acquisition channel.
     \item Built a Django-backed AI Q\&A API tied to subscription growth.
     \item Integrated TradingView, Chart.js, and D3 for real-time market visualization. Implemented advanced filterable, sortable, and cached data tables.
-    \item Established CI/CD via Docker, GitLab, and Jenkins; tightened deployment cadence and reduced rollout incidents.
   \end{resume_list}
 
   \headingBf{ Azer Tech (Sahibkar) }{ Jul 2021 -- Jan 2023 }
@@ -149,15 +154,13 @@
     \item Built the multi-language Next.js frontend with server-side rendering for performance and SEO.
     \item Implemented React Beautiful DnD for drag-and-drop workflows in an exam-creation tool, simplifying a previously manual process.
     \item Configured CI/CD pipelines with Portainer, Docker, and GitLab.
-    \item Consulted on backend performance optimization, reducing API latencies on hot paths.
   \end{resume_list}
 
   \headingBf{ Chargoon }{ Feb 2020 -- Aug 2021 }
   \headingIt{ Full-Stack Developer }{ Remote (Tehran, Iran) }
-  \companyDescription{ Iranian enterprise software vendor delivering ERP solutions to mid-market and enterprise customers. Public site is geo-restricted outside Iran. }
+  \companyDescription{ Enterprise software vendor delivering ERP solutions to mid-market and enterprise customers. }
   \begin{resume_list}
     \item Migrated legacy ERP modules to a React + .NET stack as part of a 15-engineer team, while shipping new features driven by customer requests.
-    \item Drove code-review practices that tightened defect rates and review cycle times.
     \item Enhanced backend logic in .NET, delivering measurable throughput improvements on transaction-heavy modules.
   \end{resume_list}
 
@@ -166,15 +169,12 @@
   \companyDescription{ PWA-based fitness video streaming startup (now defunct). }
   \begin{resume_list}
     \item Built the Angular front-end with HLS streaming for a fitness video product, including PWA install and offline capabilities.
-    \item Designed and shipped a CMS dashboard for content upload and curation workflows.
     \item Dockerized the frontend deployment, cutting daily deployment time substantially.
-    \item Conducted A/B testing and user research feeding back into product iterations.
   \end{resume_list}
 
   \section{Selected Open Source}
 
   \headingBf{ netsuite-restlet-typescript }{ \href{https://github.com/Ahmad-b1995/netsuite-restlet-typescript}{github.com/Ahmad-b1995/netsuite-restlet-typescript} }
-  \headingIt{ TypeScript SDK for NetSuite RESTlets }{ }
-  \companyDescription{ A typed client for calling NetSuite RESTlets with OAuth 2.0 / JWT authentication. Includes typed request/response handling, retry-with-backoff, structured error classes, and runnable examples for common saved-search and CRUD workflows. }
+  \companyDescription{ TypeScript SDK for NetSuite RESTlets: OAuth 2.0/JWT, typed requests, retry/backoff, structured errors. }
 
 \end{document}
