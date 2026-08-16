@@ -37,6 +37,12 @@ const AboutSection = () => {
             &mdash; migrating legacy modules to a React + .NET stack alongside a 15-engineer team.
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
+            Outside client work I build <span className="text-slate-800 dark:text-slate-300">Loam</span> &mdash; a
+            startup-discovery pipeline (FastAPI, pgvector, Claude) that mines problem signals from Reddit and
+            Hacker News into a weekly scored digest. I work through AI coding agents daily, but Loam is written
+            strictly by hand: AI reviews the diffs, it doesn&apos;t write them.
+          </p>
+          <p className="mb-4 text-slate-700 dark:text-slate-400">
             I&apos;m comfortable owning architecture, infrastructure, and delivery end-to-end &mdash; from Postgres
             schema and API design through deployment on Coolify with Linux and Ansible, to CI/CD and the front-end
             polish. I&apos;m available for contract and full-time engagements, remote,
