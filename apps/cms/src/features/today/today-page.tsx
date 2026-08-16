@@ -288,7 +288,7 @@ export function TodayPage() {
         <div className='mx-auto w-full max-w-[900px] space-y-6 px-4 pb-10'>
           <div className='space-y-1'>
             <h1 className='text-2xl font-semibold tracking-tight'>
-              Today —{' '}
+              Today:{' '}
               {bundle
                 ? formatPlanDate(bundle.plan.planDate)
                 : formatPlanDate(planDate)}

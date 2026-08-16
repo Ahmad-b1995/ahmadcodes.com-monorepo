@@ -14,7 +14,7 @@ export type MailFolderConfig = {
   slug: MailFolder
   title: string
   icon: LucideIcon
-  /** Filters to send to the API. `null` means "not yet supported — show empty state". */
+  /** Filters to send to the API. `null` means "not yet supported; show empty state". */
   filters: IMailListFilters | null
   /** What to show on the "counterparty" column in the list. */
   counterpartyColumn: 'from' | 'to'
@@ -37,7 +37,7 @@ export const mailFolders: Record<MailFolder, MailFolderConfig> = {
     counterpartyColumn: 'from',
     emptyTitle: 'No inbound mail',
     emptyDescription:
-      'Inbound webhook is not yet wired. See REMINDERS.md → "Inbound mail — architecture for v2".',
+      'Inbound webhook is not yet wired. See REMINDERS.md → "Inbound mail: architecture for v2".',
     showCompose: true,
   },
   sent: {

@@ -47,7 +47,7 @@ const PRIORITIES: PlanningGoalPriority[] = [
 
 function formatTarget(iso: string | null): string {
   if (!iso) {
-    return '—'
+    return '-'
   }
   try {
     return format(parseISO(iso), 'MMM d, yyyy')

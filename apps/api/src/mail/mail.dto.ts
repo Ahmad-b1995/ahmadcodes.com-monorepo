@@ -54,7 +54,7 @@ export class SendMailDto {
   bodyHtml!: string;
 
   /**
-   * Plain-text fallback body. Optional — derived from bodyHtml when not provided.
+   * Plain-text fallback body. Optional; derived from bodyHtml when not provided.
    */
   @IsOptional()
   @IsString()

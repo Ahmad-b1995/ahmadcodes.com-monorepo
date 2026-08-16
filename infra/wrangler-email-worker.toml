@@ -1,4 +1,4 @@
-# Cloudflare Email Worker — inbound relay for ahmadcodes.com
+# Cloudflare Email Worker: inbound relay for ahmadcodes.com
 # Deploy from repo root: cd infra && wrangler deploy -c wrangler-email-worker.toml
 
 name = "ahmadcodes-email"

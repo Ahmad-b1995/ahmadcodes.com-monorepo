@@ -1,7 +1,7 @@
 # Resume
 
 Six variants, all built by `build.sh` and copied into `apps/web/public/`.
-Same facts in every file — only the emphasis changes. Pick the one that
+Same facts in every file; only the emphasis changes. Pick the one that
 matches the job. Do not send the ERP variant to a generic React/Node listing.
 
 | File | Use for | Served at |

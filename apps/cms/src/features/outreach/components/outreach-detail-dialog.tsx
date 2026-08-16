@@ -77,13 +77,13 @@ export function OutreachDetailDialog({
               Last contacted:{' '}
               {contact.lastContactedAt
                 ? format(parseISO(contact.lastContactedAt), 'MMM d, yyyy HH:mm')
-                : '—'}
+                : '-'}
             </span>
             <span>
               Last reply:{' '}
               {contact.lastReplyAt
                 ? format(parseISO(contact.lastReplyAt), 'MMM d, yyyy HH:mm')
-                : '—'}
+                : '-'}
             </span>
           </div>
           <div className='grid gap-2'>

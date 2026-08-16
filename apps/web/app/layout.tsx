@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     process.env.NEXT_PUBLIC_BASE_URL ?? "https://ahmadcodes.com",
   ),
   title: {
-    default: "Ahmad Bagheri — Senior Full-Stack Engineer",
+    default: "Ahmad Bagheri | Senior Full-Stack Engineer",
     template: "%s · Ahmad Bagheri",
   },
   description:
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   authors: [{ name: "Ahmad Bagheri", url: "https://ahmadcodes.com" }],
   openGraph: {
     type: "website",
-    title: "Ahmad Bagheri — Senior Full-Stack Engineer",
+    title: "Ahmad Bagheri | Senior Full-Stack Engineer",
     description:
       "Senior full-stack engineer. TypeScript across React, Next.js, and NestJS. Open to full-time and contract.",
     url: "https://ahmadcodes.com",
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ahmad Bagheri — Senior Full-Stack Engineer",
+    title: "Ahmad Bagheri | Senior Full-Stack Engineer",
     description:
       "Senior full-stack engineer. TypeScript across React, Next.js, and NestJS.",
   },
