@@ -15,7 +15,7 @@ const AboutSection = () => {
         <div>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
             I&apos;m a senior full-stack engineer with 7+ years of experience shipping production
-            web applications in TypeScript --- React and Next.js on the front, NestJS and Node
+            web applications in TypeScript: React and Next.js on the front, NestJS and Node
             on the back, PostgreSQL underneath. I also have uncommon
             <span className="text-slate-800 dark:text-slate-300"> NetSuite/SuiteScript integration</span>
             experience from manufacturing and enterprise work, which I use when the job needs it
@@ -23,7 +23,7 @@ const AboutSection = () => {
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
             Currently at <a className="text-slate-800 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300" href="https://barriertek.com" target="_blank" rel="noreferrer">Barriertek</a>, I&apos;m the sole engineer on
-            <span className="text-slate-800 dark:text-slate-300"> Woody Portal</span> &mdash; a manufacturer
+            <span className="text-slate-800 dark:text-slate-300"> Woody Portal</span>, a manufacturer
             customer portal that replaces phone-based order coordination, whiteboard production scheduling,
             and per-team Excel sheets with a unified real-time dashboard for distributors, truckers, production
             workers, and the office team. Bi-directional NetSuite integration via SuiteScript RESTlets;
@@ -33,17 +33,17 @@ const AboutSection = () => {
             Before that, I led the frontend rebuild at <a className="text-slate-800 dark:text-slate-200 hover:text-primary-600 dark:hover:text-primary-300" href="https://dextrading.com" target="_blank" rel="noreferrer">DexTrading</a>
             (a crypto analytics platform), shipped an in-house content platform that became a primary acquisition
             channel, and built a Django-backed AI Q&amp;A API tied to subscription growth. Earlier I worked at
-            <span> </span><span className="text-slate-800 dark:text-slate-300">Chargoon</span> &mdash; an Iranian ERP vendor
-            &mdash; migrating legacy modules to a React + .NET stack alongside a 15-engineer team.
+            <span> </span><span className="text-slate-800 dark:text-slate-300">Chargoon</span> (an Iranian ERP vendor),
+            migrating legacy modules to a React + .NET stack alongside a 15-engineer team.
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
-            Outside client work I build <span className="text-slate-800 dark:text-slate-300">Loam</span> &mdash; a
+            Outside client work I build <span className="text-slate-800 dark:text-slate-300">Loam</span>, a
             startup-discovery pipeline (FastAPI, pgvector, Claude) that mines problem signals from Reddit and
             Hacker News into a weekly scored digest. I work through AI coding agents daily, but Loam is written
             strictly by hand: AI reviews the diffs, it doesn&apos;t write them.
           </p>
           <p className="mb-4 text-slate-700 dark:text-slate-400">
-            I&apos;m comfortable owning architecture, infrastructure, and delivery end-to-end &mdash; from Postgres
+            I&apos;m comfortable owning architecture, infrastructure, and delivery end-to-end, from Postgres
             schema and API design through deployment on Coolify with Linux and Ansible, to CI/CD and the front-end
             polish. I&apos;m available for contract and full-time engagements, remote,
             GMT+4 with comfortable overlap with US Eastern and Western Europe.

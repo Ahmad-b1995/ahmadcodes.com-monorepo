@@ -58,7 +58,7 @@ applications/*.synctex.gz
 applications/*.bak
 applications/*.pdf
 
-# Personal plans / private notes — never push these
+# Personal plans / private notes; never push these
 REMINDERS.md
 TODO.md
 private/

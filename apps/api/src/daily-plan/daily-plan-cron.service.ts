@@ -15,7 +15,7 @@ export class DailyPlanCronService {
     private readonly dailyPlanService: DailyPlanService,
   ) {}
 
-  /** 05:00 UTC (~08:00 GMT+3) — skip if a plan for today already exists. */
+  /** 05:00 UTC (~08:00 GMT+3); skip if a plan for today already exists. */
   @Cron('0 5 * * *', { timeZone: 'Etc/UTC' })
   async pregenerateToday(): Promise<void> {
     const today = utcTodayDateString();

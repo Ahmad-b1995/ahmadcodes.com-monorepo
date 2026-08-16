@@ -47,11 +47,11 @@ function statusBadgeVariant(
 }
 
 function formatDt(iso: string | null | undefined): string {
-  if (!iso) return '—'
+  if (!iso) return '-'
   try {
     return format(parseISO(iso), 'MMM d, yyyy HH:mm')
   } catch {
-    return '—'
+    return '-'
   }
 }
 
@@ -161,7 +161,7 @@ export function Outreach() {
                       }}
                     >
                       <TableCell className='font-medium'>{c.name}</TableCell>
-                      <TableCell>{c.company || '—'}</TableCell>
+                      <TableCell>{c.company || '-'}</TableCell>
                       <TableCell>
                         <Badge variant={statusBadgeVariant(c.status)}>
                           {c.status}

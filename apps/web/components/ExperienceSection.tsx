@@ -11,7 +11,7 @@ type Experience = {
 
 const experiences: Experience[] = [
   {
-    range: "2025 — Present",
+    range: "2025 - Present",
     title: "Senior Full-Stack Engineer",
     company: "Barriertek",
     href: "https://barriertek.com",
@@ -20,7 +20,7 @@ const experiences: Experience[] = [
     stack: ["TypeScript", "NestJS", "React", "PostgreSQL", "NetSuite", "SuiteScript"],
   },
   {
-    range: "2022 — 2025",
+    range: "2022 - 2025",
     title: "Senior Full-Stack Engineer",
     company: "DexTrading",
     href: "https://dextrading.com",
@@ -29,7 +29,7 @@ const experiences: Experience[] = [
     stack: ["Next.js", "NestJS", "GraphQL", "Django", "PostgreSQL", "Docker"],
   },
   {
-    range: "2021 — 2023",
+    range: "2021 - 2023",
     title: "Full-Stack Engineer",
     company: "Azer Tech (Sahibkar)",
     description:
@@ -37,7 +37,7 @@ const experiences: Experience[] = [
     stack: ["Next.js", "React", "Node.js", "Docker", "PostgreSQL"],
   },
   {
-    range: "2020 — 2021",
+    range: "2020 - 2021",
     title: "Full-Stack Engineer",
     company: "Chargoon",
     description:
@@ -45,7 +45,7 @@ const experiences: Experience[] = [
     stack: ["React", ".NET", "TypeScript", "ERP", "Code Review"],
   },
   {
-    range: "2018 — 2020",
+    range: "2018 - 2020",
     title: "Frontend Engineer",
     company: "Hamisheh",
     description:

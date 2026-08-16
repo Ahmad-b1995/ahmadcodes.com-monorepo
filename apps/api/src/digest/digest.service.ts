@@ -52,7 +52,7 @@ export class DigestService {
 
     const now = new Date();
     const dayLabel = now.toISOString().slice(0, 10);
-    const subject = `Daily digest — ${dayLabel}`;
+    const subject = `Daily digest: ${dayLabel}`;
     const bodyHtml = this.renderDigestHtml({
       posts,
       overdue,

@@ -38,7 +38,7 @@ import { toast } from 'sonner'
 import { useCareerDashboardQuery } from './hooks/use-career-dashboard-query'
 
 function formatWhen(iso: string | null | undefined): string {
-  if (!iso) return '—'
+  if (!iso) return '-'
   try {
     return format(parseISO(iso), 'MMM d, yyyy')
   } catch {

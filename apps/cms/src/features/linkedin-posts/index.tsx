@@ -23,11 +23,11 @@ import { PostDetailDialog } from './components/post-detail-dialog'
 import { tabForPost, useLinkedInPostsQuery } from './hooks/use-linkedin-posts-query'
 
 function formatDt(iso: string | null | undefined): string {
-  if (!iso) return '—'
+  if (!iso) return '-'
   try {
     return format(parseISO(iso), 'MMM d, yyyy HH:mm')
   } catch {
-    return '—'
+    return '-'
   }
 }
 

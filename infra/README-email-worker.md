@@ -61,4 +61,4 @@ Email Routing already requires **MX** to Cloudflare; no extra DNS is needed for 
 
 - **401 from API**: `INBOUND_MAIL_SECRET` mismatch between Worker secret and API env.
 - **Worker logs**: Workers & Pages → **ahmadcodes-email** → **Logs** (or `wrangler tail -c wrangler-email-worker.toml`).
-- Failures are **logged** in the worker; the script avoids throwing after the main path so Cloudflare can still deliver or forward per platform behavior—verify routing and `FORWARD_TO` in the dashboard if mail stops arriving.
+- Failures are **logged** in the worker; the script avoids throwing after the main path so Cloudflare can still deliver or forward per platform behavior; verify routing and `FORWARD_TO` in the dashboard if mail stops arriving.
