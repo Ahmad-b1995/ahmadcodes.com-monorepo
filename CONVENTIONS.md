@@ -1,7 +1,7 @@
 # Code conventions
 
 > Hard rules and soft preferences for code in this monorepo. Read once
-> when you join, follow always. Public — fine to commit.
+> when you join, follow always. Public; fine to commit.
 
 This is the reference. When in doubt, pick what's already in the codebase
 over what's "best" in an abstract sense. Consistency beats correctness when
@@ -30,15 +30,15 @@ both are reasonable.
 
 ```
 apps/
-  api/        NestJS — backend, owns the DB
-  web/        Next.js 15 — public site
-  cms/        Vite + React — admin
+  api/        NestJS: backend, owns the DB
+  web/        Next.js 15: public site
+  cms/        Vite + React: admin
 packages/
   shared/         DTOs and HTTP client classes
   eslint-config/  Shared lint config
   typescript-config/  Shared tsconfig
 resume/      LaTeX source + build script
-assets/      Marketing assets (banner exports, logos) — public artifacts
+assets/      Marketing assets (banner exports, logos): public artifacts
 ```
 
 Rules:
@@ -66,7 +66,7 @@ Rules:
 - **Components are functions.** Use `function Component(...)` for top-level
   components, arrow functions for inline callbacks.
 - **State lives close to its use.** Push state up only when more than one
-  component needs it. Avoid prop drilling more than ~3 levels — extract
+  component needs it. Avoid prop drilling more than ~3 levels; extract
   context if needed.
 
 ## 4. Styling
@@ -90,7 +90,7 @@ Rules:
 - **Files**: kebab-case for components and routes (`mail-list.tsx`),
   PascalCase only inside the file for the exported component.
 - **Components**: `PascalCase`.
-- **Hooks**: `useThing()` — always start with `use`.
+- **Hooks**: `useThing()`: always start with `use`.
 - **Boolean variables/props**: `isLoading`, `hasError`, `canEdit`,
   `shouldRender`. Don't use raw nouns for booleans.
 - **DB column names**: `snake_case`. TypeORM entity properties:
@@ -114,7 +114,7 @@ If you copy-paste three times, on the third paste extract a function.
 ## 7. Dead code policy
 
 - **Delete on sight.** Unused imports, unused variables, commented-out
-  blocks, "just in case" parameters — delete. Git remembers everything.
+  blocks, "just in case" parameters; delete. Git remembers everything.
 - **Use `knip`** to find unused files, exports, and deps:
   ```bash
   cd apps/<x> && pnpm knip

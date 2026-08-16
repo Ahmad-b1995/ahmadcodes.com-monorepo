@@ -75,7 +75,7 @@ Return a single JSON object (no markdown fences) with this exact shape:
       "actionable": {
         "type": "email" | "post" | "study" | "code" | "phone" | "form" | "research" | "other",
         "checklist": string[],
-        "copyText": string (optional — email/post body, form text, etc.),
+        "copyText": string (optional; email/post body, form text, etc.),
         "links": [{ "label": string, "url": string }],
         "deliverables": string[],
         "blocker": string | null,

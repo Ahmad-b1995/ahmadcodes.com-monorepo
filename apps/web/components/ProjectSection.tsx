@@ -21,7 +21,7 @@ const projects: Project[] = [
   {
     name: "Loam - Startup Discovery OS",
     description:
-      "Personal research pipeline that runs 24/7: ingests problem-signal posts from Reddit, Hacker News, and GitHub Issues, filters and clusters them (embeddings, pgvector, UMAP/HDBSCAN), scores each cluster with an explainable formula, summarizes with Claude, and delivers a weekly email/Telegram digest with one-click Notion export. FastAPI, Arq workers, React 19. Developed strictly by hand — AI reviews the diffs, it doesn't write them. Open-source release planned.",
+      "Personal research pipeline that runs 24/7: ingests problem-signal posts from Reddit, Hacker News, and GitHub Issues, filters and clusters them (embeddings, pgvector, UMAP/HDBSCAN), scores each cluster with an explainable formula, summarizes with Claude, and delivers a weekly email/Telegram digest with one-click Notion export. FastAPI, Arq workers, React 19. Developed strictly by hand; AI reviews the diffs, it doesn't write them. Open-source release planned.",
     stack: ["Python", "FastAPI", "PostgreSQL", "pgvector", "Claude API", "React"],
   },
   {

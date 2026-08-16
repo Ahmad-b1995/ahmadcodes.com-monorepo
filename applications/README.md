@@ -26,10 +26,10 @@ applications/
   cv-academic.tex                              The academic CV (Europass-style).
   _letter-preamble.tex                         Shared LaTeX header for all letters.
 
-  motivation-trento-cs.tex                     Italy — University of Trento, BSc Computer Science (English)
-  motivation-bologna-digital-humanities.tex    Italy — University of Bologna, BSc Digital Humanities
-  motivation-camerino-cs.tex                   Italy — Università di Camerino, BSc Computer Science (safety net)
-  motivation-tu-berlin-studienkolleg.tex       Germany — TU-Studienkolleg T-Kurs → TU Berlin BSc Informatik
+  motivation-trento-cs.tex                     Italy: University of Trento, BSc Computer Science (English)
+  motivation-bologna-digital-humanities.tex    Italy: University of Bologna, BSc Digital Humanities
+  motivation-camerino-cs.tex                   Italy: Università di Camerino, BSc Computer Science (safety net)
+  motivation-tu-berlin-studienkolleg.tex       Germany: TU-Studienkolleg T-Kurs → TU Berlin BSc Informatik
 
   pre-application-inquiry-italy.md             Template + university contact emails for Italy
   pre-application-inquiry-germany.md           Template + university/Studienkolleg contacts for Germany
@@ -37,16 +37,16 @@ applications/
 
 ## Workflow
 
-1. **Before applying** — send the pre-application inquiry email from
+1. **Before applying:** send the pre-application inquiry email from
    `pre-application-inquiry-italy.md` (or `-germany.md`) to each target
    university. Fill in `{{Programme Name}}` and any other placeholders.
-2. **When you get a positive reply** — customize the relevant motivation letter:
+2. **When you get a positive reply:** customize the relevant motivation letter:
    - Update the date in the letter heading
    - Customize the per-university paragraph with details from their reply
      (specific professors mentioned, specific programmes confirmed,
      additional documents requested)
    - Build the PDF
-3. **Submit** — via Universitaly (Italy) or uni-assist / direct (Germany).
+3. **Submit:** via Universitaly (Italy) or uni-assist / direct (Germany).
 
 ## What to customize per university
 

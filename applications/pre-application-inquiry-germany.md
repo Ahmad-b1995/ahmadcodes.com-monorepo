@@ -1,4 +1,4 @@
-# Pre-application inquiry — German universities / Studienkollegs
+# Pre-application inquiry: German universities / Studienkollegs
 
 For Germany, the process is two-step for someone without a Konkur entrance
 result: enrol in a Studienkolleg for one preparatory year (T-Kurs for
@@ -7,7 +7,7 @@ Bachelor's.
 
 You can pre-inquire with BOTH the Studienkolleg AND your target university.
 
-## Verified contacts (as of 2026 — re-verify on each website)
+## Verified contacts (as of 2026; re-verify on each website)
 
 | Institution | Programme | Contact | Verify at |
 |---|---|---|---|
@@ -18,12 +18,12 @@ You can pre-inquire with BOTH the Studienkolleg AND your target university.
 | TU Berlin (target university) | BSc Informatik | int-students@tu-berlin.de | tu-berlin.de |
 | RWTH Aachen | BSc Computer Science | international@rwth-aachen.de | rwth-aachen.de |
 | Universität Leipzig | BSc Informatik | international@uni-leipzig.de | uni-leipzig.de |
-| uni-assist (centralized application service) | — | info@uni-assist.de | uni-assist.de |
+| uni-assist (centralized application service) | - | info@uni-assist.de | uni-assist.de |
 
-## Template — to a Studienkolleg
+## Template: to a Studienkolleg
 
 ```
-Subject: Pre-application inquiry — T-Kurs for Computer Science Bachelor,
+Subject: Pre-application inquiry: T-Kurs for Computer Science Bachelor,
 winter semester 2027/2028
 
 Sehr geehrte Damen und Herren,
@@ -69,10 +69,10 @@ contact@ahmadcodes.com
 ahmadcodes.com
 ```
 
-## Template — to a target university (English)
+## Template: to a target university (English)
 
 ```
-Subject: Pre-application inquiry — Bachelor's in Computer Science,
+Subject: Pre-application inquiry: Bachelor's in Computer Science,
 winter semester 2028 (post-Studienkolleg)
 
 Dear International Admissions Office,
@@ -128,7 +128,7 @@ contact@ahmadcodes.com
 
 - **English-taught Bachelor's in Computer Science** are limited in Germany.
   The vast majority of Informatik bachelor's are in German. If you want
-  English at undergrad level, the Studienkolleg path is unavoidable —
+  English at undergrad level, the Studienkolleg path is unavoidable;
   Studienkolleg gives you the German.
 
 - **Free tuition**: confirmed for non-EU students in all states except

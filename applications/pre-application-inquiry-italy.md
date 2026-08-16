@@ -1,4 +1,4 @@
-# Pre-application inquiry — Italian universities
+# Pre-application inquiry: Italian universities
 
 Send a tailored version of this email to each Italian university you're
 targeting BEFORE you formally apply via Universitaly. The goal is to confirm
@@ -6,7 +6,7 @@ your profile is eligible so you don't burn an application slot.
 
 Send each university separately. Never BCC. Never bulk-send.
 
-## Verified contact emails (as of 2026 — re-verify on each website)
+## Verified contact emails (as of 2026; re-verify on each website)
 
 | University | Programme | Contact | Verify at |
 |---|---|---|---|
@@ -20,7 +20,7 @@ Send each university separately. Never BCC. Never bulk-send.
 ## Template (copy, fill the `{{placeholders}}`, send)
 
 ```
-Subject: Pre-application inquiry — Bachelor's in {{Programme Name}},
+Subject: Pre-application inquiry: Bachelor's in {{Programme Name}},
 September 2027 intake
 
 Dear International Admissions Office,
