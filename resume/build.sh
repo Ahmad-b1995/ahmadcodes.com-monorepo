@@ -24,6 +24,7 @@ VARIANTS=(
   "ahmad-bagheri-resume-devops.tex"
   "ahmad-bagheri-resume-frontend.tex"
   "ahmad-bagheri-resume-ai.tex"
+  "ahmad-bagheri-resume-backend.tex"
 )
 
 cd "${SCRIPT_DIR}"

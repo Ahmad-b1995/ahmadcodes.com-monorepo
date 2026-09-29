@@ -1,0 +1,187 @@
+% Backend-leaning variant.
+% Use for Backend Engineer / API Developer roles where Node/NestJS,
+% PostgreSQL, GraphQL, and integration reliability lead the requirements
+% (auteon-type listings). Frontend stays as one supporting line.
+% Same facts as the other variants: only the emphasis changes.
+% Do NOT add tools not actually used (Kafka, Kubernetes, microservices
+% buzzwords, Langfuse, Airflow, etc.).
+
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{bookmark}
+\usepackage{lastpage}
+\usepackage[sfdefault]{roboto}
+\usepackage{microtype}
+
+\usepackage{xcolor}
+\definecolor{accentTitle}{HTML}{0e7490}
+\definecolor{accentText}{HTML}{0e7490}
+\definecolor{accentLine}{HTML}{0e7490}
+\definecolor{textMuted}{HTML}{475569}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\urlstyle{same}
+
+\addtolength{\oddsidemargin}{-0.7in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-0.7in}
+\addtolength{\textheight}{1.5in}
+
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\setlength{\tabcolsep}{0pt}
+\setlength{\footskip}{3.7pt}
+\raggedbottom
+\raggedright
+
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\newcommand{\documentTitle}[2]{
+  \begin{center}
+    {\Huge\color{accentTitle} #1}
+    \vspace{7pt}
+    {\color{accentLine} \hrule}
+    \vspace{2pt}
+    \footnotesize{#2}
+    \vspace{2pt}
+    {\color{accentLine} \hrule}
+  \end{center}
+}
+
+\titleformat{\section}{
+  \vspace{-5pt}
+  \color{accentText}
+  \raggedright\large\bfseries
+}{}{0em}{}[\color{accentLine}\titlerule]
+\titlespacing{\section}{0pt}{6pt}{4pt}
+
+\newcommand{\tinysection}[1]{
+  \phantomsection
+  \addcontentsline{toc}{section}{#1}
+  {\large{\bfseries\color{accentText}#1} {\color{accentLine} \textbar}}
+}
+
+\newcommand{\heading}[2]{
+  \hspace{10pt}#1\hfill#2\\
+}
+
+\newcommand{\headingBf}[2]{
+  \heading{\textbf{#1}}{\textbf{#2}}
+}
+
+\newcommand{\headingIt}[2]{
+  \heading{\textit{#1}}{\textit{#2}}
+}
+
+\newenvironment{resume_list}{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=30pt]
+}{
+  \end{itemize}
+  \vspace{1pt}
+}
+
+% Muted italic, with a little air before the bullet list that follows,
+% so the company blurb reads as context rather than another bullet.
+\newcommand{\companyDescription}[1]{
+  \vspace{-7pt}
+  \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=12pt]
+    \item[] {\color{textMuted}\textit{#1}}
+  \end{itemize}
+  \vspace{-4pt}
+}
+
+\renewcommand\labelitemi{--}
+
+\begin{document}
+
+  \documentTitle{ Ahmad Bagheri }{
+    \href{mailto:ahmadbagheri.tech@gmail.com}{\raisebox{-0.15\height}{\faEnvelope}~ahmadbagheri.tech@gmail.com} \quad$|$\quad
+    \href{tel:+37494308785}{\raisebox{-0.15\height}{\faPhone}~+37494308785} \quad$|$\quad
+    \raisebox{-0.05\height}{\faMapMarker}~Armenia (GMT+4) \quad$|$\quad
+    \href{https://ahmadcodes.com}{\raisebox{-0.15\height}{\faGlobe}~ahmadcodes.com} \quad$|$\quad
+    \href{https://www.linkedin.com/in/ahmad-bagheri/}{\raisebox{-0.15\height}{\faLinkedin}~ahmad-bagheri} \quad$|$\quad
+    \href{https://github.com/Ahmad-b1995}{\raisebox{-0.15\height}{\faGithub}~Ahmad-b1995}
+  }
+
+  \tinysection{Summary}
+  Senior backend-leaning full-stack engineer with 7+ years shipping production APIs and the systems around them: NestJS and Node.js in TypeScript, PostgreSQL and Redis underneath, Python (FastAPI, Django) alongside. Strong record making third-party integrations dependable: rate limits, retries, idempotency, two-phase sync, failure that stays visible. Owns everything from schema design to deployment. Open to full-time and contract engagements.
+
+  \section{Skills}
+  \begin{multicols}{2}
+    \begin{itemize}[itemsep=-2px, parsep=1pt, leftmargin=10pt, label={}]
+      \item \textbf{Backend:} NestJS, Node.js, TypeScript, Express, GraphQL, REST
+      \item \textbf{Python:} FastAPI, Django, Arq workers, pytest
+      \item \textbf{Data:} PostgreSQL, pgvector, Redis, MongoDB, schema design
+      \item \textbf{Integrations:} webhooks, OAuth 2.0/JWT, retry/backoff, idempotency, rate-limit handling
+      \item \textbf{Infra:} Docker, Linux, Ansible, Coolify, GitLab/Jenkins CI/CD
+      \item \textbf{Frontend (working):} React, Next.js, TanStack Query
+      \item \textbf{Languages:} English (fluent), German (A1)
+    \end{itemize}
+  \end{multicols}
+
+  \section{Selected Projects}
+
+  \headingBf{ Loam: startup-discovery pipeline }{ 2026 -- present }
+  \companyDescription{ Personal research system running scheduled 24/7. FastAPI API, Arq workers on Redis, PostgreSQL with pgvector, Alembic migrations, Docker. Ingests problem-signal posts from Reddit, Hacker News, and GitHub Issues; embeds and clusters them; scores clusters with an explainable formula; summarizes with Claude; delivers a weekly digest with an idempotent Notion export. Currently adding an eval harness for the LLM summaries. }
+
+  \section{Experience}
+
+  \headingBf{ Barriertek (woodyportal.com) }{ Mar 2025 -- Present }
+  \headingIt{ Senior Full-Stack Developer }{ Remote (Toronto, Canada) }
+  \companyDescription{ Manufacturer modernizing operations through a custom customer and production portal. }
+  \begin{resume_list}
+    \item Sole engineer: designed the PostgreSQL schema and built the NestJS API powering order management, production scheduling, and logistics for distributors, truckers, production workers, and the office team.
+    \item Built bi-directional sync with the company's ERP via REST APIs and webhooks; the first design hit rate limits and half-synced orders, so I rebuilt it two-phase (queue locally, reconcile via webhooks) with idempotency and visible failure states.
+    \item Replaced phone-based order coordination, whiteboard production scheduling, and per-team Excel sheets with a unified real-time dashboard (React + TanStack Query).
+    \item Owned deployment infrastructure: Coolify, Linux, Ansible; CI/CD with Docker and GitLab.
+  \end{resume_list}
+
+  \headingBf{ Dextrading }{ Dec 2022 -- Apr 2025 }
+  \headingIt{ Senior Full-Stack Developer }{ Remote (Toronto, Canada) }
+  \companyDescription{ Cryptocurrency trading and analytics platform serving retail and professional traders. }
+  \begin{resume_list}
+    \item Designed and shipped a NestJS + GraphQL + PostgreSQL content platform that became a primary acquisition channel.
+    \item Built and ran a Django-backed AI Q\&A API in production, tied to subscription growth.
+    \item Lead engineer on a 3-developer frontend team; rebuilt the customer-facing app on Next.js + TanStack Query.
+    \item Established CI/CD via Docker, GitLab, and Jenkins; tightened deployment cadence and reduced rollout incidents.
+  \end{resume_list}
+
+  \headingBf{ Azer Tech (Sahibkar) }{ Jul 2021 -- Jan 2023 }
+  \headingIt{ Full-Stack Developer }{ Remote (Sumqayit, Azerbaijan) }
+  \companyDescription{ Educational technology platform with a multi-language user base. }
+  \begin{resume_list}
+    \item Consulted on backend performance optimization, reducing API latencies on hot paths.
+    \item Configured CI/CD pipelines with Portainer, Docker, and GitLab; built the multi-language Next.js frontend.
+  \end{resume_list}
+
+  \headingBf{ Chargoon }{ Feb 2020 -- Aug 2021 }
+  \headingIt{ Full-Stack Developer }{ Remote (Tehran, Iran) }
+  \companyDescription{ Enterprise software vendor delivering business solutions to mid-market and enterprise customers. }
+  \begin{resume_list}
+    \item Enhanced backend logic in .NET, delivering measurable throughput improvements on transaction-heavy modules.
+    \item Migrated legacy modules to a React + .NET stack as part of a 15-engineer team.
+  \end{resume_list}
+
+  \headingBf{ Hamisheh }{ Aug 2018 -- Feb 2020 }
+  \headingIt{ Frontend Developer }{ Tehran, Iran }
+  \companyDescription{ PWA-based fitness video streaming startup (now defunct). }
+  \begin{resume_list}
+    \item Built the Angular front-end with HLS streaming, including PWA install and offline capabilities.
+    \item Dockerized the frontend deployment, cutting daily deployment time substantially.
+  \end{resume_list}
+
+\end{document}

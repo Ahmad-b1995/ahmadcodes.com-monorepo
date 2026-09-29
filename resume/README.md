@@ -1,6 +1,6 @@
 # Resume
 
-Six variants, all built by `build.sh` and copied into `apps/web/public/`.
+Seven variants, all built by `build.sh` and copied into `apps/web/public/`.
 Same facts in every file; only the emphasis changes. Pick the one that
 matches the job. Do not send the ERP variant to a generic React/Node listing.
 
@@ -12,6 +12,7 @@ matches the job. Do not send the ERP variant to a generic React/Node listing.
 | `ahmad-bagheri-resume-python.tex` | Django / Python backend or Python full-stack roles | `ahmadcodes.com/ahmad-bagheri-resume-python.pdf` |
 | `ahmad-bagheri-resume-devops.tex` | Platform / DevOps-adjacent roles that want Docker, Linux, CI, self-hosted prod. **Not** for Kubernetes SRE listings. | `ahmadcodes.com/ahmad-bagheri-resume-devops.pdf` |
 | `ahmad-bagheri-resume-ai.tex` | LLM-platform / agent-engineering / AI-native product roles. Leads with Loam and the Dextrading AI API. Never add tools not actually used (Langfuse, Airflow, etc.). | `ahmadcodes.com/ahmad-bagheri-resume-ai.pdf` |
+| `ahmad-bagheri-resume-backend.tex` | Backend Engineer / API Developer roles (Node/NestJS, PostgreSQL, GraphQL, integration reliability). Frontend demoted to one line. | `ahmadcodes.com/ahmad-bagheri-resume-backend.pdf` |
 
 Keep them in sync when adding new experience. Change the facts in all five,
 or the variants will drift.
