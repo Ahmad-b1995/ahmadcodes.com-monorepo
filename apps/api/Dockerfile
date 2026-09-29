@@ -2,7 +2,7 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.0.0  # keep in step with "packageManager" in package.json
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 COPY packages ./packages
@@ -15,7 +15,7 @@ RUN pnpm build
 
 FROM node:20-alpine AS runner
 
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.0.0  # keep in step with "packageManager" in package.json
 
 WORKDIR /app
 

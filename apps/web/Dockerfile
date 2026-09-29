@@ -5,7 +5,7 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 
 # Install pnpm globally
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.0.0  # keep in step with "packageManager" in package.json
 
 # Copy root package files and workspace configuration
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
@@ -33,7 +33,7 @@ RUN pnpm build
 FROM node:20-alpine AS runner
 
 # Install pnpm globally
-RUN npm install -g pnpm
+RUN npm install -g pnpm@9.0.0  # keep in step with "packageManager" in package.json
 
 # Set working directory
 WORKDIR /app
