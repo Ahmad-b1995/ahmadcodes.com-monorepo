@@ -3,6 +3,9 @@ services:
     build:
       context: .
       dockerfile: apps/api/Dockerfile
+    # Like web and cms: without this the API stays down after a server
+    # reboot or a crash until someone redeploys it.
+    restart: unless-stopped
     # No published ports on any service. Traefik reaches every service over
     # dokploy-network and serves it on HTTPS only (api., www. and
     # cms.ahmadcodes.com). A published port bypasses the server firewall and
